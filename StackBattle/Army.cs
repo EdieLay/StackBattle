@@ -9,7 +9,14 @@ namespace StackBattle
     internal class Army
     {
         List<IUnit> Units;
-        public int Price { get; set; }
+        public int ArmySize
+        {
+            get
+            {
+                return Units.Count;
+            }
+        }
+        public int Price { get; private set; }
 
         public Army()
         {
@@ -22,11 +29,23 @@ namespace StackBattle
             get => Units[index];
             set => Units[index] = value;
         }
-        int GetArmyPrice()
-        { return Price; }
-        bool IsArmyPriceValid(int requiredPrice)
-        { return Price == requiredPrice; }
+        public int CalculateArmyPrice() // функция подсчёта цены армии
+        { 
+            // подсчёт
+            return Price; 
+        }
+        public bool IsArmyPriceValid(int requiredPrice)
+        { 
+            return Price == requiredPrice; 
+        }
         public void AddUnit(IUnit unit)
-        { Units.Add(unit); }
+        { 
+            Units.Add(unit);
+        }
+        public void ClearArmy()
+        {
+            // сделать очистку от павших юнитов
+            // нужно делать аккуратно, т.к. при удалении из списка одного элемента, другие элементы сдвигаются
+        }
     }
 }
