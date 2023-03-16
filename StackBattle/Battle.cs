@@ -23,13 +23,8 @@ namespace StackBattle
         public static Battle GetBattleInstance()
         {
             if (battleInstance == null)
-            {
                 lock (syncRoot)
-                {
-                    if (battleInstance == null)
-                        battleInstance = new Battle();
-                }
-            }
+                    battleInstance ??= new Battle();
             return battleInstance;
         }
 
@@ -44,7 +39,7 @@ namespace StackBattle
             // логика спешал абилити
             
             FirstArmy = isFirstArmyTurn ? FirstTurnArmy : SecondTurnArmy;
-            SecondArmy = isFirstArmyTurn ? SecondTurnArmy : FirstArmy;
+            SecondArmy = isFirstArmyTurn ? SecondTurnArmy : FirstTurnArmy;
             ClearField();
         }
         void ClearField()
