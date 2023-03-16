@@ -8,14 +8,24 @@ namespace StackBattle
 {
     internal class Battle
     {
+        private static Battle? battleInstance = null;
+        private static object syncRoot = new();
+
         Army FirstArmy { get; set; }
         Army SecondArmy { get; set; }
         public bool isFirstArmyWinner { get; private set; }
 
-        public Battle()
+        private Battle()
         {
             FirstArmy = new Army();
             SecondArmy = new Army();
+        }
+        public static Battle GetBattleInstance()
+        {
+            if (battleInstance == null)
+                lock (syncRoot)
+                    battleInstance ??= new Battle();
+            return battleInstance;
         }
 
         void DoTurn(bool isFirstArmyTurn)
@@ -29,7 +39,7 @@ namespace StackBattle
             // логика спешал абилити
             
             FirstArmy = isFirstArmyTurn ? FirstTurnArmy : SecondTurnArmy;
-            SecondArmy = isFirstArmyTurn ? SecondTurnArmy : FirstArmy;
+            SecondArmy = isFirstArmyTurn ? SecondTurnArmy : FirstTurnArmy;
             ClearField();
         }
         void ClearField()
