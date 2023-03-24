@@ -63,7 +63,7 @@ namespace StackBattle
         public void TakeDamage(int damage)
         {
             int defMod = Battle.DefenseMod;
-            HitPoints -= damage - (defMod/(defMod + Defense));
+            HitPoints -= damage * (defMod/(defMod + Defense));
         }
     }
 }
