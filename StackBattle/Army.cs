@@ -16,12 +16,12 @@ namespace StackBattle
                 return Units.Count;
             }
         }
-        public int Price { get; private set; }
+        private int _price = -1;
+        private object syncRoot = new();
 
         public Army()
         {
             Units = new List<IUnit>();
-            Price = 0;
         }
 
         public IUnit this[int index]
@@ -29,10 +29,22 @@ namespace StackBattle
             get => Units[index];
             set => Units[index] = value;
         }
-        public int CalculateArmyPrice() // функция подсчёта цены армии
-        { 
-            // подсчёт
-            return Price; 
+        public int Price // подсчёт цены армии
+        {
+            get
+            {
+                if (_price == -1)
+                    lock (syncRoot)
+                        if (_price == -1)
+                            for (int i = 0; i < Units.Count; i ++)
+                            {
+                                _price += Units[i].Attack + Units[i].Defense + Units[i].HitPoints;
+                                if (Units[i] is ISpecialAbility unit)
+                                    _price += (unit.Range + unit.Strength) * 2;
+                            }
+                return _price;
+            }
+
         }
         public bool IsArmyPriceValid(int requiredPrice)
         { 
