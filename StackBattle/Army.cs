@@ -27,7 +27,11 @@ namespace StackBattle
         public IUnit this[int index]
         {
             get => Units[index];
-            set => Units[index] = value;
+            set
+            {
+                Units[index] = value;
+                _price = -1;
+            }
         }
         public int Price // подсчёт цены армии
         {
@@ -57,9 +61,9 @@ namespace StackBattle
         }
         public void ClearArmy()
         {
-            _price = -1;
             // сделать очистку от павших юнитов
             // нужно делать аккуратно, т.к. при удалении из списка одного элемента, другие элементы сдвигаются
+            _price = -1;
         }
     }
 }
