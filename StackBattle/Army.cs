@@ -53,9 +53,11 @@ namespace StackBattle
         public void AddUnit(IUnit unit)
         { 
             Units.Add(unit);
+            _price = -1;
         }
         public void ClearArmy()
         {
+            _price = -1;
             // сделать очистку от павших юнитов
             // нужно делать аккуратно, т.к. при удалении из списка одного элемента, другие элементы сдвигаются
         }
