@@ -27,7 +27,11 @@ namespace StackBattle
         public IUnit this[int index]
         {
             get => Units[index];
-            set => Units[index] = value;
+            set
+            {
+                Units[index] = value;
+                _price = -1;
+            }
         }
         public int Price // подсчёт цены армии
         {
