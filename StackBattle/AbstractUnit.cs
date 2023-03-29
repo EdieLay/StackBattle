@@ -18,7 +18,7 @@ namespace StackBattle
                     return 0;
                 return _attack;
             }
-            private set
+            private protected set
             {
                 if (value < 0) value = 0;
                 _attack = value;
@@ -29,7 +29,7 @@ namespace StackBattle
             {
                 return _defense;
             }
-            private set
+            private protected set
             {
                 if (value < 0) value = 0;
                 _defense = value;
@@ -40,7 +40,7 @@ namespace StackBattle
             {
                 return _hitPoints;
             }
-            private set
+            private protected set
             {
                 if (value < 0) value = 0; 
                 _hitPoints = value;
