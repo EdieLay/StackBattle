@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    internal class AbstractUnit : IUnit
+    internal abstract class AbstractUnit : IUnit
     {
         private int _attack;
         private int _defense;
