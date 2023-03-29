@@ -48,26 +48,32 @@
                     case 0:
                         LightInfantry light = new(r1, r2, r3);
                         army.AddUnit(light);
+                        price -= r1 + r2 + r3;
                         break;
                     case 1:
                         HeavyInfantry heavy = new(r1, r2, r3);
                         army.AddUnit(heavy);
+                        price -= r1 + r2 + r3;
                         break;
                     case 2:
                         Knight knight = new(r1, r2, r3);
                         army.AddUnit(knight);
+                        price -= r1 + r2 + r3;
                         break;
                     case 3:
                         Archer archer = new(r1, r2, r3, r4, r5);
                         army.AddUnit(archer);
+                        price -= r1 + r2 + r3 + r4 + r5;
                         break;
                     case 4:
                         Healer healer = new(r1, r2, r3, r4, r5);
                         army.AddUnit(healer);
+                        price -= r1 + r2 + r3 + r4 + r5;
                         break;
                     case 5:
                         Warlock warlock = new(r1, r2, r3, r4, r5);
                         army.AddUnit(warlock);
+                        price -= r1 + r2 + r3 + r4 + r5;
                         break;
                 }
             }
