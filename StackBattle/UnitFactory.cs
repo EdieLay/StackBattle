@@ -31,7 +31,7 @@
         {
             Random random = new((int)DateTime.Now.Ticks);
             int r;
-            int rHitPoints, rAttack, rDefense, rRange, rStrength;
+            int rHitPoints, rAttack, rDefense, rRange = 0, rStrength = 0;
 
             rHitPoints = random.Next(1, maxUnitPrice);
             rAttack = random.Next(0, maxUnitPrice - rHitPoints);
@@ -55,28 +55,23 @@
                 case 0:
                     IUnit light = CreateLight(rAttack, rDefense, rHitPoints);
                     return light;
-                    break;
                 case 1:
                     IUnit heavy = CreateHeavy(rAttack, rDefense, rHitPoints);
                     return heavy;
-                    break;
                 case 2:
                     IUnit knight = CreateKnight(rAttack, rDefense, rHitPoints);
                     return knight;
-                    break;
                 case 3:
                     IUnit archer = CreateArcher(rAttack, rDefense, rHitPoints, rRange, rStrength);
                     return archer;
-                    break;
                 case 4:
                     IUnit healer = CreateHealer(rAttack, rDefense, rHitPoints, rRange, rStrength);
                     return healer;
-                    break;
                 case 5:
                     IUnit warlock = CreateWarlock(rAttack, rDefense, rHitPoints, rRange, rStrength);
                     return warlock;
-                    break;
             }
+            throw new Exception();
         }
 
         public Army CreateRandomArmy(int price) 
