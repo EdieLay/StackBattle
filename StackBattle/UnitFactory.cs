@@ -2,29 +2,81 @@
 {
     internal class UnitFactory
     {
-        public IUnit CreateLight()
+        public IUnit CreateLight(int a, int b, int hp)
         {
-            return new LightInfantry();
+            return new LightInfantry(a, b, hp);
         }
-        public IUnit CreateHeavy()
+        public IUnit CreateHeavy(int a, int b, int hp)
         {
-            return new HeavyInfantry();
+            return new HeavyInfantry(a, b, hp);
         }
-        public IUnit CreateKnight()
+        public IUnit CreateKnight(int a, int b, int hp)
         {
-            return new Knight();
+            return new Knight(a, b, hp);
         }
-        public IUnit CreateArcher()
+        public IUnit CreateArcher(int a, int b, int hp, int r, int s)
         {
-            return new Archer();
+            return new Archer(a, b, hp, r, s);
         }
-        public IUnit CreateHealer()
+        public IUnit CreateHealer(int a, int b, int hp, int r, int s)
         {
-            return new Healer();
+            return new Healer(a, b, hp, r, s);
         }
-        public IUnit CreateWarlock()
+        public IUnit CreateWarlock(int a, int b, int hp, int r, int s)
         {
-            return new Warlock();
+            return new Warlock(a, b, hp, r, s);
+        }
+
+        public IUnit CreateRandomUnit(ref int maxUnitPrice)
+        {
+            Random random = new((int)DateTime.Now.Ticks);
+            int r;
+            int rHitPoints, rAttack, rDefense, rRange, rStrength;
+
+            rHitPoints = random.Next(1, maxUnitPrice);
+            rAttack = random.Next(0, maxUnitPrice - rHitPoints);
+            rDefense = random.Next(0, maxUnitPrice - rHitPoints - rAttack);
+
+            if (maxUnitPrice < 3) r = random.Next(0, 2);
+            else
+            {
+                r = random.Next(0, 5);
+                if (r > 2)
+                {
+                    rRange = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense);
+                    rStrength = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense - rRange);
+                    maxUnitPrice -= rRange + rStrength; 
+                }
+            }
+            maxUnitPrice -= rAttack + rDefense + rHitPoints;
+
+            switch (r)
+            {
+                case 0:
+                    IUnit light = CreateLight(rAttack, rDefense, rHitPoints);
+                    return light;
+                    break;
+                case 1:
+                    IUnit heavy = CreateHeavy(rAttack, rDefense, rHitPoints);
+                    return heavy;
+                    break;
+                case 2:
+                    IUnit knight = CreateKnight(rAttack, rDefense, rHitPoints);
+                    return knight;
+                    break;
+                case 3:
+                    IUnit archer = CreateArcher(rAttack, rDefense, rHitPoints, rRange, rStrength);
+                    return archer;
+                    break;
+                case 4:
+                    IUnit healer = CreateHealer(rAttack, rDefense, rHitPoints, rRange, rStrength);
+                    return healer;
+                    break;
+                case 5:
+                    IUnit warlock = CreateWarlock(rAttack, rDefense, rHitPoints, rRange, rStrength);
+                    return warlock;
+                    break;
+            }
         }
 
         public Army CreateRandomArmy(int price) 
@@ -35,47 +87,11 @@
             int unitPrice = price / 5;
             while (price > 0)
             {
-                int r = random.Next(0, 5);
-                int p = Math.Min(price, unitPrice);
-                int r1, r2, r3, r4, r5;
-                r1 = random.Next(0, p);
-                r2 = random.Next(0, p - r1);
-                r3 = random.Next(0, p - r1 - r2);
-                r4 = random.Next(0, p - r1 - r2 - r3);
-                r5 = random.Next(0, p - r1 - r2 - r3 - r4);
-                switch (r)
-                {
-                    case 0:
-                        LightInfantry light = new(r1, r2, r3);
-                        army.AddUnit(light);
-                        price -= r1 + r2 + r3;
-                        break;
-                    case 1:
-                        HeavyInfantry heavy = new(r1, r2, r3);
-                        army.AddUnit(heavy);
-                        price -= r1 + r2 + r3;
-                        break;
-                    case 2:
-                        Knight knight = new(r1, r2, r3);
-                        army.AddUnit(knight);
-                        price -= r1 + r2 + r3;
-                        break;
-                    case 3:
-                        Archer archer = new(r1, r2, r3, r4, r5);
-                        army.AddUnit(archer);
-                        price -= r1 + r2 + r3 + r4 + r5;
-                        break;
-                    case 4:
-                        Healer healer = new(r1, r2, r3, r4, r5);
-                        army.AddUnit(healer);
-                        price -= r1 + r2 + r3 + r4 + r5;
-                        break;
-                    case 5:
-                        Warlock warlock = new(r1, r2, r3, r4, r5);
-                        army.AddUnit(warlock);
-                        price -= r1 + r2 + r3 + r4 + r5;
-                        break;
-                }
+                int maxUnitPrice = Math.Min(unitPrice, price);
+                price -= maxUnitPrice;
+                IUnit unit = CreateRandomUnit(ref maxUnitPrice);
+                army.AddUnit(unit);
+                price += maxUnitPrice;
             }
 
             return army;
