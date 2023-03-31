@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    internal class LightInfantry : AbstractUnit, IHealable
+    internal class LightInfantry : AbstractUnit, IHealable, ICloneableUnit
     {
         public int MaxHP { get; set; }
 
@@ -22,10 +22,22 @@ namespace StackBattle
             Defense = defense;
             HitPoints = hitPoints;
         }
+        LightInfantry(LightInfantry prototype)
+        {
+            this.Attack = prototype.Attack;
+            this.Defense = prototype.Defense;
+            this.HitPoints = prototype.HitPoints;
+            this.MaxHP = prototype.MaxHP;
+        }
 
         public void Heal(int hp)
         {
             throw new NotImplementedException();
+        }
+
+        public ICloneableUnit Clone()
+        {
+            return new LightInfantry(this);
         }
     }
 }
