@@ -8,7 +8,7 @@ namespace StackBattle
 {
     internal class Army
     {
-        List<IUnit> Units;
+        public List<IUnit> Units { get; private set; }
         public int ArmySize
         {
             get
@@ -59,12 +59,14 @@ namespace StackBattle
             Units.Add(unit);
             _price = -1;
         }
+        public void InsertClonedUnit(int pos, IUnit clonedUnit)
+        {
+            Units.Insert(pos, clonedUnit);
+        }
         public void ClearArmy()
         {
-            _price = -1;
             // сделать очистку от павших юнитов
             // нужно делать аккуратно, т.к. при удалении из списка одного элемента, другие элементы сдвигаются
-            _price = -1;
         }
     }
 }

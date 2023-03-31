@@ -33,7 +33,17 @@ namespace StackBattle
 
         public void Action(Army friendlyArmy, Army enemyArmy)
         {
-            throw new NotImplementedException();
+            int pos = friendlyArmy.Units.IndexOf(this);
+            int armyStartInRange = pos - Range < 0 ? 0 : pos - Range;
+            int armyEndInRange = pos + Range >= friendlyArmy.ArmySize ? friendlyArmy.ArmySize - 1 : pos + Range;
+            for (int i = armyStartInRange; i <= armyEndInRange; i++)
+            {
+                if (friendlyArmy[i].HitPoints > 0 && friendlyArmy[i] is ICloneableUnit prototype)
+                {
+                    IUnit clone = prototype.Clone() as IUnit;
+                    friendlyArmy.InsertClonedUnit(pos + 1, clone);
+                }
+            }
         }
 
         public void Heal(int hp)
