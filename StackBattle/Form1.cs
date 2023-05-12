@@ -2,6 +2,7 @@ namespace StackBattle
 {
     public partial class Form1 : Form
     {
+        ArmyEdit armyEditorForm;
         public Form1()
         {
             InitializeComponent();
@@ -10,6 +11,20 @@ namespace StackBattle
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_army1edit_Click(object sender, EventArgs e)
+        {
+            Battle.IsFirstArmyBeingEdited = true;
+            armyEditorForm = new ArmyEdit();
+            armyEditorForm.Show();
+        }
+
+        private void button_army2edit_Click(object sender, EventArgs e)
+        {
+            Battle.IsFirstArmyBeingEdited = false;
+            armyEditorForm = new ArmyEdit();
+            armyEditorForm.Show();
         }
     }
 }

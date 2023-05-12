@@ -57,6 +57,13 @@
             // comboBox_unitTypeSelection
             // 
             this.comboBox_unitTypeSelection.FormattingEnabled = true;
+            this.comboBox_unitTypeSelection.Items.AddRange(new object[] {
+            "Light Infantry",
+            "Heavy Infantry",
+            "Knight",
+            "Archer",
+            "Healer",
+            "Warlock"});
             this.comboBox_unitTypeSelection.Location = new System.Drawing.Point(237, 11);
             this.comboBox_unitTypeSelection.Name = "comboBox_unitTypeSelection";
             this.comboBox_unitTypeSelection.Size = new System.Drawing.Size(176, 28);
@@ -73,6 +80,7 @@
             // 
             // comboBox_armyUnitSelection
             // 
+            this.comboBox_armyUnitSelection.DropDownWidth = 200;
             this.comboBox_armyUnitSelection.FormattingEnabled = true;
             this.comboBox_armyUnitSelection.Location = new System.Drawing.Point(519, 11);
             this.comboBox_armyUnitSelection.Name = "comboBox_armyUnitSelection";
@@ -246,6 +254,7 @@
             this.Name = "ArmyEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArmyEdit";
+            this.Load += new System.EventHandler(this.ArmyEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_attack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_defense)).EndInit();

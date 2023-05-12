@@ -63,6 +63,7 @@
             this.button_army1edit.TabIndex = 1;
             this.button_army1edit.Text = "Edit Army1";
             this.button_army1edit.UseVisualStyleBackColor = false;
+            this.button_army1edit.Click += new System.EventHandler(this.button_army1edit_Click);
             // 
             // label_army1
             // 
@@ -176,6 +177,7 @@
             this.button_army2edit.TabIndex = 10;
             this.button_army2edit.Text = "Edit Army2";
             this.button_army2edit.UseVisualStyleBackColor = false;
+            this.button_army2edit.Click += new System.EventHandler(this.button_army2edit_Click);
             // 
             // Form1
             // 

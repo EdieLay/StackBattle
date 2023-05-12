@@ -16,5 +16,22 @@ namespace StackBattle
         {
             InitializeComponent();
         }
+
+        private void ArmyEdit_Load(object sender, EventArgs e)
+        {
+            label_armynum.Text = Battle.IsFirstArmyBeingEdited ? "Army №1" : "Army №2";
+            Battle battle = Battle.GetBattleInstance();
+            Army army = battle.GetArmy();
+            
+            for (int i = 0; i < army.ArmySize; i++)
+            {
+                string test = $"{i} {army[i].GetType()} {army[i].HitPoints}/{army[i].Attack}/{army[i].Defense}";
+                if (army[i] is ISpecialAbility saunit)
+                {
+                    test = test + $"/{saunit.Range}/{saunit.Strength}";
+                }
+                comboBox_armyUnitSelection.Items.Add(test);
+            }
+        }
     }
 }

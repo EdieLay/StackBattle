@@ -13,10 +13,12 @@ namespace StackBattle
 
         public static int Price { get; private set; } // установленная цена армий
         public static int DefenseMod { get { return Price / 20; } } // модификатор защиты для подстановки в формулу TakeDamage
+        
 
         Army FirstArmy { get; set; }
         Army SecondArmy { get; set; }
-        public bool isFirstArmyWinner { get; private set; }
+        public bool IsFirstArmyWinner { get; private set; }
+        public static bool IsFirstArmyBeingEdited { get; set; }
 
         private Battle()
         {
@@ -29,6 +31,12 @@ namespace StackBattle
                 lock (syncRoot)
                     battleInstance ??= new Battle();
             return battleInstance;
+        }
+
+        public Army GetArmy()
+        {
+            if (IsFirstArmyBeingEdited) return FirstArmy;
+            return SecondArmy;
         }
 
         void DoTurn(bool isFirstArmyTurn)
