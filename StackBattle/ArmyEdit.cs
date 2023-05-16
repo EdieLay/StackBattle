@@ -19,8 +19,8 @@ namespace StackBattle
 
         private void ArmyEdit_Load(object sender, EventArgs e)
         {
-            label_armynum.Text = Battle.IsFirstArmyBeingEdited ? "Army №1" : "Army №2";
             Battle battle = Battle.GetBattleInstance();
+            label_armynum.Text = battle.IsFirstArmyBeingEdited ? "Army №1" : "Army №2";
             Army army = battle.GetArmy();
             
             for (int i = 0; i < army.ArmySize; i++)

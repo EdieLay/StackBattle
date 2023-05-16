@@ -18,7 +18,7 @@ namespace StackBattle
         Army FirstArmy { get; set; }
         Army SecondArmy { get; set; }
         public bool IsFirstArmyWinner { get; private set; }
-        public static bool IsFirstArmyBeingEdited { get; set; }
+        public bool IsFirstArmyBeingEdited { get; set; }
 
         private Battle()
         {

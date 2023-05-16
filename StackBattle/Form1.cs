@@ -15,14 +15,16 @@ namespace StackBattle
 
         private void button_army1edit_Click(object sender, EventArgs e)
         {
-            Battle.IsFirstArmyBeingEdited = true;
+            Battle battle = Battle.GetBattleInstance();
+            battle.IsFirstArmyBeingEdited = true;
             armyEditorForm = new ArmyEdit();
             armyEditorForm.Show();
         }
 
         private void button_army2edit_Click(object sender, EventArgs e)
         {
-            Battle.IsFirstArmyBeingEdited = false;
+            Battle battle = Battle.GetBattleInstance();
+            battle.IsFirstArmyBeingEdited = false;
             armyEditorForm = new ArmyEdit();
             armyEditorForm.Show();
         }
