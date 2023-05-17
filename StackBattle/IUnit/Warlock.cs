@@ -40,8 +40,13 @@ namespace StackBattle
             {
                 if (friendlyArmy[i].HitPoints > 0 && friendlyArmy[i] is ICloneableUnit prototype)
                 {
-                    IUnit clone = prototype.Clone() as IUnit;
-                    friendlyArmy.InsertClonedUnit(pos + 1, clone);
+                    var rand = new Random((int)DateTime.Now.Ticks);
+                    double value = rand.Next();
+                    if (value < (double)Strength / 100.0)
+                    {
+                        IUnit clone = prototype.Clone() as IUnit;
+                        friendlyArmy.InsertClonedUnit(pos + 1, clone);
+                    }
                 }
             }
         }
