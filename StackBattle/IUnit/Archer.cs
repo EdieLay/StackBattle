@@ -36,14 +36,9 @@ namespace StackBattle
             int pos = friendlyArmy.Units.IndexOf(this); //получаем позицию юнита в армии
             for (int i = 0; i < Range - pos && i < enemyArmy.ArmySize; i++) // проходим вражескую армиюю с вычетом позиции нашего юнита
             {
-                if (i == Range - pos - 1 || i == enemyArmy.ArmySize - 1) // если дошли до края рэнжи, то используем абилку
-                {
-                    enemyArmy[i].TakeDamage(Strength);
-                    break;
-                }
                 var rand = new Random((int)DateTime.Now.Ticks);
                 double value = rand.NextDouble();
-                if (value < 0.5) // пока не дошли до края рэнжи, решаем рандомно
+                if (value < 0.5) // шанс попасть
                 {
                     enemyArmy[i].TakeDamage(Strength);
                     break;
