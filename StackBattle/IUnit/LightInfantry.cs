@@ -32,7 +32,11 @@ namespace StackBattle
 
         public void Heal(int hp)
         {
-            throw new NotImplementedException();
+            if (HitPoints + hp > MaxHP)
+            {
+                HitPoints = MaxHP;
+            }
+            else HitPoints += hp;
         }
 
         public ICloneableUnit Clone()
