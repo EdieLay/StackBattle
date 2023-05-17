@@ -34,26 +34,28 @@ namespace StackBattle
         public void Action(Army friendlyArmy, Army enemyArmy)
         {
             int pos = friendlyArmy.Units.IndexOf(this); //получаем позицию юнита в армии
-            for (int i = 0; i < Range - pos; i++) // проходим вражескую армиюю с вычетом позиции нашего юнита
+            for (int i = pos - 1; i >= 0 && i >= pos - Range; i--) // проходим вражескую армиюю с вычетом позиции нашего юнита
             {
-                if (i == Range - pos) // если дошли до края рэнжи, то используем абилку
+                if (enemyArmy[i] is IHealable unit && enemyArmy[i].HitPoints > 0)
                 {
-                    enemyArmy[i].TakeDamage(Strength);
-                    break;
-                }
-                var rand = new Random((int)DateTime.Now.Ticks);
-                double value = rand.NextDouble();
-                if (value < 0.5) // пока не дошли до края рэнжи, решаем рандомно
-                {
-                    enemyArmy[i].TakeDamage(Strength);
-                    break;
+                    var rand = new Random((int)DateTime.Now.Ticks);
+                    double value = rand.NextDouble();
+                    if (value < 0.5) // пока не дошли до края рэнжи, решаем рандомно
+                    {
+                        unit.Heal(Strength);
+                        break;
+                    }
                 }
             }
         }
 
         public void Heal(int hp)
         {
-            throw new NotImplementedException();
+            if (HitPoints + hp > MaxHP)
+            {
+                HitPoints = MaxHP;
+            }
+            else HitPoints += hp;
         }
     }
 }
