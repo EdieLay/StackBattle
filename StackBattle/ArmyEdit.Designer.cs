@@ -56,7 +56,9 @@
             // 
             // comboBox_unitTypeSelection
             // 
+            this.comboBox_unitTypeSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_unitTypeSelection.FormattingEnabled = true;
+            this.comboBox_unitTypeSelection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.comboBox_unitTypeSelection.Items.AddRange(new object[] {
             "Light Infantry",
             "Heavy Infantry",
@@ -68,6 +70,7 @@
             this.comboBox_unitTypeSelection.Name = "comboBox_unitTypeSelection";
             this.comboBox_unitTypeSelection.Size = new System.Drawing.Size(176, 28);
             this.comboBox_unitTypeSelection.TabIndex = 0;
+            this.comboBox_unitTypeSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox_unitTypeSelection_SelectedIndexChanged);
             // 
             // button_addUnit
             // 
@@ -80,6 +83,7 @@
             // 
             // comboBox_armyUnitSelection
             // 
+            this.comboBox_armyUnitSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_armyUnitSelection.DropDownWidth = 200;
             this.comboBox_armyUnitSelection.FormattingEnabled = true;
             this.comboBox_armyUnitSelection.Location = new System.Drawing.Point(519, 11);
@@ -165,9 +169,19 @@
             // 
             this.numericUpDown_hp.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numericUpDown_hp.Location = new System.Drawing.Point(177, 3);
+            this.numericUpDown_hp.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_hp.Name = "numericUpDown_hp";
             this.numericUpDown_hp.Size = new System.Drawing.Size(96, 43);
             this.numericUpDown_hp.TabIndex = 10;
+            this.numericUpDown_hp.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numericUpDown_attack
             // 
