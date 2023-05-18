@@ -33,13 +33,13 @@
             this.label_army1 = new System.Windows.Forms.Label();
             this.label_army2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_price = new System.Windows.Forms.NumericUpDown();
             this.label_price1 = new System.Windows.Forms.Label();
             this.label_price2 = new System.Windows.Forms.Label();
             this.label_army1price = new System.Windows.Forms.Label();
             this.label_army2price = new System.Windows.Forms.Label();
             this.button_army2edit = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).BeginInit();
             this.SuspendLayout();
             // 
             // button_start
@@ -98,30 +98,31 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Price:";
             // 
-            // numericUpDown1
+            // numericUpDown_price
             // 
-            this.numericUpDown1.BackColor = System.Drawing.Color.PowderBlue;
-            this.numericUpDown1.Font = new System.Drawing.Font("Showcard Gothic", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown1.Location = new System.Drawing.Point(340, 241);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericUpDown_price.BackColor = System.Drawing.Color.PowderBlue;
+            this.numericUpDown_price.Font = new System.Drawing.Font("Showcard Gothic", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown_price.Location = new System.Drawing.Point(340, 241);
+            this.numericUpDown_price.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numericUpDown_price.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(135, 66);
-            this.numericUpDown1.TabIndex = 5;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numericUpDown_price.Name = "numericUpDown_price";
+            this.numericUpDown_price.Size = new System.Drawing.Size(135, 66);
+            this.numericUpDown_price.TabIndex = 5;
+            this.numericUpDown_price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_price.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
+            this.numericUpDown_price.ValueChanged += new System.EventHandler(this.numericUpDown_price_ValueChanged);
             // 
             // label_price1
             // 
@@ -190,7 +191,7 @@
             this.Controls.Add(this.label_army1price);
             this.Controls.Add(this.label_price2);
             this.Controls.Add(this.label_price1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericUpDown_price);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_army2);
             this.Controls.Add(this.label_army1);
@@ -200,7 +201,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stack Battle";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,7 +214,7 @@
         private Label label_army1;
         private Label label_army2;
         private Label label1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown_price;
         private Label label_price1;
         private Label label_price2;
         private Label label_army1price;

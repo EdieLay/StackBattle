@@ -11,7 +11,7 @@ namespace StackBattle
         private static Battle? battleInstance = null;
         private static object syncRoot = new();
 
-        public static int Price { get; private set; } // установленная цена армий
+        public static int Price { get; set; } = 200; // установленная цена армий
         public static int DefenseMod { get { return Price / 20; } } // модификатор защиты для подстановки в формулу TakeDamage
         
 

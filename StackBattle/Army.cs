@@ -40,12 +40,15 @@ namespace StackBattle
                 if (_price == -1)
                     lock (syncRoot)
                         if (_price == -1)
-                            for (int i = 0; i < Units.Count; i ++)
+                        {
+                            _price = 0;
+                            for (int i = 0; i < Units.Count; i++)
                             {
                                 _price += Units[i].Attack + Units[i].Defense + Units[i].HitPoints;
                                 if (Units[i] is ISpecialAbility unit)
                                     _price += (unit.Range + unit.Strength) * 2;
                             }
+                        }
                 return _price;
             }
 
