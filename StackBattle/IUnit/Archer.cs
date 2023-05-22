@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace StackBattle
 {
     internal class Archer : AbstractUnit, ISpecialAbility, IHealable
     {
+        public override UnitType Type { get { return UnitType.Archer; } }
         public int Range { get; set; }
         public int Strength { get; set; }
         public int MaxHP { get; set; }

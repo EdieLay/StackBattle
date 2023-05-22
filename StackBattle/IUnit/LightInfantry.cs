@@ -8,6 +8,7 @@ namespace StackBattle
 {
     internal class LightInfantry : AbstractUnit, IHealable, ICloneableUnit
     {
+        public override UnitType Type { get { return UnitType.LightInfantry; } }
         public int MaxHP { get; set; }
 
         public LightInfantry()

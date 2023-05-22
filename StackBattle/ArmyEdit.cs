@@ -125,18 +125,41 @@ namespace StackBattle
 
             IUnit unit = army[index];
 
+            int unitType = (int)unit.Type;
+            comboBox_unitTypeSelection.SelectedIndex = unitType;
+
+            ToggleEditingMode();
+
             if (unit is ISpecialAbility saunit)
             {
                 numericUpDown_sar.Value = (decimal)saunit.Range;
                 numericUpDown_sas.Value = (decimal)saunit.Strength;
-                HideSA(false);
             }
-            else HideSA(true);
 
             numericUpDown_hp.Value = (decimal)unit.HitPoints;
             numericUpDown_attack.Value = (decimal)unit.Attack;
             numericUpDown_defense.Value = (decimal)unit.Defense;
 
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_cancel_Click(object sender, EventArgs e)
+        {
+            ToggleEditingMode();
+        }
+
+        private void ToggleEditingMode()
+        {
+            comboBox_unitTypeSelection.Enabled ^= true;
+            button_addUnit.Enabled ^= true;
+            comboBox_armyUnitSelection.Enabled ^= true;
+            button_editUnit.Enabled ^= true;
+            button_cancel.Visible ^= true;
+            button_save.Visible ^= true;
         }
     }
 }

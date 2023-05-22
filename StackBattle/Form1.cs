@@ -33,7 +33,7 @@ namespace StackBattle
             Battle battle = Battle.GetBattleInstance();
             battle.IsFirstArmyBeingEdited = isFirstEditing;
             armyEditorForm = new ArmyEdit();
-            armyEditorForm.FormClosing += delegate { this.Show(); };
+            armyEditorForm.FormClosing += delegate { this.Show(); }; // ƒобавить обновление стоимости армии
             armyEditorForm.Show();
             this.Hide();
         }

@@ -8,6 +8,7 @@ namespace StackBattle
 {
     internal class Knight : AbstractUnit
     {
+        public override UnitType Type { get { return UnitType.Knight; } }
         public Knight()
         {
             Attack = 0;
