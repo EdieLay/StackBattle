@@ -17,7 +17,7 @@ namespace StackBattle
             InitializeComponent();
         }
 
-        private void ArmyEdit_Load(object sender, EventArgs e)
+        private void ArmyEdit_Load(object sender, EventArgs e) // загрузка формы
         {
             Battle battle = Battle.GetBattleInstance();
             label_armynum.Text = battle.IsFirstArmyBeingEdited ? "Army №1" : "Army №2";
@@ -25,15 +25,13 @@ namespace StackBattle
             comboBox_unitTypeSelection.SelectedItem = comboBox_unitTypeSelection.Items[0];
 
             SetUnitsSelectionList(army);
-            if (army.ArmySize != 0)
-                comboBox_armyUnitSelection.SelectedItem = comboBox_armyUnitSelection.Items[0];
 
             label_price.Text = "Price: " + army.Price + "/" + Battle.Price;
         }
 
         private void comboBox_unitTypeSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int unitType = comboBox_unitTypeSelection.SelectedIndex;
+            int unitType = comboBox_unitTypeSelection.SelectedIndex; // в комбоБоксе до 3 индекса идут юниты без спешл абилити
             if (unitType < 3)
                 HideSA(true);
             else HideSA(false);
@@ -59,6 +57,7 @@ namespace StackBattle
 
         // мб добавить в IUnit метод UnitStatsToString, который будет возвращать строку:
         // UnitName HP/Attack/Defense/SAR/SAS
+        // а то через гет тайп не оч
         void SetUnitsSelectionList(Army army) 
         {
             comboBox_armyUnitSelection.Items.Clear();
@@ -73,10 +72,11 @@ namespace StackBattle
             }
         }
 
-        private void button_addUnit_Click(object sender, EventArgs e)
+        private void button_addUnit_Click(object sender, EventArgs e) // добавление юнита в армию
         {
             int unitType = comboBox_unitTypeSelection.SelectedIndex;
 
+            // берём хар-ики из намериков
             int hp = (int)numericUpDown_hp.Value;
             int attack = (int)numericUpDown_attack.Value;
             int defense = (int)numericUpDown_defense.Value;
@@ -86,7 +86,7 @@ namespace StackBattle
             Battle battle = Battle.GetBattleInstance();
             Army army = battle.GetArmy();
 
-            switch(unitType)
+            switch(unitType) // добавляем юнита (наверное, можно сделать как-то покрасивее, мб через абстрактную фабрику)
             {
                 case 0: // Light Infantry
                     army.AddUnit(new LightInfantry(attack, defense, hp));
@@ -107,8 +107,36 @@ namespace StackBattle
                     army.AddUnit(new Warlock(attack, defense, hp, sar, sas));
                     break;
             }
-            SetUnitsSelectionList(army);
-            label_price.Text = "Price: " + army.Price + "/" + Battle.Price;
+            SetUnitsSelectionList(army); // обновляем комбоБокс с выбором юнита из армии
+            label_price.Text = "Price: " + army.Price + "/" + Battle.Price; // обновляем цену армии
+        }
+
+        private void button_editUnit_Click(object sender, EventArgs e)
+        {
+            if (comboBox_armyUnitSelection.SelectedIndex == -1) 
+            {
+                MessageBox.Show("Select a unit please!");
+                return;
+            }
+            int index = comboBox_armyUnitSelection.SelectedIndex;
+
+            Battle battle = Battle.GetBattleInstance();
+            Army army = battle.GetArmy();
+
+            IUnit unit = army[index];
+
+            if (unit is ISpecialAbility saunit)
+            {
+                numericUpDown_sar.Value = (decimal)saunit.Range;
+                numericUpDown_sas.Value = (decimal)saunit.Strength;
+                HideSA(false);
+            }
+            else HideSA(true);
+
+            numericUpDown_hp.Value = (decimal)unit.HitPoints;
+            numericUpDown_attack.Value = (decimal)unit.Attack;
+            numericUpDown_defense.Value = (decimal)unit.Defense;
+
         }
     }
 }
