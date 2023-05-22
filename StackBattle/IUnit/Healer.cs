@@ -8,6 +8,7 @@ namespace StackBattle
 {
     internal class Healer : AbstractUnit, ISpecialAbility, IHealable
     {
+        public override UnitType Type { get { return UnitType.Healer; } }
         public int Range { get; set; }
         public int Strength { get; set; }
         public int MaxHP { get; set; }

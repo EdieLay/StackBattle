@@ -8,6 +8,7 @@ namespace StackBattle
 {
     internal class Warlock : AbstractUnit, ISpecialAbility, IHealable
     {
+        public override UnitType Type { get { return UnitType.Warlock; } }
         public int Range { get; set; }
         public int Strength { get; set; }
         public int MaxHP { get; set; }

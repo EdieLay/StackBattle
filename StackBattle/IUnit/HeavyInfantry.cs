@@ -8,6 +8,7 @@ namespace StackBattle
 {
     internal class HeavyInfantry : AbstractUnit
     {
+        public override UnitType Type { get { return UnitType.HeavyInfantry; } }
         public HeavyInfantry()
         {
             Attack = 0;

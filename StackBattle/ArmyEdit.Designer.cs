@@ -46,6 +46,8 @@
             this.flowLayoutPanel_stats = new System.Windows.Forms.FlowLayoutPanel();
             this.label_armynum = new System.Windows.Forms.Label();
             this.label_price = new System.Windows.Forms.Label();
+            this.button_cancel = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_attack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_defense)).BeginInit();
@@ -254,11 +256,35 @@
             this.label_price.TabIndex = 18;
             this.label_price.Text = "Price: 0/100";
             // 
+            // button_cancel
+            // 
+            this.button_cancel.Location = new System.Drawing.Point(475, 368);
+            this.button_cancel.Name = "button_cancel";
+            this.button_cancel.Size = new System.Drawing.Size(141, 56);
+            this.button_cancel.TabIndex = 19;
+            this.button_cancel.Text = "Cancel";
+            this.button_cancel.UseVisualStyleBackColor = true;
+            this.button_cancel.Visible = false;
+            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            // 
+            // button_save
+            // 
+            this.button_save.Location = new System.Drawing.Point(102, 368);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(141, 56);
+            this.button_save.TabIndex = 20;
+            this.button_save.Text = "Save";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Visible = false;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
             // ArmyEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_save);
+            this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.label_price);
             this.Controls.Add(this.label_armynum);
             this.Controls.Add(this.flowLayoutPanel_stats);
@@ -302,5 +328,7 @@
         private FlowLayoutPanel flowLayoutPanel_stats;
         private Label label_armynum;
         private Label label_price;
+        private Button button_cancel;
+        private Button button_save;
     }
 }
