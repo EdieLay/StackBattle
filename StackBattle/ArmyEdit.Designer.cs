@@ -46,7 +46,6 @@
             this.flowLayoutPanel_stats = new System.Windows.Forms.FlowLayoutPanel();
             this.label_armynum = new System.Windows.Forms.Label();
             this.label_price = new System.Windows.Forms.Label();
-            this.button_back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_attack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_defense)).BeginInit();
@@ -101,6 +100,7 @@
             this.button_editUnit.TabIndex = 3;
             this.button_editUnit.Text = "Edit";
             this.button_editUnit.UseVisualStyleBackColor = true;
+            this.button_editUnit.Click += new System.EventHandler(this.button_editUnit_Click);
             // 
             // label_unitName
             // 
@@ -254,21 +254,11 @@
             this.label_price.TabIndex = 18;
             this.label_price.Text = "Price: 0/100";
             // 
-            // button_back
-            // 
-            this.button_back.Location = new System.Drawing.Point(56, 373);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(140, 50);
-            this.button_back.TabIndex = 19;
-            this.button_back.Text = "Back";
-            this.button_back.UseVisualStyleBackColor = true;
-            // 
             // ArmyEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button_back);
             this.Controls.Add(this.label_price);
             this.Controls.Add(this.label_armynum);
             this.Controls.Add(this.flowLayoutPanel_stats);
@@ -312,6 +302,5 @@
         private FlowLayoutPanel flowLayoutPanel_stats;
         private Label label_armynum;
         private Label label_price;
-        private Button button_back;
     }
 }

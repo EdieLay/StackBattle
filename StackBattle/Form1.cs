@@ -15,23 +15,27 @@ namespace StackBattle
 
         private void button_army1edit_Click(object sender, EventArgs e)
         {
-            Battle battle = Battle.GetBattleInstance();
-            battle.IsFirstArmyBeingEdited = true;
-            armyEditorForm = new ArmyEdit();
-            armyEditorForm.Show();
+            OpenArmyEditor(true);
         }
 
         private void button_army2edit_Click(object sender, EventArgs e)
         {
-            Battle battle = Battle.GetBattleInstance();
-            battle.IsFirstArmyBeingEdited = false;
-            armyEditorForm = new ArmyEdit();
-            armyEditorForm.Show();
+            OpenArmyEditor(false);
         }
 
         private void numericUpDown_price_ValueChanged(object sender, EventArgs e)
         {
             Battle.Price = (int)numericUpDown_price.Value;
+        }
+
+        private void OpenArmyEditor(bool isFirstEditing)
+        {
+            Battle battle = Battle.GetBattleInstance();
+            battle.IsFirstArmyBeingEdited = isFirstEditing;
+            armyEditorForm = new ArmyEdit();
+            armyEditorForm.FormClosing += delegate { this.Show(); };
+            armyEditorForm.Show();
+            this.Hide();
         }
     }
 }
