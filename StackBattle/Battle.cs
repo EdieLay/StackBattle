@@ -47,10 +47,7 @@ namespace StackBattle
             SecondTurnArmy[0].TakeDamage(FirstTurnArmy[0].Attack);
             FirstTurnArmy[0].TakeDamage(SecondTurnArmy[0].Attack); // нужно в геттере атаки сделать, что если хп <= 0, то возвращается 0
 
-            // логика спешал абилити
             
-            FirstArmy = isFirstArmyTurn ? FirstTurnArmy : SecondTurnArmy;
-            SecondArmy = isFirstArmyTurn ? SecondTurnArmy : FirstTurnArmy;
             ClearField();
         }
         void ClearField()
