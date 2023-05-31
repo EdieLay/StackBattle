@@ -79,10 +79,7 @@
             Army army = new();
             Random random = new((int)DateTime.Now.Ticks);
 
-            int unitPrice;
-            if (price >= 1 ) unitPrice = price / random.Next(1, price);
-            else unitPrice = 1;
-
+            int unitPrice = price / random.Next(1, price);
             while (price > 0)
             {
                 int maxUnitPrice = Math.Min(unitPrice, price);
