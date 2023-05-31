@@ -53,19 +53,18 @@ namespace StackBattle
             ClearField();
         }
 
-        void TakeOffBuff(List<IUnit> units)
+        public static bool TakeOffBuff(ref IUnit unit)
         {
-            for (int i = 0; i < units.Count; i++)
+            if (unit is AbstractBuff buff) 
             {
-                if (units[i] is AbstractBuff buff) 
+                Random random = new((int)DateTime.Now.Ticks); // 0.1 - бафф снимается
+                if (random.Next(0, 100) <= 10)
                 {
-                    Random random = new((int)DateTime.Now.Ticks); // 0.1 - бафф снимается
-                    if (random.Next(0, 100) <= 10)
-                    {
-                        units[i] = buff.GetBuffable();
-                    }
+                    unit = buff.GetBuffable();
+                    return true;
                 }
             }
+            return false;
         }
 
         void ClearField()
