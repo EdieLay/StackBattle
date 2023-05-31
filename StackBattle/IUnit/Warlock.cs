@@ -60,5 +60,10 @@ namespace StackBattle
             }
             else HitPoints += hp;
         }
+
+        public override string GetUnitStats()
+        {
+            return $"Warlock [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
+        }
     }
 }
