@@ -8,16 +8,16 @@ namespace StackBattle
 {
     abstract class AbstractDecorator : AbstractUnit
     {
-        protected IUnit _component;
+        protected IBuffable _component;
 
         public override UnitType Type { get { return UnitType.HeavyInfantry; } }
 
-        public AbstractDecorator(IUnit component)
+        public AbstractDecorator(IBuffable component)
         {
             this._component = component;
         }
 
-        public void SetDecorator(IUnit component)
+        public void SetDecorator(IBuffable component)
         {
             this._component = component;
         }

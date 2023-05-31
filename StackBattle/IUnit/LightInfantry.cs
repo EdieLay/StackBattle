@@ -44,5 +44,7 @@ namespace StackBattle
         {
             return new LightInfantry(this);
         }
+
+
     }
 }
