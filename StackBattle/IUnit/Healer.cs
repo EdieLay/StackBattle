@@ -34,7 +34,6 @@ namespace StackBattle
 
         public void Action(Army friendlyArmy, Army enemyArmy, List<int> fArea, List<int> eArea)
         {
-            int pos = friendlyArmy.Units.IndexOf(this); //получаем позицию юнита в армии
             for (int i = 0; i < fArea.Count; i++) 
             {
                 if (friendlyArmy[fArea[i]] is IHealable unit && friendlyArmy[fArea[i]].HitPoints > 0)
