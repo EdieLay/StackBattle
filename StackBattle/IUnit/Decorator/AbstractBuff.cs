@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    abstract class AbstractBuff : AbstractUnit
+    abstract class AbstractBuff : AbstractUnit, IBuffable
     {
         protected IBuffable _component;
 
@@ -59,6 +59,17 @@ namespace StackBattle
         public virtual IBuffable GetBuffable()
         {
             return _component;
+        }
+
+        public bool TakeOffBuff(IUnit unit)
+        {
+            Random random = new((int)DateTime.Now.Ticks);
+            if (random.Next(0, 100) <= 10) // 0.1 - бафф снимается
+            {
+                unit = _component as IUnit;
+                return true;
+            }
+            return false;
         }
     }
 }
