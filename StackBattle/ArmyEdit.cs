@@ -63,7 +63,7 @@ namespace StackBattle
             comboBox_armyUnitSelection.Items.Clear();
             for (int i = 0; i < army.ArmySize; i++)
             {
-                string test = $"{i+1} {army[i].GetType()} {army[i].HitPoints}/{army[i].Attack}/{army[i].Defense}";
+                string test = $"{i+1} {army[i].Type} {army[i].HitPoints}/{army[i].Attack}/{army[i].Defense}";
                 if (army[i] is ISpecialAbility saunit)
                 {
                     test = test + $"/{saunit.Range}/{saunit.Strength}";
