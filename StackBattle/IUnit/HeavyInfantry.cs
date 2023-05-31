@@ -21,5 +21,10 @@ namespace StackBattle
             Defense = defense;
             HitPoints = hitPoints;
         }
+
+        public override string GetUnitStats()
+        {
+            return $"Heavy Infantry [{HitPoints}/{Attack}/{Defense}]";
+        }
     }
 }

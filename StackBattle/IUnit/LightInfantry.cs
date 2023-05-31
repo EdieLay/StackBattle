@@ -44,5 +44,10 @@ namespace StackBattle
         {
             return new LightInfantry(this);
         }
+
+        public override string GetUnitStats()
+        {
+            return $"Light Infantry [{HitPoints}/{Attack}/{Defense}]";
+        }
     }
 }

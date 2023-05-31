@@ -66,5 +66,7 @@ namespace StackBattle
             int defMod = Battle.DefenseMod;
             HitPoints -= damage * (defMod/(defMod + Defense));
         }
+
+        public abstract string GetUnitStats();
     }
 }
