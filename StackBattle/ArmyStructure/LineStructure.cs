@@ -26,7 +26,6 @@ namespace StackBattle
                 firstArmy[i].TakeDamage(secondArmy[i].Attack);
             }
 
-            
             for (int i = minArmyLength; i < maxArmyLength; i++)
             {
                 ApplySpecialAbility(i, firstArmy, secondArmy);
