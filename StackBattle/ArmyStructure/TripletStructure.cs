@@ -66,7 +66,7 @@ namespace StackBattle
                     armies.fArea.Add(j);
             }
 
-            // нужно написать для вражеско1 армии
+            // нужно написать для вражеской армии
             int enemyStartInRangeX = position - range * 3 < 0 ? 0 : position - range * 3;
             int enemyEndInRangeX = position + range * 3 >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : position + range * 3;
 
