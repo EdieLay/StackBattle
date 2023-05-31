@@ -34,9 +34,6 @@ namespace StackBattle
 
         public void Action(ArmiesRange armies)
         {
-            int pos = armies.friendlyArmy.Units.IndexOf(this);
-            int armyStartInRange = pos - Range < 0 ? 0 : pos - Range;
-            int armyEndInRange = pos + Range >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : pos + Range;
             for (int i = 0; i < armies.fArea.Count; i++)
             {
                 if (armies.friendlyArmy[armies.fArea[i]].HitPoints > 0 && armies.friendlyArmy[armies.fArea[i]] is ICloneableUnit prototype)
