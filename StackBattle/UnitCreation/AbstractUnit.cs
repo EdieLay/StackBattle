@@ -65,6 +65,10 @@ namespace StackBattle
         {
             int defMod = Battle.DefenseMod;
             HitPoints -= damage * (defMod/(defMod + Defense));
+            if (this is AbstractBuff buffunit)
+            {
+                buffunit.TakeOffBuff(this);
+            }
         }
 
         public abstract string GetUnitStats();

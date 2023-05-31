@@ -53,19 +53,7 @@ namespace StackBattle
             ClearField();
         }
 
-        public static bool TakeOffBuff(ref IUnit unit)
-        {
-            if (unit is AbstractBuff buff) 
-            {
-                Random random = new((int)DateTime.Now.Ticks); // 0.1 - бафф снимается
-                if (random.Next(0, 100) <= 10)
-                {
-                    unit = buff.GetBuffable();
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         void ClearField()
         {
