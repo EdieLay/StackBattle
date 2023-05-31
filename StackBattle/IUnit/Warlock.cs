@@ -32,21 +32,21 @@ namespace StackBattle
             MaxHP = hitPoints;
         }
 
-        public void Action(Army friendlyArmy, Army enemyArmy)
+        public void Action(Army friendlyArmy, Army enemyArmy, List<int> fArea, List<int> eArea)
         {
             int pos = friendlyArmy.Units.IndexOf(this);
             int armyStartInRange = pos - Range < 0 ? 0 : pos - Range;
             int armyEndInRange = pos + Range >= friendlyArmy.ArmySize ? friendlyArmy.ArmySize - 1 : pos + Range;
-            for (int i = armyStartInRange; i <= armyEndInRange; i++)
+            for (int i = 0; i < fArea.Count; i++)
             {
-                if (friendlyArmy[i].HitPoints > 0 && friendlyArmy[i] is ICloneableUnit prototype)
+                if (friendlyArmy[fArea[i]].HitPoints > 0 && friendlyArmy[fArea[i]] is ICloneableUnit prototype)
                 {
                     var rand = new Random((int)DateTime.Now.Ticks);
-                    double value = rand.Next();
+                    double value = rand.NextDouble();
                     if (value < (double)Strength / 100.0)
                     {
                         IUnit clone = prototype.Clone() as IUnit;
-                        friendlyArmy.InsertClonedUnit(pos + 1, clone);
+                        friendlyArmy.InsertClonedUnit(pos, clone);
                     }
                 }
             }

@@ -32,16 +32,16 @@ namespace StackBattle
             MaxHP = hitPoints;
         }
 
-        public void Action(Army friendlyArmy, Army enemyArmy)
+        public void Action(Army friendlyArmy, Army enemyArmy, List<int> fArea, List<int> eArea)
         {
             int pos = friendlyArmy.Units.IndexOf(this); //получаем позицию юнита в армии
-            for (int i = pos - 1; i >= 0 && i >= pos - Range; i--) // проходим вражескую армиюю с вычетом позиции нашего юнита
+            for (int i = 0; i < fArea.Count; i++) 
             {
-                if (enemyArmy[i] is IHealable unit && enemyArmy[i].HitPoints > 0)
+                if (friendlyArmy[fArea[i]] is IHealable unit && friendlyArmy[fArea[i]].HitPoints > 0)
                 {
                     var rand = new Random((int)DateTime.Now.Ticks);
                     double value = rand.NextDouble();
-                    if (value < 0.5) // пока не дошли до края рэнжи, решаем рандомно
+                    if (value < 0.5) 
                     {
                         unit.Heal(Strength);
                         break;
