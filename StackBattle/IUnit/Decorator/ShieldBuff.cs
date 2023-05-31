@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    internal class ShieldDecorator : AbstractDecorator
+    internal class ShieldBuff : AbstractBuff
     {
-        public ShieldDecorator(IBuffable component) : base(component)
+        public ShieldBuff(IBuffable component) : base(component)
         { }
         public new int Defense
         {
             get
             {
-                return _component.Defense + 4;
+                return _component.Defense + int.Max(1, (int)Math.Round(_component.Defense * 0.4));
             }
         }
 

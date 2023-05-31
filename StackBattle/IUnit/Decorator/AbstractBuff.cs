@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    abstract class AbstractDecorator : AbstractUnit
+    abstract class AbstractBuff : AbstractUnit
     {
         protected IBuffable _component;
 
         public override UnitType Type { get { return UnitType.HeavyInfantry; } }
 
-        public AbstractDecorator(IBuffable component)
+        public AbstractBuff(IBuffable component)
         {
             this._component = component;
         }
@@ -54,6 +54,11 @@ namespace StackBattle
             {
                 _component.HitPoints = value;
             }
+        }
+
+        public virtual IBuffable GetBuffable()
+        {
+            return _component;
         }
     }
 }
