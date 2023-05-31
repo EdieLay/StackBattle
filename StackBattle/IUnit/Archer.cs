@@ -33,15 +33,15 @@ namespace StackBattle
             MaxHP = hitPoints;
         }
 
-        public void Action(Army friendlyArmy, Army enemyArmy, List<int> fArea, List<int> eArea)
+        public void Action(ArmiesRange armies)
         {
-            for (int i = 0; i < eArea.Count; i++) // проходим вражескую армиюю с вычетом позиции нашего юнита
+            for (int i = 0; i < armies.eArea.Count; i++) // проходим вражескую армиюю с вычетом позиции нашего юнита
             {
                 var rand = new Random((int)DateTime.Now.Ticks);
                 double value = rand.NextDouble();
                 if (value < 0.5) // шанс попасть
                 {
-                    enemyArmy[eArea[i]].TakeDamage(Strength);
+                    armies.enemyArmy[armies.eArea[i]].TakeDamage(Strength);
                     break;
                 }
             }
