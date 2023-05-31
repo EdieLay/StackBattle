@@ -47,9 +47,25 @@ namespace StackBattle
             SecondTurnArmy[0].TakeDamage(FirstTurnArmy[0].Attack);
             FirstTurnArmy[0].TakeDamage(SecondTurnArmy[0].Attack); // нужно в геттере атаки сделать, что если хп <= 0, то возвращается 0
 
-            
+
             ClearField();
         }
+
+        void TakeOffBuff(List<IUnit> units)
+        {
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i] is AbstractBuff buff) 
+                {
+                    Random random = new((int)DateTime.Now.Ticks); // 0.1 - бафф снимается
+                    if (random.Next(0, 100) <= 10)
+                    {
+                        units[i] = buff.GetBuffable();
+                    }
+                }
+            }
+        }
+
         void ClearField()
         {
             FirstArmy.ClearArmy(); 

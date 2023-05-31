@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    internal class HorseDecorator : AbstractDecorator
+    internal class HorseBuff : AbstractBuff
     {
-        public HorseDecorator(IBuffable component) : base(component)
+        public HorseBuff(IBuffable component) : base(component)
         { }
         public new int Attack
         {
             get
             {
-                return _component.Attack + 5;
+                return _component.Attack + int.Max(1, (int)Math.Round(_component.Attack * 0.6));
             }
         }
     }
