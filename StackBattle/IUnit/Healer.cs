@@ -32,11 +32,11 @@ namespace StackBattle
             MaxHP = hitPoints;
         }
 
-        public void Action(Army friendlyArmy, Army enemyArmy, List<int> fArea, List<int> eArea)
+        public void Action(ArmiesRange armies)
         {
-            for (int i = 0; i < fArea.Count; i++) 
+            for (int i = 0; i < armies.fArea.Count; i++) 
             {
-                if (friendlyArmy[fArea[i]] is IHealable unit && friendlyArmy[fArea[i]].HitPoints > 0)
+                if (armies.friendlyArmy[armies.fArea[i]] is IHealable unit && armies.friendlyArmy[armies.fArea[i]].HitPoints > 0)
                 {
                     var rand = new Random((int)DateTime.Now.Ticks);
                     double value = rand.NextDouble();

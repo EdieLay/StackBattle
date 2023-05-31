@@ -10,6 +10,6 @@ namespace StackBattle
     {
         int Range { get; set; }
         int Strength { get; set; }
-        void Action(Army friendlyArmy, Army enemyArmy, List<int> fArea, List<int> eArea);
+        void Action(ArmiesRange armies);
     }
 }
