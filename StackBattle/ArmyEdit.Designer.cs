@@ -48,6 +48,7 @@
             this.label_price = new System.Windows.Forms.Label();
             this.button_cancel = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
+            this.button_removeUnit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_attack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_defense)).BeginInit();
@@ -278,11 +279,23 @@
             this.button_save.Visible = false;
             this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
+            // button_removeUnit
+            // 
+            this.button_removeUnit.Location = new System.Drawing.Point(289, 368);
+            this.button_removeUnit.Name = "button_removeUnit";
+            this.button_removeUnit.Size = new System.Drawing.Size(141, 56);
+            this.button_removeUnit.TabIndex = 21;
+            this.button_removeUnit.Text = "Remove";
+            this.button_removeUnit.UseVisualStyleBackColor = true;
+            this.button_removeUnit.Visible = false;
+            this.button_removeUnit.Click += new System.EventHandler(this.button_removeUnit_Click);
+            // 
             // ArmyEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_removeUnit);
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.label_price);
@@ -330,5 +343,6 @@
         private Label label_price;
         private Button button_cancel;
         private Button button_save;
+        private Button button_removeUnit;
     }
 }
