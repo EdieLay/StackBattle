@@ -15,6 +15,7 @@ namespace StackBattle
 
             secondArmy[0].TakeDamage(firstArmy[0].Attack);
             firstArmy[0].TakeDamage(secondArmy[0].Attack);
+            
 
             return true;
         }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StackBattle.ArmyStructure
+namespace StackBattle
 {
-    internal class LineStructure
+    internal class LineStructure : IArmyStructure
     {
+        public bool DoTurn(Army firstArmy, Army secondArmy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,6 +8,6 @@ namespace StackBattle
 {
     internal interface IArmyStructure
     {
-        void DoTurn(Army firstArmy, Army secondArmy);
+        bool DoTurn(Army firstArmy, Army secondArmy); // true - смогли сделать ход, false - одна из армий пустая
     }
 }
