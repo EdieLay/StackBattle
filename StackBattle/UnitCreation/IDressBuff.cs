@@ -8,6 +8,6 @@ namespace StackBattle
 {
     internal interface IDressBuff
     {
-        bool DressBuff(List<IUnit> area);
+        bool DressBuff(ArmiesRange armies);
     }
 }

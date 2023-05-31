@@ -45,42 +45,42 @@ namespace StackBattle
             return new LightInfantry(this);
         }
 
-        public bool DressBuff(List<IUnit> area)
+        public bool DressBuff(ArmiesRange armies)
         {
             int count = 0;
-            for (int i = 0; i < area.Count; i++)
+            for (int i = 0; i < armies.fArea.Count; i++)
             {
-                if (area[i] is IBuffable) count++;
+                if (armies.friendlyArmy[armies.fArea[i]] is IBuffable) count++;
             }
             if (count == 0) return false;
 
             Random random = new((int)DateTime.Now.Ticks);
             int countIndex = 0; 
             count = random.Next(1, count);
-            for (int i = 0; i < area.Count; i++)
+            for (int i = 0; i < armies.fArea.Count; i++)
             {
-                if (area[i] is IBuffable && countIndex != count) countIndex++;
+                if (armies.friendlyArmy[armies.fArea[i]] is IBuffable && countIndex != count) countIndex++;
                 if (countIndex == count)
                 {
                     int chance = 120;
                     int r = random.Next(1, chance); // 1/2 - шлем, 1/3 - щит, 1/6 - лошадь
 
-                    if (r <= chance / 6 && area[i] is not HorseBuff)
+                    if (r <= chance / 6 && armies.friendlyArmy[armies.fArea[i]] is not HorseBuff)
                     {
-                        HorseBuff horseBuff = new((IBuffable)area[i]);
-                        area[i] = horseBuff;
+                        HorseBuff horseBuff = new((IBuffable)armies.friendlyArmy[armies.fArea[i]]);
+                        armies.friendlyArmy[armies.fArea[i]] = horseBuff;
                         return true;
                     }
-                    else if (r > chance / 6 && r <= chance / 2 && area[i] is not ShieldBuff)
+                    else if (r > chance / 6 && r <= chance / 2 && armies.friendlyArmy[armies.fArea[i]] is not ShieldBuff)
                     {
-                        ShieldBuff shieldBuff = new((IBuffable)area[i]);
-                        area[i] = shieldBuff;
+                        ShieldBuff shieldBuff = new((IBuffable)armies.friendlyArmy[armies.fArea[i]]);
+                        armies.friendlyArmy[armies.fArea[i]] = shieldBuff;
                         return true;
                     }
-                    else if (area[i] is not HelmetBuff)
+                    else if (armies.friendlyArmy[armies.fArea[i]] is not HelmetBuff)
                     {
-                        HelmetBuff helmet = new((IBuffable)area[i]);
-                        area[i] = helmet;
+                        HelmetBuff helmet = new((IBuffable)armies.friendlyArmy[armies.fArea[i]]);
+                        armies.friendlyArmy[armies.fArea[i]] = helmet;
                         return true;
                     }
                 }
