@@ -22,5 +22,7 @@ namespace StackBattle
         int Defense { get; set; } 
         int HitPoints { get; set; } // нужно прописать логику в сеттере, что если хп < 0, то хп = 0
         void TakeDamage(int damage);
+
+        string GetUnitStats();
     }
 }

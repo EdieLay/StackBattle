@@ -56,5 +56,10 @@ namespace StackBattle
             }
             else HitPoints += hp;
         }
+
+        public override string GetUnitStats()
+        {
+            return $"Archer [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
+        }
     }
 }

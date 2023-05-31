@@ -87,6 +87,11 @@ namespace StackBattle
             }
 
             return false;
+		}
+		
+        public override string GetUnitStats()
+        {
+            return $"Light Infantry [{HitPoints}/{Attack}/{Defense}]";
         }
     }
 }

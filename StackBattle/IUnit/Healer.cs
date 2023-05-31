@@ -58,5 +58,10 @@ namespace StackBattle
             }
             else HitPoints += hp;
         }
+
+        public override string GetUnitStats()
+        {
+            return $"Healer [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
+        }
     }
 }

@@ -12,21 +12,23 @@ namespace StackBattle
 {
     public partial class ArmyEdit : Form
     {
+        Battle battle;
+        Army army;
+        int price;
         public ArmyEdit()
         {
+            battle = Battle.GetBattleInstance();
+            army = battle.GetArmy();
+            price = army.Price;
             InitializeComponent();
         }
 
         private void ArmyEdit_Load(object sender, EventArgs e) // загрузка формы
         {
-            Battle battle = Battle.GetBattleInstance();
             label_armynum.Text = battle.IsFirstArmyBeingEdited ? "Army №1" : "Army №2";
-            Army army = battle.GetArmy();
             comboBox_unitTypeSelection.SelectedItem = comboBox_unitTypeSelection.Items[0];
 
-            SetUnitsSelectionList(army);
-
-            label_price.Text = "Price: " + army.Price + "/" + Battle.Price;
+            SetUnitsSelectionList();
         }
 
         private void comboBox_unitTypeSelection_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,21 +57,15 @@ namespace StackBattle
             }
         }
 
-        // мб добавить в IUnit метод UnitStatsToString, который будет возвращать строку:
-        // UnitName HP/Attack/Defense/SAR/SAS
-        // а то через гет тайп не оч
-        void SetUnitsSelectionList(Army army) 
+        void SetUnitsSelectionList() 
         {
             comboBox_armyUnitSelection.Items.Clear();
             for (int i = 0; i < army.ArmySize; i++)
             {
-                string test = $"{i+1} {army[i].Type} {army[i].HitPoints}/{army[i].Attack}/{army[i].Defense}";
-                if (army[i] is ISpecialAbility saunit)
-                {
-                    test = test + $"/{saunit.Range}/{saunit.Strength}";
-                }
+                string test = $"{i+1}. {army[i].GetUnitStats()}";
                 comboBox_armyUnitSelection.Items.Add(test);
             }
+            label_price.Text = "Price: " + price + "/" + Battle.Price; // обновляем цену армии
         }
 
         private void button_addUnit_Click(object sender, EventArgs e) // добавление юнита в армию
@@ -82,9 +78,6 @@ namespace StackBattle
             int defense = (int)numericUpDown_defense.Value;
             int sar = (int)numericUpDown_sar.Value;
             int sas = (int)numericUpDown_sas.Value;
-
-            Battle battle = Battle.GetBattleInstance();
-            Army army = battle.GetArmy();
 
             switch(unitType) // добавляем юнита (наверное, можно сделать как-то покрасивее, мб через абстрактную фабрику)
             {
@@ -107,8 +100,10 @@ namespace StackBattle
                     army.AddUnit(new Warlock(attack, defense, hp, sar, sas));
                     break;
             }
-            SetUnitsSelectionList(army); // обновляем комбоБокс с выбором юнита из армии
-            label_price.Text = "Price: " + army.Price + "/" + Battle.Price; // обновляем цену армии
+            price += hp + attack + defense;
+            if (unitType > 2)
+                price += 2 * (sar + sas);
+            SetUnitsSelectionList(); // обновляем комбоБокс с выбором юнита из армии
         }
 
         private void button_editUnit_Click(object sender, EventArgs e)
@@ -119,9 +114,6 @@ namespace StackBattle
                 return;
             }
             int index = comboBox_armyUnitSelection.SelectedIndex;
-
-            Battle battle = Battle.GetBattleInstance();
-            Army army = battle.GetArmy();
 
             IUnit unit = army[index];
 
@@ -144,12 +136,40 @@ namespace StackBattle
 
         private void button_save_Click(object sender, EventArgs e)
         {
+            int index = comboBox_armyUnitSelection.SelectedIndex;
 
+            IUnit unit = army[index];
+            price -= unit.HitPoints + unit.Attack + unit.Defense; // вычитаем текущие статы
+            unit.HitPoints = (int)numericUpDown_hp.Value;
+            unit.Attack = (int)numericUpDown_attack.Value;
+            unit.Defense = (int)numericUpDown_defense.Value;
+            price += unit.HitPoints + unit.Attack + unit.Defense; // прибавляем новые
+            if (unit is ISpecialAbility saunit)
+            {
+                price -= 2 * (saunit.Range + saunit.Strength);
+                saunit.Range = (int)numericUpDown_sar.Value;
+                saunit.Strength = (int)numericUpDown_sas.Value;
+                price += 2 * (saunit.Range + saunit.Strength);
+            }
+            ToggleEditingMode();
+            SetUnitsSelectionList();
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
         {
             ToggleEditingMode();
+        }
+
+        private void button_removeUnit_Click(object sender, EventArgs e)
+        {
+            int index = comboBox_armyUnitSelection.SelectedIndex;
+            IUnit unit = army[index];
+            price -= unit.HitPoints + unit.Attack + unit.Defense;
+            if (unit is ISpecialAbility saunit)
+                price -= 2 * (saunit.Range + saunit.Strength);
+            army.Units.RemoveAt(index);
+            ToggleEditingMode();
+            SetUnitsSelectionList();
         }
 
         private void ToggleEditingMode()
@@ -160,6 +180,9 @@ namespace StackBattle
             button_editUnit.Enabled ^= true;
             button_cancel.Visible ^= true;
             button_save.Visible ^= true;
+            button_removeUnit.Visible ^= true;
         }
+
+        
     }
 }

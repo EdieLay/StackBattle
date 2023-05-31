@@ -17,5 +17,10 @@ namespace StackBattle
                 return _component.Defense + int.Max(1, (int)Math.Round(_component.Defense * 0.2));
             }
         }
+
+        public override string GetUnitStats()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
