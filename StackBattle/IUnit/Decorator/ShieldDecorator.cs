@@ -8,7 +8,7 @@ namespace StackBattle
 {
     internal class ShieldDecorator : AbstractDecorator
     {
-        public ShieldDecorator(IUnit component) : base(component)
+        public ShieldDecorator(IBuffable component) : base(component)
         { }
         public new int Defense
         {

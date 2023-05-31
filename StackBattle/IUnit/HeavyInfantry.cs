@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    internal class HeavyInfantry : AbstractUnit
+    internal class HeavyInfantry : AbstractUnit, IBuffable
     {
         public override UnitType Type { get { return UnitType.HeavyInfantry; } }
         public HeavyInfantry()

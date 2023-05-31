@@ -8,7 +8,7 @@ namespace StackBattle
 {
     internal class HelmetDecorator : AbstractDecorator
     {
-        public HelmetDecorator(IUnit component) : base(component)
+        public HelmetDecorator(IBuffable component) : base(component)
         { }
         public new int Defense
         {
