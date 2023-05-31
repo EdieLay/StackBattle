@@ -17,5 +17,10 @@ namespace StackBattle
                 return _component.Defense + 4;
             }
         }
+
+        public override string GetUnitStats()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
