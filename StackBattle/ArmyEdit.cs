@@ -102,7 +102,7 @@ namespace StackBattle
             }
             price += hp + attack + defense;
             if (unitType > 2)
-                price += sar + sas;
+                price += 2 * (sar + sas);
             SetUnitsSelectionList(); // обновляем комбоБокс с выбором юнита из армии
         }
 
@@ -146,10 +146,10 @@ namespace StackBattle
             price += unit.HitPoints + unit.Attack + unit.Defense; // прибавляем новые
             if (unit is ISpecialAbility saunit)
             {
-                price -= saunit.Range + saunit.Strength;
+                price -= 2 * (saunit.Range + saunit.Strength);
                 saunit.Range = (int)numericUpDown_sar.Value;
                 saunit.Strength = (int)numericUpDown_sas.Value;
-                price += saunit.Range + saunit.Strength;
+                price += 2 * (saunit.Range + saunit.Strength);
             }
             ToggleEditingMode();
             SetUnitsSelectionList();
@@ -166,7 +166,7 @@ namespace StackBattle
             IUnit unit = army[index];
             price -= unit.HitPoints + unit.Attack + unit.Defense;
             if (unit is ISpecialAbility saunit)
-                price -= saunit.Range + saunit.Strength;
+                price -= 2 * (saunit.Range + saunit.Strength);
             army.Units.RemoveAt(index);
             ToggleEditingMode();
             SetUnitsSelectionList();
