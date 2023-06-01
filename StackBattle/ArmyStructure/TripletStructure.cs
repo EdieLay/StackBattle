@@ -48,7 +48,7 @@ namespace StackBattle
                 GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
 
 
-            // нужно написать для вражеской армии
+
             int enemyEndInRangeX = Math.Max(position - range * 3, -armies.enemyArmy.ArmySize);
             if (enemyEndInRangeX >= 0) return;
             
