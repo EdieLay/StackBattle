@@ -57,9 +57,7 @@ namespace StackBattle
             enemyEndInRangeX = Math.Min(3 * enemyEndInRangeX + (position % 3), armies.enemyArmy.ArmySize);
 
             for (int i = enemyStartInRangeX; i <= enemyEndInRangeX; i++)
-            {
                 GetArmyInRangeY(i, range, armies.enemyArmy, armies.eArea);
-            }
         }
         public void GetArmyInRangeY(int i, int range, Army army, List<int> armyArea)
         {
