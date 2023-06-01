@@ -41,8 +41,8 @@ namespace StackBattle
             for (int i = armyStartInRangeX; i < position; i++)
             {
                 int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
-                int armyEndInRangeY = i + range >= Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2)
-                    ? Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
+                int armyEndInRangeY = i + range > Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2)
+                    ? Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
 
                 for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
                     armies.fArea.Add(j);
@@ -50,8 +50,8 @@ namespace StackBattle
             for (int i = position; i <= position; i++)
             {
                 int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
-                int armyEndInRangeY = i + range >= Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2)
-                    ? Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
+                int armyEndInRangeY = i + range > Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2)
+                    ? Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
 
                 for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
                     if (j != position) armies.fArea.Add(j);
@@ -59,31 +59,28 @@ namespace StackBattle
             for (int i = position + 1; i <= armyEndInRangeX; i++)
             {
                 int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
-                int armyEndInRangeY = i + range >= Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2)
-                    ? Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
+                int armyEndInRangeY = i + range > Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2)
+                    ? Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
 
                 for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
                     armies.fArea.Add(j);
             }
 
             // нужно написать для вражеской армии
-            int enemyStartInRangeX = position - range * 3 < 0 ? 0 : position - range * 3;
-            int enemyEndInRangeX = position + range * 3 >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : position + range * 3;
+            int enemyEndInRangeX = Math.Max(position - range * 3, -armies.enemyArmy.ArmySize);
+            if (enemyEndInRangeX >= 0) return;
+            int enemyStartInRangeX = 0;
+            enemyEndInRangeX = (Math.Abs(enemyEndInRangeX) - 1) / 3; // номер ряда, начиная от нуля
+            enemyEndInRangeX = Math.Min(3 * enemyEndInRangeX + (position % 3), armies.enemyArmy.ArmySize);
+            for (int i = enemyStartInRangeX; i <= enemyEndInRangeX; i++)
+            {
+                int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
+                int armyEndInRangeY = i + range > Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2)
+                    ? Math.Min(armies.enemyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
 
-            int enemyEndInRange = range - position >= armies.enemyArmy.ArmySize ? armies.enemyArmy.ArmySize : range - position;
-            for (int i = 0; i < enemyEndInRange; i++)
-                armies.eArea.Add(i);
-
-
-            //int armyStartInRangeY = position - range < 0 ? 0 : position - range;
-            //int armyEndInRangeY = position + range >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : position + range;
-            //for (int i = armyStartInRangeX; i < position; i++)
-            //    armies.fArea.Add(i);
-            //for (int i = position + 1; i <= armyEndInRangeX; i++)
-            //    armies.fArea.Add(i);
-
-            //for (int i = armyStartInRangeX; i < armies.enemyArmy.ArmySize; i++)
-            //    armies.eArea.Add(i);
+                for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
+                    armies.eArea.Add(j);
+            }
         }
     }
 }
