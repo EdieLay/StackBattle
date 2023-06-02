@@ -19,35 +19,37 @@ namespace StackBattle
             {
                 UnitList.Add(unitList[i]);
                 UnitsHP.Add(unitList[i].HitPoints);
-                if (unitList[i] is AbstractBuff buffunit)
+                if (unitList[i] is IBuffable buffunit)
                 {
                     GetBuffs(buffunit, i);
                 }
             }
         }
 
-        void GetBuffs(AbstractBuff buffunit, int pos)
+        void GetBuffs(IBuffable buffunit, int pos)
         {
             Stack<Buffs> buffs = new();
-            IBuffable tempunit = buffunit as IBuffable;
-            while (tempunit is AbstractBuff bunit)
+            
+            Stack<IBuffable> buffstack = new Stack<IBuffable>();
+            buffstack.Push(buffunit);
+            while (buffstack.Pop() is AbstractBuff bunit)
             {
                 if (bunit is HelmetBuff)
                 {
                     buffs.Push(Buffs.Helmet);
-                    tempunit = bunit.GetBuffable();
+                    buffstack.Push(bunit.GetBuffable());
                     continue;
                 }
                 if (bunit is HorseBuff)
                 {
                     buffs.Push(Buffs.Horse);
-                    tempunit = bunit.GetBuffable();
+                    buffstack.Push(bunit.GetBuffable());
                     continue;
                 }
                 if (bunit is ShieldBuff)
                 {
                     buffs.Push(Buffs.Shield);
-                    tempunit = bunit.GetBuffable();
+                    buffstack.Push(bunit.GetBuffable());
                     continue;
                 }
             }
