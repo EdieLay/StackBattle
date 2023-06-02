@@ -64,7 +64,7 @@ namespace StackBattle
         public void TakeDamage(int damage)
         {
             int defMod = Battle.DefenseMod;
-            HitPoints -= damage * (defMod/(defMod + Defense));
+            HitPoints -= (int)Math.Floor((double)damage * ((double)defMod/(double)(defMod + Defense)));
             if (this is AbstractBuff buffunit)
             {
                 buffunit.TakeOffBuff(this);

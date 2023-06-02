@@ -34,13 +34,14 @@ namespace StackBattle
         public void Execute()
         {
             DoTurn();
+            FirstArmy.ClearArmy();
+            SecondArmy.ClearArmy();
             TurnState fastate = new(FirstArmy.Units);
             TurnState sastate = new(SecondArmy.Units);
             UndoStack.Push((fastate, sastate));
             RedoStack.Clear();
 
-            FirstArmy.ClearArmy();
-            SecondArmy.ClearArmy();
+            
         }
 
         public void Undo()
@@ -59,6 +60,11 @@ namespace StackBattle
             UndoStack.Push(RedoStack.Pop());
 
             RestoreStates(FAState, SAState);
+        }
+
+        public void SetStructure(ArmyStructure structure)
+        {
+            Structure = structure;
         }
 
         void DoTurn()

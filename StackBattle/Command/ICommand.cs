@@ -13,5 +13,6 @@ namespace StackBattle
         void Execute();
         void Undo();
         void Redo();
+        void SetStructure(ArmyStructure structure);
     }
 }
