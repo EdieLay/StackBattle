@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
+    enum Buffs
+    {
+        Helmet,
+        Horse,
+        Shield
+    }
     abstract class AbstractBuff : AbstractUnit, IBuffable
     {
         protected IBuffable _component;

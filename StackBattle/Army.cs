@@ -64,8 +64,16 @@ namespace StackBattle
         }
         public void ClearArmy()
         {
-            // сделать очистку от павших юнитов
-            // нужно делать аккуратно, т.к. при удалении из списка одного элемента, другие элементы сдвигаются
+            int i = 0;
+            while (i != ArmySize)
+            {
+                if (Units[i].HitPoints == 0)
+                {
+                    Units.RemoveAt(i);
+                    continue;
+                }
+                i++;
+            }
         }
     }
 }
