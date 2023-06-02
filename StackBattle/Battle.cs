@@ -23,14 +23,13 @@ namespace StackBattle
         public bool IsUndoAvailable { get { return Command.IsUndoAvailable; } }
         public bool IsRedoAvailable { get { return Command.IsRedoAvailable; } }
         public bool IsFirstArmyBeingEdited { get; set; }
-        public bool IsGameFinished { get; private set; } = false;
+        public bool IsGameFinished { get { return (FirstArmy.ArmySize == 0 || SecondArmy.ArmySize == 0); } }
 
         private Battle()
         {
             FirstArmy = new Army();
             SecondArmy = new Army();
             Structure = new StackStructure();
-            Command = new TurnCommand(FirstArmy, SecondArmy, Structure);
         }
         public static Battle GetBattleInstance()
         {
@@ -42,9 +41,10 @@ namespace StackBattle
 
         public void DoTurn()
         {
-            Command.Execute();
-            if (FirstArmy.ArmySize == 0 || SecondArmy.ArmySize == 0)
-                IsGameFinished = true;
+            if (!IsGameFinished)
+            {
+                Command.Execute();
+            }
         }
 
         public void DoBattle()
@@ -74,6 +74,11 @@ namespace StackBattle
         public void SetStructure(ArmyStructure newStructure)
         {
             Structure = newStructure;
+            Command.SetStructure(newStructure);
+        }
+        public void SetCommand()
+        {
+            Command = new TurnCommand(FirstArmy, SecondArmy, Structure);
         }
 
         public bool IsArmyPricesMatch()
