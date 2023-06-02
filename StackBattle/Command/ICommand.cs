@@ -8,6 +8,8 @@ namespace StackBattle
 {
     internal interface ICommand
     {
+        bool IsUndoAvailable { get; }
+        bool IsRedoAvailable { get; }
         void Execute();
         void Undo();
         void Redo();

@@ -14,8 +14,11 @@ namespace StackBattle
         Army SecondArmy { get; set; }
         ArmyStructure Structure { get; set; }
         bool isFirstArmyTurn { get; set; } = true;
-        Stack<(TurnState FAState, TurnState SAState)> UndoStack { get; set; } = new();
+        Stack<(TurnState FAState, TurnState SAState)> UndoStack { get; set; } = new(); // верхнее состояние - текущее
         Stack<(TurnState FAState, TurnState SAState)> RedoStack { get; set; } = new();
+        public bool IsUndoAvailable { get { return UndoStack.Count > 1; } }
+        public bool IsRedoAvailable { get { return RedoStack.Count > 0; } }
+
         public TurnCommand(Army firstArmy, Army secondArmy, ArmyStructure structure)
         {
             FirstArmy = firstArmy;
