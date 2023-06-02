@@ -12,7 +12,7 @@ namespace StackBattle
         private int _defense;
         private int _hitPoints;
         abstract public UnitType Type { get; }
-        public int Attack { 
+        public virtual int Attack { 
             get 
             { 
                 if (HitPoints == 0)
@@ -25,7 +25,7 @@ namespace StackBattle
                 _attack = value;
             }
         }
-        public int Defense { 
+        public virtual int Defense { 
             get
             {
                 return _defense;
@@ -36,7 +36,7 @@ namespace StackBattle
                 _defense = value;
             }
         }
-        public int HitPoints {
+        public virtual int HitPoints {
             get
             {
                 return _hitPoints;
