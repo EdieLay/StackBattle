@@ -42,7 +42,14 @@ namespace StackBattle
                 GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
 
             for (int i = position; i <= position; i++)
-                GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
+            {
+                int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
+                int armyEndInRangeY = i + range > Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2)
+                    ? Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
+
+                for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
+                    if (j != position) armies.fArea.Add(j);
+            }
 
             for (int i = position + 1; i <= armyEndInRangeX; i++)
                 GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
