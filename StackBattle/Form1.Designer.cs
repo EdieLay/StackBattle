@@ -52,6 +52,7 @@
             this.button_start.TabIndex = 0;
             this.button_start.Text = "BATTLE!!!";
             this.button_start.UseVisualStyleBackColor = false;
+            this.button_start.Click += new System.EventHandler(this.button_start_Click);
             // 
             // button_army1edit
             // 
