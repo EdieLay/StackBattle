@@ -43,7 +43,7 @@ namespace StackBattle
                     if (value < (double)Strength / 100.0)
                     {
                         IUnit clone = prototype.Clone() as IUnit;
-                        armies.friendlyArmy.InsertClonedUnit(pos, clone);
+                        armies.friendlyArmy.InsertClonedUnit(armies.friendlyArmy.Units.IndexOf(this), clone);
                     }
                 }
             }
