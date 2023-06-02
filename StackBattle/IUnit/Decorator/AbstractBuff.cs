@@ -32,33 +32,42 @@ namespace StackBattle
         {
             get
             {
-                return _component.Attack;
+                if (_component is IBuffable)
+                    return _component.Attack;
+                return 0;
             }
             set
             {
-                _component.Attack = value;
+                if (_component is IBuffable)
+                    _component.Attack = value;
             }
         }
         public override int Defense
         {
             get
             {
-                return _component.Defense;
+                if (_component is IBuffable)
+                    return _component.Defense;
+                return 0;
             }
             set
             {
-                _component.Defense = value;
+                if (_component is IBuffable)
+                    _component.Defense = value;
             }
         }
         public override int HitPoints
         {
             get
             {
-                return _component.HitPoints;
+                if (_component is IBuffable)
+                    return _component.HitPoints;
+                return 0;
             }
             set
             {
-                _component.HitPoints = value;
+                if (_component is IBuffable)    
+                    _component.HitPoints = value;
             }
         }
 
@@ -67,10 +76,10 @@ namespace StackBattle
             return _component;
         }
 
-        public bool TakeOffBuff(IUnit unit)
+        public bool TakeOffBuff(IBuffable unit)
         {
             Random random = new((int)DateTime.Now.Ticks);
-            if (random.Next(0, 100) <= 10) // 0.1 - бафф снимается
+            if (random.NextDouble() <= 0.1) // 0.1 - бафф снимается
             {
                 unit = _component;
                 return true;
