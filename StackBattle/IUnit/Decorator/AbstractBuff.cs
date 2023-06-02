@@ -28,7 +28,7 @@ namespace StackBattle
             this._component = component;
         }
 
-        public new int Attack
+        public override int Attack
         {
             get
             {
@@ -39,7 +39,7 @@ namespace StackBattle
                 _component.Attack = value;
             }
         }
-        public new int Defense
+        public override int Defense
         {
             get
             {
@@ -50,7 +50,7 @@ namespace StackBattle
                 _component.Defense = value;
             }
         }
-        public new int HitPoints
+        public override int HitPoints
         {
             get
             {
@@ -72,7 +72,7 @@ namespace StackBattle
             Random random = new((int)DateTime.Now.Ticks);
             if (random.Next(0, 100) <= 10) // 0.1 - бафф снимается
             {
-                unit = _component as IUnit;
+                unit = _component;
                 return true;
             }
             return false;

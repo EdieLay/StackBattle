@@ -10,7 +10,7 @@ namespace StackBattle
     {
         public HorseBuff(IBuffable component) : base(component)
         { }
-        public new int Attack
+        public override int Attack
         {
             get
             {
@@ -20,7 +20,7 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            throw new NotImplementedException();
+            return _component.GetUnitStats() + $"(Ho{Attack})";
         }
     }
 }

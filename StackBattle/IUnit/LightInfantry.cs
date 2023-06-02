@@ -45,53 +45,77 @@ namespace StackBattle
             return new LightInfantry(this);
         }
 
-        public bool DressBuff(ArmiesRange armies)
+        public int DressBuff(ArmiesRange armies)
         {
-            int count = 0;
-            for (int i = 0; i < armies.fArea.Count; i++)
-            {
-                if (armies.friendlyArmy[armies.fArea[i]] is IBuffable) count++;
-            }
-            if (count == 0) return false;
-
             Random random = new((int)DateTime.Now.Ticks);
-            int countIndex = 0; 
-            count = random.Next(1, count);
             for (int i = 0; i < armies.fArea.Count; i++)
             {
-                if (armies.friendlyArmy[armies.fArea[i]] is IBuffable && countIndex != count) countIndex++;
-                if (countIndex == count)
+                if (armies.friendlyArmy[armies.fArea[i]] is IBuffable buffunit)
                 {
-                    int chance = 120;
-                    int r = random.Next(1, chance); // 1/2 - шлем, 1/3 - щит, 1/6 - лошадь
-
-                    if (r <= chance / 6 && armies.friendlyArmy[armies.fArea[i]] is not HorseBuff)
+                    if (random.NextDouble() < 0.4)
                     {
-                        HorseBuff horseBuff = new((IBuffable)armies.friendlyArmy[armies.fArea[i]]);
-                        armies.friendlyArmy[armies.fArea[i]] = horseBuff;
-                        return true;
-                    }
-                    else if (r > chance / 6 && r <= chance / 2 && armies.friendlyArmy[armies.fArea[i]] is not ShieldBuff)
-                    {
-                        ShieldBuff shieldBuff = new((IBuffable)armies.friendlyArmy[armies.fArea[i]]);
-                        armies.friendlyArmy[armies.fArea[i]] = shieldBuff;
-                        return true;
-                    }
-                    else if (armies.friendlyArmy[armies.fArea[i]] is not HelmetBuff)
-                    {
-                        HelmetBuff helmet = new((IBuffable)armies.friendlyArmy[armies.fArea[i]]);
-                        armies.friendlyArmy[armies.fArea[i]] = helmet;
-                        return true;
+                        List<Buffs> buffs = GetBuffs(buffunit);
+                        double chance = random.NextDouble();
+                        if (chance < 1.0/2.0 && !buffs.Contains(Buffs.Helmet))
+                        {
+                            HelmetBuff helmet = new(buffunit);
+                            armies.friendlyArmy.Units.RemoveAt(armies.fArea[i]);
+                            armies.friendlyArmy.Units.Insert(armies.fArea[i], helmet);
+                            return (int)Buffs.Helmet;
+                        }
+                        else if (chance >= 1.0 / 2.0 && chance < 1.0/2.0 + 1.0/3.0 && !buffs.Contains(Buffs.Shield))
+                        {
+                            ShieldBuff shield = new(buffunit);
+                            armies.friendlyArmy.Units.RemoveAt(armies.fArea[i]);
+                            armies.friendlyArmy.Units.Insert(armies.fArea[i], shield);
+                            return (int)Buffs.Shield;
+                        }
+                        else if (!buffs.Contains(Buffs.Horse))
+                        {
+                            HorseBuff horse = new(buffunit);
+                            armies.friendlyArmy.Units.RemoveAt(armies.fArea[i]);
+                            armies.friendlyArmy.Units.Insert(armies.fArea[i], horse);
+                            return (int)Buffs.Horse;
+                        }
                     }
                 }
             }
-
-            return false;
+            return -1;
 		}
 		
         public override string GetUnitStats()
         {
             return $"Light Infantry [{HitPoints}/{Attack}/{Defense}]";
+        }
+
+        List<Buffs> GetBuffs(IBuffable buffunit)
+        {
+            List<Buffs> buffs = new();
+
+            Stack<IBuffable> buffstack = new Stack<IBuffable>();
+            buffstack.Push(buffunit);
+            while (buffstack.Pop() is AbstractBuff bunit)
+            {
+                if (bunit is HelmetBuff)
+                {
+                    buffs.Add(Buffs.Helmet);
+                    buffstack.Push(bunit.GetBuffable());
+                    continue;
+                }
+                if (bunit is HorseBuff)
+                {
+                    buffs.Add(Buffs.Horse);
+                    buffstack.Push(bunit.GetBuffable());
+                    continue;
+                }
+                if (bunit is ShieldBuff)
+                {
+                    buffs.Add(Buffs.Shield);
+                    buffstack.Push(bunit.GetBuffable());
+                    continue;
+                }
+            }
+            return buffs;
         }
     }
 }

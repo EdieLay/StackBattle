@@ -10,7 +10,7 @@ namespace StackBattle
     {
         public ShieldBuff(IBuffable component) : base(component)
         { }
-        public new int Defense
+        public override int Defense
         {
             get
             {
@@ -20,7 +20,7 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            throw new NotImplementedException();
+            return _component.GetUnitStats() + $"(Sh{Defense})";
         }
     }
 }

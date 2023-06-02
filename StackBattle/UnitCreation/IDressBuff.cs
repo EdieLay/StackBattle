@@ -8,6 +8,6 @@ namespace StackBattle
 {
     internal interface IDressBuff
     {
-        bool DressBuff(ArmiesRange armies);
+        int DressBuff(ArmiesRange armies);
     }
 }
