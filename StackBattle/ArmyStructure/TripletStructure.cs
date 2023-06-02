@@ -19,7 +19,7 @@ namespace StackBattle
                 ApplyBuffs(i, firstArmy, secondArmy);
             }
 
-            int countAttackUnit = Math.Min(3, maxArmyLength);
+            int countAttackUnit = Math.Min(3, Math.Min(firstArmy.ArmySize, secondArmy.ArmySize));
             for (int i = 0; i < countAttackUnit; i++)
             {
                 secondArmy[i].TakeDamage(firstArmy[i].Attack);
@@ -38,23 +38,9 @@ namespace StackBattle
             int armyStartInRangeX = position - range * 3 < 0 ? 0 : position - range * 3;
             int armyEndInRangeX = position + range * 3 >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : position + range * 3;
 
-            for (int i = armyStartInRangeX; i < position; i++)
+            for (int i = armyStartInRangeX; i <= armyEndInRangeX; i++)
                 GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
-
-            for (int i = position; i <= position; i++)
-            {
-                int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
-                int armyEndInRangeY = i + range > Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2)
-                    ? Math.Min(armies.friendlyArmy.ArmySize, 3 * (i / 3) + 2) : i + range;
-
-                for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
-                    if (j != position) armies.fArea.Add(j);
-            }
-
-            for (int i = position + 1; i <= armyEndInRangeX; i++)
-                GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
-
-
+            armies.fArea.Remove(position);
 
             int enemyEndInRangeX = Math.Max(position - range * 3, -armies.enemyArmy.ArmySize);
             if (enemyEndInRangeX >= 0) return;

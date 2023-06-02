@@ -17,6 +17,8 @@ namespace StackBattle
 
         Army FirstArmy { get; set; }
         Army SecondArmy { get; set; }
+        ArmyStructure Structure { get; set; }
+        ICommand Command { get; set; }
 
 
 
@@ -26,6 +28,8 @@ namespace StackBattle
         {
             FirstArmy = new Army();
             SecondArmy = new Army();
+            Structure = new StackStructure();
+            Command = new TurnCommand(FirstArmy, SecondArmy, Structure);
         }
         public static Battle GetBattleInstance()
         {
@@ -41,17 +45,12 @@ namespace StackBattle
             return SecondArmy;
         }
 
-        void DoTurn(bool isFirstArmyTurn)
+        public void SetStructure(ArmyStructure newStructure)
         {
-            Army FirstTurnArmy = isFirstArmyTurn ? FirstArmy : SecondArmy;
-            Army SecondTurnArmy = isFirstArmyTurn ? SecondArmy : FirstArmy;
-
-            SecondTurnArmy[0].TakeDamage(FirstTurnArmy[0].Attack);
-            FirstTurnArmy[0].TakeDamage(SecondTurnArmy[0].Attack); // нужно в геттере атаки сделать, что если хп <= 0, то возвращается 0
-
-
-            ClearField();
+            Structure = newStructure;
         }
+
+        
 
         
 
