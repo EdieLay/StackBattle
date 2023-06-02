@@ -36,18 +36,18 @@ namespace StackBattle
         public override void GetAreasInRange(int position, int range, ArmiesRange armies)
         {
             int armyStartInRangeX = position - range * 3 < 0 ? 0 : position - range * 3;
-            int armyEndInRangeX = position + range * 3 >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : position + range * 3;
+            int armyEndInRangeX = position + range * 3 >= armies.friendlyArmy.ArmySize - 1 ? armies.friendlyArmy.ArmySize - 1 : position + range * 3;
 
             for (int i = armyStartInRangeX; i <= armyEndInRangeX; i++)
                 GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
             armies.fArea.Remove(position);
 
-            int enemyEndInRangeX = Math.Max(position - range * 3, -armies.enemyArmy.ArmySize);
+            int enemyEndInRangeX = Math.Max(position - range * 3, -armies.enemyArmy.ArmySize + 1);
             if (enemyEndInRangeX >= 0) return;
             
             int enemyStartInRangeX = 0;
             enemyEndInRangeX = (Math.Abs(enemyEndInRangeX) - 1) / 3; // номер ряда, начиная от нуля
-            enemyEndInRangeX = Math.Min(3 * enemyEndInRangeX + (position % 3), armies.enemyArmy.ArmySize);
+            enemyEndInRangeX = Math.Min(3 * enemyEndInRangeX + (position % 3), armies.enemyArmy.ArmySize - 1);
 
             for (int i = enemyStartInRangeX; i <= enemyEndInRangeX; i++)
                 GetArmyInRangeY(i, range, armies.enemyArmy, armies.eArea);
@@ -55,8 +55,8 @@ namespace StackBattle
         public void GetArmyInRangeY(int i, int range, Army army, List<int> armyArea)
         {
             int armyStartInRangeY = i - range < 3 * (i / 3) ? 3 * (i / 3) : i - range;
-            int armyEndInRangeY = i + range > Math.Min(army.ArmySize, 3 * (i / 3) + 2)
-                ? Math.Min(army.ArmySize, 3 * (i / 3) + 2) : i + range;
+            int armyEndInRangeY = i + range >= Math.Min(army.ArmySize - 1, 3 * (i / 3) + 2)
+                ? Math.Min(army.ArmySize - 1, 3 * (i / 3) + 2) : i + range;
 
             for (int j = armyStartInRangeY; j <= armyEndInRangeY; j++)
                 armyArea.Add(j);
