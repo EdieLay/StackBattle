@@ -67,7 +67,7 @@ namespace StackBattle
             HitPoints -= (int)Math.Floor((double)damage * ((double)defMod/(double)(defMod + Defense)));
             if (this is AbstractBuff buffunit)
             {
-                buffunit.TakeOffBuff(this);
+                buffunit.TakeOffBuff(buffunit);
             }
         }
 
