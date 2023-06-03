@@ -13,7 +13,8 @@ namespace StackBattle
         Knight,
         Archer,
         Healer,
-        Warlock
+        Warlock,
+        GulyayGorod
     }
     internal interface IUnit
     {
