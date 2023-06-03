@@ -9,12 +9,11 @@ namespace StackBattle
     internal class GulyayGorodAdapter : AbstractUnit
     {
         private readonly GulyayGorod _adapteeGG;
-        public override int Attack { get => 0; set => Attack = 0; }
+        public override int Attack { get => 0; }
 
         public GulyayGorodAdapter(GulyayGorod adapteeGG)
         {
             _adapteeGG = adapteeGG;
-            Attack = adapteeGG.GetStrength();
             Defense = adapteeGG.GetDefence();
             HitPoints = adapteeGG.GetHealth();
         }
@@ -23,7 +22,7 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            return $"Knight [{HitPoints}/{Attack}/{Defense}]";
+            return $"Gulyay Gorod [{HitPoints}/{Attack}/{Defense}]";
         }
     }
 }

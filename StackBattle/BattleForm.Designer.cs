@@ -36,9 +36,11 @@
             this.button_redo = new System.Windows.Forms.Button();
             this.button_finishBattle = new System.Windows.Forms.Button();
             this.button_doTurn = new System.Windows.Forms.Button();
-            this.label_unitCount1 = new System.Windows.Forms.Label();
-            this.label_unitCount2 = new System.Windows.Forms.Label();
             this.label_turnCounter = new System.Windows.Forms.Label();
+            this.textBox_unitCount1 = new System.Windows.Forms.TextBox();
+            this.textBox_unitCount2 = new System.Windows.Forms.TextBox();
+            this.label_unitCount2 = new System.Windows.Forms.Label();
+            this.label_unitCount1 = new System.Windows.Forms.Label();
             this.groupBox_structures.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,24 +132,6 @@
             this.button_doTurn.UseVisualStyleBackColor = true;
             this.button_doTurn.Click += new System.EventHandler(this.button_doTurn_Click);
             // 
-            // label_unitCount1
-            // 
-            this.label_unitCount1.AutoSize = true;
-            this.label_unitCount1.Location = new System.Drawing.Point(24, 90);
-            this.label_unitCount1.Name = "label_unitCount1";
-            this.label_unitCount1.Size = new System.Drawing.Size(82, 20);
-            this.label_unitCount1.TabIndex = 5;
-            this.label_unitCount1.Text = "Unit Count:";
-            // 
-            // label_unitCount2
-            // 
-            this.label_unitCount2.AutoSize = true;
-            this.label_unitCount2.Location = new System.Drawing.Point(493, 90);
-            this.label_unitCount2.Name = "label_unitCount2";
-            this.label_unitCount2.Size = new System.Drawing.Size(82, 20);
-            this.label_unitCount2.TabIndex = 6;
-            this.label_unitCount2.Text = "Unit Count:";
-            // 
             // label_turnCounter
             // 
             this.label_turnCounter.AutoSize = true;
@@ -157,11 +141,51 @@
             this.label_turnCounter.TabIndex = 7;
             this.label_turnCounter.Text = "Turn: ";
             // 
+            // textBox_unitCount1
+            // 
+            this.textBox_unitCount1.Location = new System.Drawing.Point(24, 82);
+            this.textBox_unitCount1.Multiline = true;
+            this.textBox_unitCount1.Name = "textBox_unitCount1";
+            this.textBox_unitCount1.ReadOnly = true;
+            this.textBox_unitCount1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_unitCount1.Size = new System.Drawing.Size(330, 296);
+            this.textBox_unitCount1.TabIndex = 8;
+            // 
+            // textBox_unitCount2
+            // 
+            this.textBox_unitCount2.Location = new System.Drawing.Point(442, 82);
+            this.textBox_unitCount2.Multiline = true;
+            this.textBox_unitCount2.Name = "textBox_unitCount2";
+            this.textBox_unitCount2.ReadOnly = true;
+            this.textBox_unitCount2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_unitCount2.Size = new System.Drawing.Size(336, 296);
+            this.textBox_unitCount2.TabIndex = 9;
+            // 
+            // label_unitCount2
+            // 
+            this.label_unitCount2.AutoSize = true;
+            this.label_unitCount2.Location = new System.Drawing.Point(442, 59);
+            this.label_unitCount2.Name = "label_unitCount2";
+            this.label_unitCount2.Size = new System.Drawing.Size(82, 20);
+            this.label_unitCount2.TabIndex = 6;
+            this.label_unitCount2.Text = "Unit Count:";
+            // 
+            // label_unitCount1
+            // 
+            this.label_unitCount1.AutoSize = true;
+            this.label_unitCount1.Location = new System.Drawing.Point(24, 59);
+            this.label_unitCount1.Name = "label_unitCount1";
+            this.label_unitCount1.Size = new System.Drawing.Size(82, 20);
+            this.label_unitCount1.TabIndex = 5;
+            this.label_unitCount1.Text = "Unit Count:";
+            // 
             // BattleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox_unitCount2);
+            this.Controls.Add(this.textBox_unitCount1);
             this.Controls.Add(this.label_turnCounter);
             this.Controls.Add(this.label_unitCount2);
             this.Controls.Add(this.label_unitCount1);
@@ -190,8 +214,10 @@
         private Button button_redo;
         private Button button_finishBattle;
         private Button button_doTurn;
-        private Label label_unitCount1;
-        private Label label_unitCount2;
         private Label label_turnCounter;
+        private TextBox textBox_unitCount1;
+        private TextBox textBox_unitCount2;
+        private Label label_unitCount2;
+        private Label label_unitCount1;
     }
 }

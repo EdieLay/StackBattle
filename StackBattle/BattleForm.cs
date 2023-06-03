@@ -101,14 +101,16 @@ namespace StackBattle
         private void UpdateUnitInfo()
         {
             label_unitCount1.Text = "Unit Count: " + FirstArmy.ArmySize.ToString() + Environment.NewLine;
+            textBox_unitCount1.Text = String.Empty;
             for (int i = 0; i < FirstArmy.ArmySize; i++)
             {
-                label_unitCount1.Text += FirstArmy[i].GetUnitStats() + Environment.NewLine;
+                textBox_unitCount1.Text += FirstArmy[i].GetUnitStats() + Environment.NewLine;
             }
             label_unitCount2.Text = "Unit Count: " + SecondArmy.ArmySize.ToString() + Environment.NewLine;
+            textBox_unitCount2.Text = String.Empty;
             for (int i = 0; i < SecondArmy.ArmySize; i++)
             {
-                label_unitCount2.Text += SecondArmy[i].GetUnitStats() + Environment.NewLine;
+                textBox_unitCount2.Text += SecondArmy[i].GetUnitStats() + Environment.NewLine;
             }
         }
     }

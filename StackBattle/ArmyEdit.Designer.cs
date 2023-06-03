@@ -68,7 +68,8 @@
             "Knight",
             "Archer",
             "Healer",
-            "Warlock"});
+            "Warlock",
+            "Gulyay Gorod"});
             this.comboBox_unitTypeSelection.Location = new System.Drawing.Point(237, 11);
             this.comboBox_unitTypeSelection.Name = "comboBox_unitTypeSelection";
             this.comboBox_unitTypeSelection.Size = new System.Drawing.Size(176, 28);

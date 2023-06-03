@@ -64,7 +64,7 @@ namespace StackBattle
         public void TakeDamage(int damage)
         {
             int defMod = Battle.DefenseMod;
-            HitPoints -= (int)Math.Floor((double)damage * ((double)defMod/(double)(defMod + Defense)));
+            HitPoints -= (int)Math.Round((double)damage * ((double)defMod/(double)(defMod + Defense)));
         }
 
         public abstract string GetUnitStats();

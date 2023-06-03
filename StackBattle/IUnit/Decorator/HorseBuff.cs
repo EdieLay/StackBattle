@@ -20,7 +20,9 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            return _component.GetUnitStats() + $"(Ho{Attack})";
+            string name = _component.GetUnitStats().Split('[')[0];
+            return $"{name}(Ho) [{HitPoints}/{Attack}/{Defense}]";
+            //return _component.GetUnitStats() + $"(Ho{Attack})";
         }
     }
 }

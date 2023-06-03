@@ -112,7 +112,7 @@
             0,
             0});
             this.numericUpDown_price.Minimum = new decimal(new int[] {
-            1,
+            20,
             0,
             0,
             0});

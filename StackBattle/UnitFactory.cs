@@ -47,7 +47,7 @@ namespace StackBattle
                 {
                     rRange = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense);
                     rStrength = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense - rRange + 1);
-                    maxUnitPrice -= 2 * (rRange + rStrength); 
+                    maxUnitPrice -= 2 * (rRange + rStrength);
                 }
             }
             maxUnitPrice -= rAttack + rDefense + rHitPoints;
@@ -101,7 +101,49 @@ namespace StackBattle
         public IUnit CreateRandomUnit2(int unitprice)
         {
             Random random = new((int)DateTime.Now.Ticks);
-            int unitType = random.Next(0, 6);
+            int unitType = random.Next(0, 7);
+            if (unitType < 3 || unitprice < 6)
+            {
+                int hp = random.Next(1, unitprice);
+                int attack = random.Next(1, unitprice - hp + 1);
+                int defense = unitprice - hp - attack;
+                if (unitprice < 6)
+                    unitType = random.Next(0, 3);
+                switch (unitType)
+                {
+                    case 0:
+                        return new LightInfantry(attack, defense, hp);
+                    case 1:
+                        return new HeavyInfantry(attack, defense, hp);
+                    case 2:
+                        return new Knight(attack, defense, hp);
+                }
+            }
+            else if (unitType < 6)
+            {
+                int sas = random.Next(1, (unitprice - 2) / 2);
+                int sar = random.Next(1, (unitprice - sas * 2) / 2);
+                int hp = random.Next(1, unitprice - (sas + sar) * 2);
+                int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
+                int def = unitprice - hp - attack - (sas + sar)* 2;
+                switch (unitType)
+                {
+                    case 3:
+                        return new Archer(attack, def, hp, sar, sas);
+                    case 4:
+                        return new Healer(attack, def, hp, sar, sas);
+                    case 5:
+                        return new Warlock(attack, def, hp, sar, sas);
+                }
+            }
+            else
+            {
+                int hp = random.Next(1, unitprice + 1);
+                int def = unitprice - hp;
+                GulyayGorod gg = new GulyayGorod(hp, def, 0);
+                return new GulyayGorodAdapter(gg);
+            }
+            throw new Exception();
         }
 
         public Army CreateRandomArmy2(int price)
@@ -109,15 +151,20 @@ namespace StackBattle
             Army army = new();
             Random random = new((int)DateTime.Now.Ticks);
 
+            int ratio = Math.Max(1, price / 50);
             int priceLeft = price;
             int unitPrice;
-            while (priceLeft > Math.Max(4, price / 20))
+            while (priceLeft > 0)
             {
-                unitPrice = random.Next(priceLeft / 25, priceLeft / 3);
+                unitPrice = random.Next(Math.Max(price / 20, 3), priceLeft / ratio + 1);
+                if (priceLeft - unitPrice < Math.Max(price / 20, 3))
+                    unitPrice = priceLeft;
                 priceLeft -= unitPrice;
                 army.AddUnit(CreateRandomUnit2(unitPrice));
+                if (ratio > 1)
+                    ratio--;
             }
-            army.AddUnit(CreateRandomUnit2(priceLeft));
+            //army.AddUnit(CreateRandomUnit2(priceLeft));
 
             return army;
         }

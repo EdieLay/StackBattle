@@ -49,8 +49,10 @@ namespace StackBattle
         private void button_start_Click(object sender, EventArgs e)
         {
             battleForm = new BattleForm();
+            battle.TurnCount = 0;
             battleForm.FormClosing += delegate
             {
+                UpdateArmyPrice();
                 this.Show();
             };
             battleForm.Show();
@@ -60,25 +62,25 @@ namespace StackBattle
         private void button_createRandArmy1_Click(object sender, EventArgs e)
         {
             battle.IsFirstArmyBeingEdited = true;
-            battle.SetArmy(factory.CreateRandomArmy(Battle.Price));
+            battle.SetArmy(factory.CreateRandomArmy2(Battle.Price));
             UpdateArmyPrice();
         }
 
         private void button_createRandArmy2_Click(object sender, EventArgs e)
         {
             battle.IsFirstArmyBeingEdited = false;
-            battle.SetArmy(factory.CreateRandomArmy(Battle.Price));
+            battle.SetArmy(factory.CreateRandomArmy2(Battle.Price));
             UpdateArmyPrice();
         }
 
         private void UpdateArmyPrice()
         {
+            battle.IsFirstArmyBeingEdited = true;
             Army army = battle.GetArmy();
-            if (battle.IsFirstArmyBeingEdited)
-            {
-                label_army1price.Text = army.Price.ToString();
-            }
-            else label_army2price.Text = army.Price.ToString();
+            label_army1price.Text = army.Price.ToString();
+            battle.IsFirstArmyBeingEdited = false;
+            army = battle.GetArmy();
+            label_army2price.Text = army.Price.ToString();
             if (battle.IsArmyPricesMatch())
                 button_start.Enabled = true;
             else button_start.Enabled = false;

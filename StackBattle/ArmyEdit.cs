@@ -36,11 +36,13 @@ namespace StackBattle
         {
             int unitType = comboBox_unitTypeSelection.SelectedIndex; // в комбоБоксе до 3 индекса идут юниты без спешл абилити
             if (unitType < 3)
-                HideSA(true);
-            else HideSA(false);
+                HideSA(true, false);
+            else if (unitType < 6) HideSA(false, false);
+            else
+                HideSA(true, true);
         }
 
-        private void HideSA(bool isNotSAUnit) // скрытие ненужных характеристик для юнитов без спешл абилити
+        private void HideSA(bool isNotSAUnit, bool isGG) // скрытие ненужных характеристик для юнитов без спешл абилити
         {
             if (isNotSAUnit)
             {
@@ -55,6 +57,15 @@ namespace StackBattle
                 label_SAS.Show();
                 numericUpDown_sar.Show();
                 numericUpDown_sas.Show();
+            }
+            if (isGG)
+            {
+                numericUpDown_attack.Value = 0;
+                numericUpDown_attack.Enabled = false;
+            }
+            else
+            {
+                numericUpDown_attack.Enabled = true;
             }
         }
 
@@ -100,9 +111,13 @@ namespace StackBattle
                 case 5: // Warlock
                     army.AddUnit(new Warlock(attack, defense, hp, sar, sas));
                     break;
+                case 6: // Gulyay Gorod
+                    GulyayGorod gg = new GulyayGorod(hp, defense, 0);
+                    army.AddUnit(new GulyayGorodAdapter(gg));
+                    break;
             }
             price += hp + attack + defense;
-            if (unitType > 2)
+            if (unitType > 2 && unitType < 6)
                 price += 2 * (sar + sas);
             SetUnitsSelectionList(); // обновляем комбоБокс с выбором юнита из армии
         }
