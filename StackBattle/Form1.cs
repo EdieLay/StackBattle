@@ -5,6 +5,7 @@ namespace StackBattle
         ArmyEdit armyEditorForm;
         BattleForm battleForm;
         Battle battle = Battle.GetBattleInstance();
+        UnitFactory factory= new UnitFactory();
         public Form1()
         {
             InitializeComponent();
@@ -38,15 +39,7 @@ namespace StackBattle
             battle.IsFirstArmyBeingEdited = isFirstEditing;
             armyEditorForm = new ArmyEdit();
             armyEditorForm.FormClosing += delegate {
-                Army army = battle.GetArmy();
-                if (isFirstEditing)
-                {
-                    label_army1price.Text = army.Price.ToString();
-                }
-                else label_army2price.Text = army.Price.ToString();
-                if (battle.IsArmyPricesMatch())
-                    button_start.Enabled = true;
-                else button_start.Enabled = false;
+                UpdateArmyPrice();
                 this.Show();
             }; 
             armyEditorForm.Show();
@@ -62,6 +55,33 @@ namespace StackBattle
             };
             battleForm.Show();
             this.Hide();
+        }
+
+        private void button_createRandArmy1_Click(object sender, EventArgs e)
+        {
+            battle.IsFirstArmyBeingEdited = true;
+            battle.SetArmy(factory.CreateRandomArmy(Battle.Price));
+            UpdateArmyPrice();
+        }
+
+        private void button_createRandArmy2_Click(object sender, EventArgs e)
+        {
+            battle.IsFirstArmyBeingEdited = false;
+            battle.SetArmy(factory.CreateRandomArmy(Battle.Price));
+            UpdateArmyPrice();
+        }
+
+        private void UpdateArmyPrice()
+        {
+            Army army = battle.GetArmy();
+            if (battle.IsFirstArmyBeingEdited)
+            {
+                label_army1price.Text = army.Price.ToString();
+            }
+            else label_army2price.Text = army.Price.ToString();
+            if (battle.IsArmyPricesMatch())
+                button_start.Enabled = true;
+            else button_start.Enabled = false;
         }
     }
 }

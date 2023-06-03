@@ -1,4 +1,6 @@
-﻿namespace StackBattle
+﻿using System.Net.Http.Headers;
+
+namespace StackBattle
 {
     internal class UnitFactory
     {
@@ -37,15 +39,15 @@
             rAttack = random.Next(0, maxUnitPrice - rHitPoints);
             rDefense = random.Next(0, maxUnitPrice - rHitPoints - rAttack);
 
-            if (maxUnitPrice < 3) r = random.Next(0, 2);
+            if (maxUnitPrice < 3) r = random.Next(0, 3);
             else
             {
-                r = random.Next(0, 5);
+                r = random.Next(0, 6);
                 if (r > 2)
                 {
                     rRange = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense);
-                    rStrength = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense - rRange);
-                    maxUnitPrice -= rRange + rStrength; 
+                    rStrength = random.Next(1, maxUnitPrice - rHitPoints - rAttack - rDefense - rRange + 1);
+                    maxUnitPrice -= 2 * (rRange + rStrength); 
                 }
             }
             maxUnitPrice -= rAttack + rDefense + rHitPoints;
@@ -74,20 +76,48 @@
             throw new Exception();
         }
 
+        
+
         public Army CreateRandomArmy(int price) 
         { 
             Army army = new();
             Random random = new((int)DateTime.Now.Ticks);
 
-            int unitPrice = price / random.Next(1, price);
+            int unitPrice = random.Next(price / 20, price / 2);
+            int maxUnitPrice;
             while (price > 0)
             {
-                int maxUnitPrice = Math.Min(unitPrice, price);
+                maxUnitPrice = Math.Min(unitPrice, price);
                 price -= maxUnitPrice;
                 IUnit unit = CreateRandomUnit(ref maxUnitPrice);
                 army.AddUnit(unit);
                 price += maxUnitPrice;
             }
+
+            return army;
+        }
+
+
+        public IUnit CreateRandomUnit2(int unitprice)
+        {
+            Random random = new((int)DateTime.Now.Ticks);
+            int unitType = random.Next(0, 6);
+        }
+
+        public Army CreateRandomArmy2(int price)
+        {
+            Army army = new();
+            Random random = new((int)DateTime.Now.Ticks);
+
+            int priceLeft = price;
+            int unitPrice;
+            while (priceLeft > Math.Max(4, price / 20))
+            {
+                unitPrice = random.Next(priceLeft / 25, priceLeft / 3);
+                priceLeft -= unitPrice;
+                army.AddUnit(CreateRandomUnit2(unitPrice));
+            }
+            army.AddUnit(CreateRandomUnit2(priceLeft));
 
             return army;
         }
