@@ -75,16 +75,5 @@ namespace StackBattle
         {
             return _component;
         }
-
-        public bool TakeOffBuff(IBuffable unit)
-        {
-            Random random = new((int)DateTime.Now.Ticks);
-            if (random.NextDouble() <= 0.1) // 0.1 - бафф снимается
-            {
-                unit = _component;
-                return true;
-            }
-            return false;
-        }
     }
 }

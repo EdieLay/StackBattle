@@ -10,6 +10,6 @@ namespace StackBattle
     {
         int Range { get; set; }
         int Strength { get; set; }
-        void Action(ArmiesRange armies);
+        int Action(ArmiesRange armies); // возвращает позицию юнита, на которого была применена SA  
     }
 }

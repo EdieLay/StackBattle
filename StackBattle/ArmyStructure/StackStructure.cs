@@ -20,11 +20,19 @@ namespace StackBattle
             }
 
             secondArmy[0].TakeDamage(firstArmy[0].Attack);
+            if (secondArmy[0] is AbstractBuff buffunit2)
+                TakeOffBuff(secondArmy, buffunit2, 0);
             firstArmy[0].TakeDamage(secondArmy[0].Attack);
+            if (firstArmy[0] is AbstractBuff buffunit1)
+                TakeOffBuff(firstArmy, buffunit1, 0);
 
-            for (int i = 1; i < maxArmyLength; i++)
+            int faiter = 1, saiter = 1;
+            while (faiter < Math.Max(firstArmy.ArmySize, secondArmy.ArmySize) || saiter < Math.Max(firstArmy.ArmySize, secondArmy.ArmySize))
             {
-                ApplySpecialAbility(i, firstArmy, secondArmy);
+                ApplySpecialAbility(ref faiter, firstArmy, secondArmy);
+                ApplySpecialAbility(ref saiter, secondArmy, firstArmy);
+                faiter++;
+                saiter++;
             }
 
             return true;
