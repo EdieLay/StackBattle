@@ -12,7 +12,7 @@ namespace StackBattle
 
         public abstract void GetAreasInRange(int position, int range, ArmiesRange armies);
 
-        public void ApplySpecialAbility(int position, Army firstArmy, Army secondArmy)
+        public void ApplySpecialAbility(ref int position, Army firstArmy, Army secondArmy)
         {
             if (position < firstArmy.ArmySize)
             {
@@ -20,16 +20,14 @@ namespace StackBattle
                 {
                     ArmiesRange armies = new(firstArmy, secondArmy);
                     GetAreasInRange(position, saunit.Range, armies);
-                    saunit.Action(armies);
-                }
-            }
-            if (position < secondArmy.ArmySize)
-            {
-                if (secondArmy[position] is ISpecialAbility saunit)
-                {
-                    ArmiesRange armies = new(secondArmy, firstArmy);
-                    GetAreasInRange(position, saunit.Range, armies);
-                    saunit.Action(armies);
+                    int targetpos = saunit.Action(armies);
+                    if (targetpos >= 0 && saunit is Archer)
+                    {
+                        if (secondArmy[targetpos] is AbstractBuff buffunit)
+                            TakeOffBuff(secondArmy, buffunit, targetpos);
+                    }
+                    if (targetpos >= 0 && saunit is Warlock)
+                        position++;
                 }
             }
         }
@@ -53,6 +51,17 @@ namespace StackBattle
                     GetAreasInRange(position, 1, armies);
                     dressBuff.DressBuff(armies);
                 }
+            }
+        }
+
+        public void TakeOffBuff(Army army, AbstractBuff buffunit, int pos)
+        {
+            var rand = new Random((int)DateTime.Now.Ticks);
+            if (rand.NextDouble() < 0.4)
+            {
+                IBuffable tempunit = buffunit.GetBuffable();
+                army.Units.RemoveAt(pos);
+                army.Units.Insert(pos, tempunit);
             }
         }
     }

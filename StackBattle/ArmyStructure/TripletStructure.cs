@@ -23,12 +23,20 @@ namespace StackBattle
             for (int i = 0; i < countAttackUnit; i++)
             {
                 secondArmy[i].TakeDamage(firstArmy[i].Attack);
+                if (secondArmy[i] is AbstractBuff buffunit2)
+                    TakeOffBuff(secondArmy, buffunit2, i);
                 firstArmy[i].TakeDamage(secondArmy[i].Attack);
+                if (firstArmy[i] is AbstractBuff buffunit1)
+                    TakeOffBuff(firstArmy, buffunit1, i);
             }
 
-            for (int i = countAttackUnit; i < maxArmyLength; i++)
+            int faiter = countAttackUnit, saiter = countAttackUnit;
+            while (faiter < Math.Max(firstArmy.ArmySize, secondArmy.ArmySize) || saiter < Math.Max(firstArmy.ArmySize, secondArmy.ArmySize))
             {
-                ApplySpecialAbility(i, firstArmy, secondArmy);
+                ApplySpecialAbility(ref faiter, firstArmy, secondArmy);
+                ApplySpecialAbility(ref saiter, secondArmy, firstArmy);
+                faiter++;
+                saiter++;
             }
 
             return true;

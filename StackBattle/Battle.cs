@@ -23,7 +23,8 @@ namespace StackBattle
         public bool IsUndoAvailable { get { return Command.IsUndoAvailable; } }
         public bool IsRedoAvailable { get { return Command.IsRedoAvailable; } }
         public bool IsFirstArmyBeingEdited { get; set; }
-        public bool IsGameFinished { get { return (FirstArmy.ArmySize == 0 || SecondArmy.ArmySize == 0); } }
+        public bool IsGameFinished { get { return (FirstArmy.ArmySize == 0 || SecondArmy.ArmySize == 0 || TurnCount == Price * 10); } }
+        public int TurnCount { get; set; } = 0;
 
         private Battle()
         {
@@ -44,6 +45,7 @@ namespace StackBattle
             if (!IsGameFinished)
             {
                 Command.Execute();
+                TurnCount++;
             }
         }
 
@@ -56,13 +58,19 @@ namespace StackBattle
         public void UndoTurn()
         {
             if (IsUndoAvailable)
+            {
                 Command.Undo();
+                TurnCount--;
+            }
         }
 
         public void RedoTurn()
         {
             if (IsRedoAvailable)
+            { 
                 Command.Redo();
+                TurnCount++;
+            }
         }
 
         public Army GetArmy()

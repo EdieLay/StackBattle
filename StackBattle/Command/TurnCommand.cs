@@ -89,20 +89,21 @@ namespace StackBattle
                     }
 
                     Stack<IBuffable> buffunits = new();
-                    buffunits.Push(buffunit);
+                    buffunits.Push(buffunit); // в стэк кладем голого юнита
 
-                    RestoreConcreteBuffs(ArmyState, buffunits, i);
+                    RestoreConcreteBuffs(ArmyState, buffunits, i); // здесь в стэке сверху будет одетый, как было раньше, юнит
 
-                    ArmyState.UnitList.RemoveAt(position);
-                    ArmyState.UnitList.Insert(position, buffunits.Pop());
+                    ArmyState.UnitList.RemoveAt(position); // удаляем голого юнита
+                    ArmyState.UnitList.Insert(position, buffunits.Pop()); // добавляем одетого
                 }
             }
         }
         void RestoreConcreteBuffs(TurnState ArmyState, Stack<IBuffable> buffunits, int i)
         {
-            while (ArmyState.UnitBuffs[i].Buffs.Count > 0) // пока в стэке ещё есть бафы, надеваем их
+            Stack<Buffs> tempstack = new Stack<Buffs>(ArmyState.UnitBuffs[i].Buffs);
+            while (tempstack.Count > 0) // пока в стэке ещё есть бафы, надеваем их
             {
-                Buffs buff = ArmyState.UnitBuffs[i].Buffs.Pop();
+                Buffs buff = tempstack.Pop();
                 if (buff == Buffs.Helmet)
                 {
                     HelmetBuff helmet = new(buffunits.Pop());

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,12 +24,20 @@ namespace StackBattle
             for (int i = 0; i < minArmyLength; i++)
             {
                 secondArmy[i].TakeDamage(firstArmy[i].Attack);
+                if (secondArmy[i] is AbstractBuff buffunit2)
+                    TakeOffBuff(secondArmy, buffunit2, i);
                 firstArmy[i].TakeDamage(secondArmy[i].Attack);
+                if (firstArmy[i] is AbstractBuff buffunit1)
+                    TakeOffBuff(firstArmy, buffunit1, i);
             }
 
-            for (int i = minArmyLength; i < maxArmyLength; i++)
+            int faiter = minArmyLength, saiter = minArmyLength;
+            while (faiter < Math.Max(firstArmy.ArmySize, secondArmy.ArmySize) || saiter < Math.Max(firstArmy.ArmySize, secondArmy.ArmySize))
             {
-                ApplySpecialAbility(i, firstArmy, secondArmy);
+                ApplySpecialAbility(ref faiter, firstArmy, secondArmy);
+                ApplySpecialAbility(ref saiter, secondArmy, firstArmy);
+                faiter++;
+                saiter++;
             }
 
             return true;

@@ -32,21 +32,26 @@ namespace StackBattle
             MaxHP = hitPoints;
         }
 
-        public void Action(ArmiesRange armies)
+        public int Action(ArmiesRange armies)
         {
             for (int i = 0; i < armies.fArea.Count; i++)
             {
                 if (armies.friendlyArmy[armies.fArea[i]].HitPoints > 0 && armies.friendlyArmy[armies.fArea[i]] is ICloneableUnit prototype)
                 {
                     var rand = new Random((int)DateTime.Now.Ticks);
-                    double value = rand.NextDouble();
-                    if (value < (double)Strength / 100.0)
+                    if (rand.NextDouble() < (double)Strength / (2.0 * (double)Battle.Price))
                     {
+                        int warlockpos = armies.friendlyArmy.Units.IndexOf(this);
+                        int clonepos = armies.fArea[i];
                         IUnit clone = prototype.Clone() as IUnit;
-                        armies.friendlyArmy.InsertClonedUnit(armies.friendlyArmy.Units.IndexOf(this), clone);
+                        armies.friendlyArmy.InsertClonedUnit(warlockpos, clone);
+                        if (clonepos < warlockpos)
+                            return clonepos;
+                        return clonepos + 1;
                     }
                 }
             }
+            return -1;
         }
 
         public void Heal(int hp)

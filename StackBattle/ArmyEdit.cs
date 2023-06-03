@@ -21,6 +21,7 @@ namespace StackBattle
             army = battle.GetArmy();
             price = army.Price;
             InitializeComponent();
+            SetNumericsMaxValue();
         }
 
         private void ArmyEdit_Load(object sender, EventArgs e) // загрузка формы
@@ -183,6 +184,13 @@ namespace StackBattle
             button_removeUnit.Visible ^= true;
         }
 
-        
+        private void SetNumericsMaxValue()
+        {
+            numericUpDown_hp.Maximum = Battle.Price;
+            numericUpDown_attack.Maximum = Battle.Price;
+            numericUpDown_defense.Maximum = Battle.Price;
+            numericUpDown_sar.Maximum = Battle.Price;
+            numericUpDown_sas.Maximum = Battle.Price;
+        }
     }
 }

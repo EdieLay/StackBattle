@@ -22,6 +22,7 @@ namespace StackBattle
             Attack = attack;
             Defense = defense;
             HitPoints = hitPoints;
+            MaxHP = HitPoints;
         }
         LightInfantry(LightInfantry prototype)
         {
@@ -52,7 +53,7 @@ namespace StackBattle
             {
                 if (armies.friendlyArmy[armies.fArea[i]] is IBuffable buffunit)
                 {
-                    if (random.NextDouble() < 0.4)
+                    if (random.NextDouble() < 0.3)
                     {
                         List<Buffs> buffs = GetBuffs(buffunit);
                         double chance = random.NextDouble();
