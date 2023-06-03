@@ -95,5 +95,12 @@ namespace StackBattle
                 return true;
             return false;
         }
+
+        public void SetArmy(Army army)
+        {
+            if (IsFirstArmyBeingEdited)
+                FirstArmy = army;
+            else SecondArmy = army;
+        }
     }
 }

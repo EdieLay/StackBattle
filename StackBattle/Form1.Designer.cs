@@ -39,6 +39,8 @@
             this.label_army1price = new System.Windows.Forms.Label();
             this.label_army2price = new System.Windows.Forms.Label();
             this.button_army2edit = new System.Windows.Forms.Button();
+            this.button_createRandArmy1 = new System.Windows.Forms.Button();
+            this.button_createRandArmy2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).BeginInit();
             this.SuspendLayout();
             // 
@@ -181,12 +183,38 @@
             this.button_army2edit.UseVisualStyleBackColor = false;
             this.button_army2edit.Click += new System.EventHandler(this.button_army2edit_Click);
             // 
+            // button_createRandArmy1
+            // 
+            this.button_createRandArmy1.BackColor = System.Drawing.Color.Turquoise;
+            this.button_createRandArmy1.Font = new System.Drawing.Font("Showcard Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_createRandArmy1.Location = new System.Drawing.Point(45, 283);
+            this.button_createRandArmy1.Name = "button_createRandArmy1";
+            this.button_createRandArmy1.Size = new System.Drawing.Size(137, 48);
+            this.button_createRandArmy1.TabIndex = 11;
+            this.button_createRandArmy1.Text = "Create Random \r\nArmy";
+            this.button_createRandArmy1.UseVisualStyleBackColor = false;
+            this.button_createRandArmy1.Click += new System.EventHandler(this.button_createRandArmy1_Click);
+            // 
+            // button_createRandArmy2
+            // 
+            this.button_createRandArmy2.BackColor = System.Drawing.Color.Turquoise;
+            this.button_createRandArmy2.Font = new System.Drawing.Font("Showcard Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_createRandArmy2.Location = new System.Drawing.Point(623, 283);
+            this.button_createRandArmy2.Name = "button_createRandArmy2";
+            this.button_createRandArmy2.Size = new System.Drawing.Size(137, 48);
+            this.button_createRandArmy2.TabIndex = 12;
+            this.button_createRandArmy2.Text = "Create Random \r\nArmy";
+            this.button_createRandArmy2.UseVisualStyleBackColor = false;
+            this.button_createRandArmy2.Click += new System.EventHandler(this.button_createRandArmy2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_createRandArmy2);
+            this.Controls.Add(this.button_createRandArmy1);
             this.Controls.Add(this.button_army2edit);
             this.Controls.Add(this.label_army2price);
             this.Controls.Add(this.label_army1price);
@@ -221,5 +249,7 @@
         private Label label_army1price;
         private Label label_army2price;
         private Button button_army2edit;
+        private Button button_createRandArmy1;
+        private Button button_createRandArmy2;
     }
 }
