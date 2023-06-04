@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackBattle.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,6 +41,31 @@ namespace StackBattle
             else if (unitType < 6) HideSA(false, false);
             else
                 HideSA(true, true);
+
+            switch (unitType) 
+            {
+                case 0: // Light Infantry
+                    pictureBox_Unit.Image = Resources.lightInfantry;
+                    break;
+                case 1: // Heavy Infantry
+                    pictureBox_Unit.Image = Resources.heavyInfantry;
+                    break;
+                case 2: // Knight
+                    pictureBox_Unit.Image = Resources.knight;
+                    break;
+                case 3: // Archer
+                    pictureBox_Unit.Image = Resources.archer;
+                    break;
+                case 4: // Healer
+                    pictureBox_Unit.Image = Resources.healer;
+                    break;
+                case 5: // Warlock
+                    pictureBox_Unit.Image = Resources.warlock;
+                    break;
+                case 6: // Gulyay Gorod
+                    //pictureBox_Unit.Image = Resources.gulyayGorod;
+                    break;
+            }
         }
 
         private void HideSA(bool isNotSAUnit, bool isGG) // скрытие ненужных характеристик для юнитов без спешл абилити
