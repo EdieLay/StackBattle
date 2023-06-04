@@ -27,7 +27,7 @@ namespace StackBattle
 
         private void ArmyEdit_Load(object sender, EventArgs e) // загрузка формы
         {
-            label_armynum.Text = battle.IsFirstArmyBeingEdited ? "Army №1" : "Army №2";
+            label_armynum.Text = battle.IsFirstArmyBeingEdited ? "Army 1" : "Army 2";
             comboBox_unitTypeSelection.SelectedItem = comboBox_unitTypeSelection.Items[0];
 
             SetUnitsSelectionList();
@@ -232,6 +232,41 @@ namespace StackBattle
             numericUpDown_defense.Maximum = Battle.Price;
             numericUpDown_sar.Maximum = Battle.Price;
             numericUpDown_sas.Maximum = Battle.Price;
+        }
+
+        private void label_attack_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_hitpoints_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_armynum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_unitName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_defense_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_SAR_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_SAS_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
