@@ -84,6 +84,7 @@
             // button_addUnit
             // 
             this.button_addUnit.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button_addUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_addUnit.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button_addUnit.Location = new System.Drawing.Point(356, 5);
             this.button_addUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -110,6 +111,7 @@
             // button_editUnit
             // 
             this.button_editUnit.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button_editUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_editUnit.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button_editUnit.Location = new System.Drawing.Point(602, 5);
             this.button_editUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -289,6 +291,7 @@
             // 
             this.label_price.AutoSize = true;
             this.label_price.BackColor = System.Drawing.Color.Transparent;
+            this.label_price.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label_price.Font = new System.Drawing.Font("Kristen ITC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_price.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label_price.Location = new System.Drawing.Point(367, 44);
@@ -299,6 +302,7 @@
             // 
             // button_cancel
             // 
+            this.button_cancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_cancel.Font = new System.Drawing.Font("Kristen ITC", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button_cancel.Location = new System.Drawing.Point(424, 293);
             this.button_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -312,6 +316,7 @@
             // 
             // button_save
             // 
+            this.button_save.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_save.Font = new System.Drawing.Font("Kristen ITC", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button_save.Location = new System.Drawing.Point(191, 293);
             this.button_save.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -325,6 +330,7 @@
             // 
             // button_removeUnit
             // 
+            this.button_removeUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_removeUnit.Font = new System.Drawing.Font("Kristen ITC", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button_removeUnit.Location = new System.Drawing.Point(308, 293);
             this.button_removeUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
