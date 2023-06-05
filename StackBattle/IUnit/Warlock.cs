@@ -39,7 +39,7 @@ namespace StackBattle
                 if (armies.friendlyArmy[armies.fArea[i]].HitPoints > 0 && armies.friendlyArmy[armies.fArea[i]] is ICloneableUnit prototype)
                 {
                     var rand = new Random((int)DateTime.Now.Ticks);
-                    if (rand.NextDouble() < (double)Strength / (2.0 * (double)Battle.Price))
+                    if (rand.NextDouble() < (double)Strength / (double)Battle.Price)
                     {
                         int warlockpos = armies.friendlyArmy.Units.IndexOf(this);
                         int clonepos = armies.fArea[i];
