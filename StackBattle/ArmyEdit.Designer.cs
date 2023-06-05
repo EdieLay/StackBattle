@@ -74,10 +74,9 @@
             "Healer",
             "Warlock",
             "Gulyay Gorod"});
-            this.comboBox_unitTypeSelection.Location = new System.Drawing.Point(209, 5);
-            this.comboBox_unitTypeSelection.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox_unitTypeSelection.Location = new System.Drawing.Point(239, 7);
             this.comboBox_unitTypeSelection.Name = "comboBox_unitTypeSelection";
-            this.comboBox_unitTypeSelection.Size = new System.Drawing.Size(141, 26);
+            this.comboBox_unitTypeSelection.Size = new System.Drawing.Size(161, 31);
             this.comboBox_unitTypeSelection.TabIndex = 0;
             this.comboBox_unitTypeSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox_unitTypeSelection_SelectedIndexChanged);
             // 
@@ -86,10 +85,9 @@
             this.button_addUnit.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_addUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_addUnit.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_addUnit.Location = new System.Drawing.Point(356, 5);
-            this.button_addUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_addUnit.Location = new System.Drawing.Point(407, 7);
             this.button_addUnit.Name = "button_addUnit";
-            this.button_addUnit.Size = new System.Drawing.Size(82, 26);
+            this.button_addUnit.Size = new System.Drawing.Size(94, 35);
             this.button_addUnit.TabIndex = 1;
             this.button_addUnit.Text = "Add";
             this.button_addUnit.UseVisualStyleBackColor = false;
@@ -102,10 +100,9 @@
             this.comboBox_armyUnitSelection.DropDownWidth = 300;
             this.comboBox_armyUnitSelection.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox_armyUnitSelection.FormattingEnabled = true;
-            this.comboBox_armyUnitSelection.Location = new System.Drawing.Point(443, 5);
-            this.comboBox_armyUnitSelection.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox_armyUnitSelection.Location = new System.Drawing.Point(506, 7);
             this.comboBox_armyUnitSelection.Name = "comboBox_armyUnitSelection";
-            this.comboBox_armyUnitSelection.Size = new System.Drawing.Size(154, 26);
+            this.comboBox_armyUnitSelection.Size = new System.Drawing.Size(175, 32);
             this.comboBox_armyUnitSelection.TabIndex = 2;
             // 
             // button_editUnit
@@ -113,10 +110,9 @@
             this.button_editUnit.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_editUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_editUnit.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_editUnit.Location = new System.Drawing.Point(602, 5);
-            this.button_editUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_editUnit.Location = new System.Drawing.Point(688, 7);
             this.button_editUnit.Name = "button_editUnit";
-            this.button_editUnit.Size = new System.Drawing.Size(82, 26);
+            this.button_editUnit.Size = new System.Drawing.Size(94, 35);
             this.button_editUnit.TabIndex = 3;
             this.button_editUnit.Text = "Edit";
             this.button_editUnit.UseVisualStyleBackColor = false;
@@ -128,9 +124,9 @@
             this.label_unitName.BackColor = System.Drawing.Color.Transparent;
             this.label_unitName.Font = new System.Drawing.Font("Kristen ITC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_unitName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_unitName.Location = new System.Drawing.Point(22, 44);
+            this.label_unitName.Location = new System.Drawing.Point(25, 59);
             this.label_unitName.Name = "label_unitName";
-            this.label_unitName.Size = new System.Drawing.Size(125, 29);
+            this.label_unitName.Size = new System.Drawing.Size(159, 36);
             this.label_unitName.TabIndex = 4;
             this.label_unitName.Text = "Unit Name";
             this.label_unitName.Click += new System.EventHandler(this.label_unitName_Click);
@@ -142,7 +138,7 @@
             this.label_hitpoints.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label_hitpoints.Location = new System.Drawing.Point(3, 0);
             this.label_hitpoints.Name = "label_hitpoints";
-            this.label_hitpoints.Size = new System.Drawing.Size(147, 40);
+            this.label_hitpoints.Size = new System.Drawing.Size(168, 53);
             this.label_hitpoints.TabIndex = 5;
             this.label_hitpoints.Text = "Hit Points";
             this.label_hitpoints.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,9 +149,9 @@
             this.label_attack.BackColor = System.Drawing.Color.Transparent;
             this.label_attack.Font = new System.Drawing.Font("Kristen ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_attack.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_attack.Location = new System.Drawing.Point(3, 40);
+            this.label_attack.Location = new System.Drawing.Point(3, 53);
             this.label_attack.Name = "label_attack";
-            this.label_attack.Size = new System.Drawing.Size(147, 38);
+            this.label_attack.Size = new System.Drawing.Size(168, 51);
             this.label_attack.TabIndex = 6;
             this.label_attack.Text = "Attack";
             this.label_attack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -166,9 +162,9 @@
             this.label_defense.BackColor = System.Drawing.Color.Transparent;
             this.label_defense.Font = new System.Drawing.Font("Kristen ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_defense.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_defense.Location = new System.Drawing.Point(3, 80);
+            this.label_defense.Location = new System.Drawing.Point(3, 104);
             this.label_defense.Name = "label_defense";
-            this.label_defense.Size = new System.Drawing.Size(147, 38);
+            this.label_defense.Size = new System.Drawing.Size(168, 51);
             this.label_defense.TabIndex = 7;
             this.label_defense.Text = "Defense";
             this.label_defense.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -179,9 +175,9 @@
             this.label_SAR.BackColor = System.Drawing.Color.Transparent;
             this.label_SAR.Font = new System.Drawing.Font("Kristen ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_SAR.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_SAR.Location = new System.Drawing.Point(3, 120);
+            this.label_SAR.Location = new System.Drawing.Point(3, 155);
             this.label_SAR.Name = "label_SAR";
-            this.label_SAR.Size = new System.Drawing.Size(147, 38);
+            this.label_SAR.Size = new System.Drawing.Size(168, 51);
             this.label_SAR.TabIndex = 8;
             this.label_SAR.Text = "SA Range";
             this.label_SAR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -192,9 +188,9 @@
             this.label_SAS.BackColor = System.Drawing.Color.Transparent;
             this.label_SAS.Font = new System.Drawing.Font("Kristen ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_SAS.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_SAS.Location = new System.Drawing.Point(3, 160);
+            this.label_SAS.Location = new System.Drawing.Point(3, 206);
             this.label_SAS.Name = "label_SAS";
-            this.label_SAS.Size = new System.Drawing.Size(147, 45);
+            this.label_SAS.Size = new System.Drawing.Size(168, 60);
             this.label_SAS.TabIndex = 9;
             this.label_SAS.Text = "SA Strength";
             this.label_SAS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -203,15 +199,14 @@
             // numericUpDown_hp
             // 
             this.numericUpDown_hp.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_hp.Location = new System.Drawing.Point(156, 2);
-            this.numericUpDown_hp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericUpDown_hp.Location = new System.Drawing.Point(177, 3);
             this.numericUpDown_hp.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numericUpDown_hp.Name = "numericUpDown_hp";
-            this.numericUpDown_hp.Size = new System.Drawing.Size(84, 36);
+            this.numericUpDown_hp.Size = new System.Drawing.Size(96, 43);
             this.numericUpDown_hp.TabIndex = 10;
             this.numericUpDown_hp.Value = new decimal(new int[] {
             1,
@@ -222,37 +217,33 @@
             // numericUpDown_attack
             // 
             this.numericUpDown_attack.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_attack.Location = new System.Drawing.Point(156, 42);
-            this.numericUpDown_attack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericUpDown_attack.Location = new System.Drawing.Point(177, 56);
             this.numericUpDown_attack.Name = "numericUpDown_attack";
-            this.numericUpDown_attack.Size = new System.Drawing.Size(84, 36);
+            this.numericUpDown_attack.Size = new System.Drawing.Size(96, 43);
             this.numericUpDown_attack.TabIndex = 11;
             // 
             // numericUpDown_defense
             // 
             this.numericUpDown_defense.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_defense.Location = new System.Drawing.Point(156, 82);
-            this.numericUpDown_defense.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericUpDown_defense.Location = new System.Drawing.Point(177, 107);
             this.numericUpDown_defense.Name = "numericUpDown_defense";
-            this.numericUpDown_defense.Size = new System.Drawing.Size(84, 36);
+            this.numericUpDown_defense.Size = new System.Drawing.Size(96, 43);
             this.numericUpDown_defense.TabIndex = 12;
             // 
             // numericUpDown_sar
             // 
             this.numericUpDown_sar.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_sar.Location = new System.Drawing.Point(156, 122);
-            this.numericUpDown_sar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericUpDown_sar.Location = new System.Drawing.Point(177, 158);
             this.numericUpDown_sar.Name = "numericUpDown_sar";
-            this.numericUpDown_sar.Size = new System.Drawing.Size(84, 36);
+            this.numericUpDown_sar.Size = new System.Drawing.Size(96, 43);
             this.numericUpDown_sar.TabIndex = 13;
             // 
             // numericUpDown_sas
             // 
             this.numericUpDown_sas.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_sas.Location = new System.Drawing.Point(156, 162);
-            this.numericUpDown_sas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericUpDown_sas.Location = new System.Drawing.Point(177, 209);
             this.numericUpDown_sas.Name = "numericUpDown_sas";
-            this.numericUpDown_sas.Size = new System.Drawing.Size(84, 36);
+            this.numericUpDown_sas.Size = new System.Drawing.Size(96, 43);
             this.numericUpDown_sas.TabIndex = 14;
             // 
             // flowLayoutPanel_stats
@@ -268,10 +259,9 @@
             this.flowLayoutPanel_stats.Controls.Add(this.numericUpDown_sar);
             this.flowLayoutPanel_stats.Controls.Add(this.label_SAS);
             this.flowLayoutPanel_stats.Controls.Add(this.numericUpDown_sas);
-            this.flowLayoutPanel_stats.Location = new System.Drawing.Point(22, 76);
-            this.flowLayoutPanel_stats.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel_stats.Location = new System.Drawing.Point(25, 101);
             this.flowLayoutPanel_stats.Name = "flowLayoutPanel_stats";
-            this.flowLayoutPanel_stats.Size = new System.Drawing.Size(256, 205);
+            this.flowLayoutPanel_stats.Size = new System.Drawing.Size(293, 273);
             this.flowLayoutPanel_stats.TabIndex = 16;
             // 
             // label_armynum
@@ -280,9 +270,9 @@
             this.label_armynum.BackColor = System.Drawing.Color.Transparent;
             this.label_armynum.Font = new System.Drawing.Font("Kristen ITC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_armynum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_armynum.Location = new System.Drawing.Point(22, 1);
+            this.label_armynum.Location = new System.Drawing.Point(25, 1);
             this.label_armynum.Name = "label_armynum";
-            this.label_armynum.Size = new System.Drawing.Size(83, 29);
+            this.label_armynum.Size = new System.Drawing.Size(105, 36);
             this.label_armynum.TabIndex = 17;
             this.label_armynum.Text = "Army 1";
             this.label_armynum.Click += new System.EventHandler(this.label_armynum_Click);
@@ -294,9 +284,9 @@
             this.label_price.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label_price.Font = new System.Drawing.Font("Kristen ITC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_price.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label_price.Location = new System.Drawing.Point(367, 44);
+            this.label_price.Location = new System.Drawing.Point(419, 59);
             this.label_price.Name = "label_price";
-            this.label_price.Size = new System.Drawing.Size(137, 29);
+            this.label_price.Size = new System.Drawing.Size(171, 36);
             this.label_price.TabIndex = 18;
             this.label_price.Text = "Price: 0/100";
             // 
@@ -304,10 +294,9 @@
             // 
             this.button_cancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_cancel.Font = new System.Drawing.Font("Kristen ITC", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_cancel.Location = new System.Drawing.Point(424, 293);
-            this.button_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_cancel.Location = new System.Drawing.Point(485, 391);
             this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(100, 34);
+            this.button_cancel.Size = new System.Drawing.Size(114, 45);
             this.button_cancel.TabIndex = 19;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
@@ -318,10 +307,9 @@
             // 
             this.button_save.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_save.Font = new System.Drawing.Font("Kristen ITC", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_save.Location = new System.Drawing.Point(191, 293);
-            this.button_save.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_save.Location = new System.Drawing.Point(218, 391);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(100, 34);
+            this.button_save.Size = new System.Drawing.Size(114, 45);
             this.button_save.TabIndex = 20;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
@@ -332,10 +320,9 @@
             // 
             this.button_removeUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_removeUnit.Font = new System.Drawing.Font("Kristen ITC", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_removeUnit.Location = new System.Drawing.Point(308, 293);
-            this.button_removeUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_removeUnit.Location = new System.Drawing.Point(352, 391);
             this.button_removeUnit.Name = "button_removeUnit";
-            this.button_removeUnit.Size = new System.Drawing.Size(100, 34);
+            this.button_removeUnit.Size = new System.Drawing.Size(114, 45);
             this.button_removeUnit.TabIndex = 21;
             this.button_removeUnit.Text = "Remove";
             this.button_removeUnit.UseVisualStyleBackColor = true;
@@ -345,20 +332,21 @@
             // pictureBox_Unit
             // 
             this.pictureBox_Unit.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Unit.Location = new System.Drawing.Point(367, 92);
+            this.pictureBox_Unit.Location = new System.Drawing.Point(419, 123);
+            this.pictureBox_Unit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox_Unit.Name = "pictureBox_Unit";
-            this.pictureBox_Unit.Size = new System.Drawing.Size(92, 90);
+            this.pictureBox_Unit.Size = new System.Drawing.Size(105, 120);
             this.pictureBox_Unit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Unit.TabIndex = 22;
             this.pictureBox_Unit.TabStop = false;
             // 
             // ArmyEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::StackBattle.Properties.Resources.papyrus;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(700, 338);
+            this.ClientSize = new System.Drawing.Size(800, 451);
             this.Controls.Add(this.pictureBox_Unit);
             this.Controls.Add(this.button_removeUnit);
             this.Controls.Add(this.button_save);
@@ -372,7 +360,6 @@
             this.Controls.Add(this.button_addUnit);
             this.Controls.Add(this.comboBox_unitTypeSelection);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ArmyEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArmyEdit";

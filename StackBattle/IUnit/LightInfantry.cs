@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
-    internal class LightInfantry : AbstractUnit, IHealable, ICloneableUnit, IDressBuff
+    internal class LightInfantry : AbstractUnit, ISpecialAbility, IHealable, ICloneableUnit
     {
         public override UnitType Type { get { return UnitType.LightInfantry; } }
+        public int Range { get => 1; set { } }
+        public int Strength { get; set; }
         public int MaxHP { get; set; }
 
         public LightInfantry()
@@ -16,12 +18,15 @@ namespace StackBattle
             Attack = 0;
             Defense = 0;
             HitPoints = 0;
+            Strength = 0;
+            MaxHP = 0;
         }
-        public LightInfantry(int attack, int defense, int hitPoints)
+        public LightInfantry(int attack, int defense, int hitPoints, int strength)
         {
             Attack = attack;
             Defense = defense;
             HitPoints = hitPoints;
+            Strength = strength;
             MaxHP = HitPoints;
         }
         LightInfantry(LightInfantry prototype)
@@ -29,6 +34,7 @@ namespace StackBattle
             this.Attack = prototype.Attack;
             this.Defense = prototype.Defense;
             this.HitPoints = prototype.HitPoints;
+            this.Strength = prototype.Strength;
             this.MaxHP = prototype.MaxHP;
         }
 
@@ -46,14 +52,14 @@ namespace StackBattle
             return new LightInfantry(this);
         }
 
-        public int DressBuff(ArmiesRange armies)
+        public int Action(ArmiesRange armies)
         {
             Random random = new((int)DateTime.Now.Ticks);
             for (int i = 0; i < armies.fArea.Count; i++)
             {
                 if (armies.friendlyArmy[armies.fArea[i]] is IBuffable buffunit)
                 {
-                    if (random.NextDouble() < 0.3)
+                    if (random.NextDouble() < (double)Strength / ((double)Battle.Price / 2.0))
                     {
                         List<Buffs> buffs = GetBuffs(buffunit);
                         double chance = random.NextDouble();
@@ -86,7 +92,7 @@ namespace StackBattle
 		
         public override string GetUnitStats()
         {
-            return $"Light Infantry [{HitPoints}/{Attack}/{Defense}]";
+            return $"Light Infantry [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
         }
 
         List<Buffs> GetBuffs(IBuffable buffunit)

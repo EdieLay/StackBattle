@@ -62,14 +62,14 @@ namespace StackBattle
         private void button_createRandArmy1_Click(object sender, EventArgs e)
         {
             battle.IsFirstArmyBeingEdited = true;
-            battle.SetArmy(factory.CreateRandomArmy2(Battle.Price));
+            battle.SetArmy(factory.CreateRandomArmy(Battle.Price));
             UpdateArmyPrice();
         }
 
         private void button_createRandArmy2_Click(object sender, EventArgs e)
         {
             battle.IsFirstArmyBeingEdited = false;
-            battle.SetArmy(factory.CreateRandomArmy2(Battle.Price));
+            battle.SetArmy(factory.CreateRandomArmy(Battle.Price));
             UpdateArmyPrice();
         }
 
