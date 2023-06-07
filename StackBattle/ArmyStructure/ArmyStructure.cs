@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace StackBattle
 {
+    enum ArmyStructures
+    {
+        Stack = 0,
+        Line,
+        Triplet
+    }
     internal abstract class ArmyStructure
     {
         public abstract bool DoTurn(Army firstArmy, Army secondArmy); // true - смогли сделать ход, false - одна из армий пустая
@@ -21,12 +27,12 @@ namespace StackBattle
                     ArmiesRange armies = new(firstArmy, secondArmy);
                     GetAreasInRange(position, saunit.Range, armies);
                     int targetpos = saunit.Action(armies);
-                    if (targetpos >= 0 && saunit is Archer)
+                    if (targetpos >= 0 && (saunit is Archer || saunit is ArcherProxy))
                     {
                         if (secondArmy[targetpos] is AbstractBuff buffunit)
                             TakeOffBuff(secondArmy, buffunit, targetpos);
                     }
-                    if (targetpos >= 0 && saunit is Warlock)
+                    else if (targetpos >= 0 && (saunit is Warlock || saunit is WarlockProxy))
                         position++;
                 }
             }

@@ -37,11 +37,10 @@ namespace StackBattle
 
         public void TakeDamage(IUnit attacker, bool isSADamage = false)
         {
-            if (isSADamage)
-                LogSpecialAbility(attacker, this);
-            else LogTakeDamageAndDeath(this, attacker);
-
+            if (HitPoints == 0) return;
             _heavyInfantry.TakeDamage(attacker, isSADamage);
+            if (!isSADamage)
+                LogTakeDamage(this, attacker);
             if (this.HitPoints == 0)
                 LogDeath(this, attacker);
         }
@@ -51,7 +50,7 @@ namespace StackBattle
             return _heavyInfantry.GetUnitStats();
         }
 
-        protected override void LogSpecialAbility(IUnit caster, IUnit target)
+        protected override void LogSpecialAbility(IUnit target)
         {
             throw new NotImplementedException();
         }

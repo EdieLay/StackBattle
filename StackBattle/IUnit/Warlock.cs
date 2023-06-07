@@ -36,14 +36,14 @@ namespace StackBattle
 
         public int Action(ArmiesRange armies)
         {
-            for (int i = 0; i < armies.fArea.Count; i++)
+            for (int i = 1; i < armies.fArea.Count; i++)
             {
                 if (armies.friendlyArmy[armies.fArea[i]].HitPoints > 0 && armies.friendlyArmy[armies.fArea[i]] is ICloneableUnit prototype)
                 {
                     var rand = new Random((int)DateTime.Now.Ticks);
                     if (rand.NextDouble() < (double)Strength / (double)Battle.Price)
                     {
-                        int warlockpos = armies.friendlyArmy.Units.IndexOf(this);
+                        int warlockpos = armies.fArea[0];
                         int clonepos = armies.fArea[i];
                         IUnit clone = prototype.Clone(armies.friendlyArmy) as IUnit;
                         armies.friendlyArmy.InsertClonedUnit(warlockpos, clone);

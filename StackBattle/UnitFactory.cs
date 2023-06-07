@@ -23,21 +23,21 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new LightInfantry(attack, defense, hp, sas, id);
+            return new LightInfantryProxy(new LightInfantry(attack, defense, hp, sas, id));
         }
         public IUnit CreateHeavy(int unitprice)
         {
             int hp = random.Next(1, unitprice);
             int attack = random.Next(1, unitprice - hp + 1);
             int defense = unitprice - hp - attack;
-            return new HeavyInfantry(attack, defense, hp, id);
+            return new HeavyInfantryProxy(new HeavyInfantry(attack, defense, hp, id));
         }
         public IUnit CreateKnight(int unitprice)
         {
             int hp = random.Next(1, unitprice);
             int attack = random.Next(1, unitprice - hp + 1);
             int defense = unitprice - hp - attack;
-            return new Knight(attack, defense, hp, id);
+            return new KnightProxy(new Knight(attack, defense, hp, id));
         }
         public IUnit CreateArcher(int unitprice)
         {
@@ -55,7 +55,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new Healer(attack, defense, hp, sar, sas, id);
+            return new HealerProxy(new Healer(attack, defense, hp, sar, sas, id));
         }
         public IUnit CreateWarlock(int unitprice)
         {
@@ -64,7 +64,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new Warlock(attack, defense, hp, sar, sas, id);
+            return new WarlockProxy(new Warlock(attack, defense, hp, sar, sas, id));
         }
 
         public IUnit CreateGulyayGorod(int unitprice)
@@ -72,7 +72,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice + 1);
             int def = unitprice - hp;
             GulyayGorod gg = new GulyayGorod(hp, def, 0);
-            return new GulyayGorodAdapter(gg, id);
+            return new GulyayGorodAdapterProxy(new GulyayGorodAdapter(gg, id));
         }
 
         public IUnit CreateRandomUnit(int unitprice)

@@ -53,11 +53,10 @@ namespace StackBattle
 
         public void TakeDamage(IUnit attacker, bool isSADamage = false)
         {
-            if (isSADamage)
-                LogSpecialAbility(attacker, this); 
-            else LogTakeDamageAndDeath(this, attacker);
-
+            if (HitPoints == 0) return;
             _archer.TakeDamage(attacker, isSADamage);
+            if (!isSADamage)
+                LogTakeDamage(this, attacker);
             if (this.HitPoints == 0)
                 LogDeath(this, attacker);
         }
@@ -69,7 +68,10 @@ namespace StackBattle
 
         public int Action(ArmiesRange armies)
         {
-            return _archer.Action(armies);
+            int pos = _archer.Action(armies);
+            if (pos >= 0)
+                LogSpecialAbility(armies.enemyArmy[pos]);
+            return pos;
         }
 
         public void Heal(int hp)
@@ -77,15 +79,15 @@ namespace StackBattle
             _archer.Heal(hp);
         }
 
-        protected override void LogSpecialAbility(IUnit caster, IUnit target)
+        protected override void LogSpecialAbility(IUnit target)
         {
             using (StreamWriter specialAbilityLog = new(_specialAbilityLog, true))
             {
                 string targetInfo = target.GetUnitStats();
-                string casterInfo = caster.GetUnitStats();
+                string casterInfo = this.GetUnitStats();
                 int defMod = Battle.DefenseMod;
-                int damage = (int)Math.Round((double)(caster as ISpecialAbility).Strength * ((double)defMod / (double)(defMod + target.Defense)));
-                string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} shots with bow {targetInfo} dealing {damage} damage";
+                int damage = (int)Math.Round((double)this.Strength * ((double)defMod / (double)(defMod + target.Defense)));
+                string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} shot with a bow {targetInfo} dealing {damage} damage";
                 specialAbilityLog.WriteLine(logLine);
             }
         }

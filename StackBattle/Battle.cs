@@ -17,7 +17,7 @@ namespace StackBattle
 
         Army FirstArmy { get; set; }
         Army SecondArmy { get; set; }
-        ArmyStructure Structure { get; set; }
+        public ArmyStructure Structure { get; private set; }
         ICommand Command { get; set; }
 
         public bool IsUndoAvailable { get { return Command.IsUndoAvailable; } }
@@ -60,7 +60,7 @@ namespace StackBattle
             if (IsUndoAvailable)
             {
                 TurnCount--;
-                Command.Undo();
+                SetStructure(Command.Undo());
             }
         }
 
@@ -69,7 +69,7 @@ namespace StackBattle
             if (IsRedoAvailable)
             {
                 TurnCount++;
-                Command.Redo();
+                SetStructure(Command.Redo());
             }
         }
 

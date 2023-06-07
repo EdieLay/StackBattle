@@ -52,11 +52,10 @@ namespace StackBattle
 
         public void TakeDamage(IUnit attacker, bool isSADamage = false)
         {
-            if (isSADamage)
-                LogSpecialAbility(attacker, this);
-            else LogTakeDamageAndDeath(this, attacker);
-
+            if (HitPoints == 0) return;
             _lightInfantry.TakeDamage(attacker, isSADamage);
+            if (!isSADamage)
+                LogTakeDamage(this, attacker);
             if (this.HitPoints == 0)
                 LogDeath(this, attacker);
         }
@@ -70,7 +69,7 @@ namespace StackBattle
         {
             int pos = _lightInfantry.Action(armies);
             if (pos >= 0)
-                LogSpecialAbility(this, armies.friendlyArmy[pos]);
+                LogSpecialAbility(armies.friendlyArmy[pos]);
             return pos;
         }
 
@@ -79,12 +78,17 @@ namespace StackBattle
             _lightInfantry.Heal(hp);
         }
 
-        protected override void LogSpecialAbility(IUnit caster, IUnit target)
+        public ICloneableUnit Clone(Army army)
+        {
+            return new LightInfantryProxy(_lightInfantry.Clone(army) as LightInfantry);
+        }
+
+        protected override void LogSpecialAbility(IUnit target)
         {
             using (StreamWriter specialAbilityLog = new(_specialAbilityLog, true))
             {
                 string targetInfo = target.GetUnitStats();
-                string casterInfo = caster.GetUnitStats();
+                string casterInfo = this.GetUnitStats();
                 string buff = String.Empty;
                 if (target is AbstractBuff buffunit)
                 {

@@ -37,7 +37,7 @@ namespace StackBattle
 
         public int Action(ArmiesRange armies)
         {
-            for (int i = 0; i < armies.eArea.Count; i++) // проходим вражескую армиюю с вычетом позиции нашего юнита
+            for (int i = 1; i < armies.eArea.Count; i++) // проходим вражескую армиюю с вычетом позиции нашего юнита
             {
                 var rand = new Random((int)DateTime.Now.Ticks);
                 if (rand.NextDouble() < 0.5) // шанс попасть

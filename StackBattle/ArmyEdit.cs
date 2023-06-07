@@ -124,30 +124,30 @@ namespace StackBattle
             switch (unitType) // добавляем юнита (наверное, можно сделать как-то покрасивее, мб через абстрактную фабрику)
             {
                 case UnitType.LightInfantry: // Light Infantry
-                    army.AddUnit(new LightInfantry(attack, defense, hp, sas, id));
+                    army.AddUnit(new LightInfantryProxy(new LightInfantry(attack, defense, hp, sas, id)));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.HeavyInfantry: // Heavy Infantry
-                    army.AddUnit(new HeavyInfantry(attack, defense, hp, id));
+                    army.AddUnit(new HeavyInfantryProxy(new HeavyInfantry(attack, defense, hp, id)));
                     break;
                 case UnitType.Knight: // Knight
-                    army.AddUnit(new Knight(attack, defense, hp, id));
+                    army.AddUnit(new KnightProxy(new Knight(attack, defense, hp, id)));
                     break;
                 case UnitType.Archer: // Archer
-                    army.AddUnit(new Archer(attack, defense, hp, sar, sas, id));
+                    army.AddUnit(new ArcherProxy(new Archer(attack, defense, hp, sar, sas, id)));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.Healer: // Healer
-                    army.AddUnit(new Healer(attack, defense, hp, sar, sas, id));
+                    army.AddUnit(new HealerProxy(new Healer(attack, defense, hp, sar, sas, id)));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.Warlock: // Warlock
-                    army.AddUnit(new Warlock(attack, defense, hp, sar, sas, id));
+                    army.AddUnit(new WarlockProxy(new Warlock(attack, defense, hp, sar, sas, id)));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.GulyayGorod: // Gulyay Gorod
                     GulyayGorod gg = new GulyayGorod(hp, defense, 0);
-                    army.AddUnit(new GulyayGorodAdapter(gg, id));
+                    army.AddUnit(new GulyayGorodAdapterProxy(new GulyayGorodAdapter(gg, id)));
                     break;
             }
             SetUnitsSelectionList(); // обновляем комбоБокс с выбором юнита из армии

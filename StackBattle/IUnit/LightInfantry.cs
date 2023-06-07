@@ -60,7 +60,7 @@ namespace StackBattle
         public int Action(ArmiesRange armies)
         {
             Random random = new((int)DateTime.Now.Ticks);
-            for (int i = 0; i < armies.fArea.Count; i++)
+            for (int i = 1; i < armies.fArea.Count; i++)
             {
                 if (armies.friendlyArmy[armies.fArea[i]] is IBuffable buffunit)
                 {
@@ -73,21 +73,21 @@ namespace StackBattle
                             HelmetBuff helmet = new(buffunit);
                             armies.friendlyArmy.Units.RemoveAt(armies.fArea[i]);
                             armies.friendlyArmy.Units.Insert(armies.fArea[i], helmet);
-                            return (int)Buffs.Helmet;
+                            return armies.fArea[i];
                         }
                         else if (chance >= 1.0 / 2.0 && chance < 1.0/2.0 + 1.0/3.0 && !buffs.Contains(Buffs.Shield))
                         {
                             ShieldBuff shield = new(buffunit);
                             armies.friendlyArmy.Units.RemoveAt(armies.fArea[i]);
                             armies.friendlyArmy.Units.Insert(armies.fArea[i], shield);
-                            return (int)Buffs.Shield;
+                            return armies.fArea[i];
                         }
                         else if (!buffs.Contains(Buffs.Horse))
                         {
                             HorseBuff horse = new(buffunit);
                             armies.friendlyArmy.Units.RemoveAt(armies.fArea[i]);
                             armies.friendlyArmy.Units.Insert(armies.fArea[i], horse);
-                            return (int)Buffs.Horse;
+                            return armies.fArea[i];
                         }
                     }
                 }
