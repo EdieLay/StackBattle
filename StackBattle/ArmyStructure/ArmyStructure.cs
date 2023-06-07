@@ -27,12 +27,12 @@ namespace StackBattle
                     ArmiesRange armies = new(firstArmy, secondArmy);
                     GetAreasInRange(position, saunit.Range, armies);
                     int targetpos = saunit.Action(armies);
-                    if (targetpos >= 0 && (saunit is Archer || saunit is ArcherProxy))
+                    if (targetpos >= 0 && (firstArmy[position].Type == UnitType.Archer))
                     {
                         if (secondArmy[targetpos] is AbstractBuff buffunit)
                             TakeOffBuff(secondArmy, buffunit, targetpos);
                     }
-                    else if (targetpos >= 0 && (saunit is Warlock || saunit is WarlockProxy))
+                    else if (targetpos >= 0 && (firstArmy[position].Type == UnitType.Warlock))
                         position++;
                 }
             }
