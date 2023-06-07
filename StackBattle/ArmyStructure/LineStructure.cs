@@ -14,6 +14,12 @@ namespace StackBattle
             if (firstArmy.Units.Count == 0 || secondArmy.Units.Count == 0)
                 return false;
 
+            int maxArmyLength = Math.Max(firstArmy.ArmySize, secondArmy.ArmySize);
+            for (int i = 0; i < maxArmyLength; i++)
+            {
+                ApplyBuffs(i, firstArmy, secondArmy);
+            }
+
             int minArmyLength = Math.Min(firstArmy.ArmySize, secondArmy.ArmySize);
             for (int i = 0; i < minArmyLength; i++)
             {

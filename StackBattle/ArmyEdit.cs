@@ -37,49 +37,40 @@ namespace StackBattle
 
         private void comboBox_unitTypeSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UnitType unitType = (UnitType)comboBox_unitTypeSelection.SelectedIndex; // в комбоБоксе до 3 индекса идут юниты без спешл абилити
-            
-            numericUpDown_sar.Enabled = true;
-            numericUpDown_attack.Enabled = true;
+            int unitType = comboBox_unitTypeSelection.SelectedIndex; // в комбоБоксе до 3 индекса идут юниты без спешл абилити
+            if (unitType < 3)
+                HideSA(true, false);
+            else if (unitType < 6) HideSA(false, false);
+            else
+                HideSA(true, true);
 
             switch (unitType) 
             {
-                case UnitType.LightInfantry: // Light Infantry
-                    HideSA(false);
-                    numericUpDown_sar.Enabled = false;
-                    numericUpDown_sar.Value = 1;
+                case 0: // Light Infantry
                     pictureBox_Unit.Image = Resources.lightInfantry;
                     break;
-                case UnitType.HeavyInfantry: // Heavy Infantry
-                    HideSA(true);
+                case 1: // Heavy Infantry
                     pictureBox_Unit.Image = Resources.heavyInfantry;
                     break;
-                case UnitType.Knight: // Knight
-                    HideSA(true);
+                case 2: // Knight
                     pictureBox_Unit.Image = Resources.knight;
                     break;
-                case UnitType.Archer: // Archer
-                    HideSA(false);
+                case 3: // Archer
                     pictureBox_Unit.Image = Resources.archer;
                     break;
-                case UnitType.Healer: // Healer
-                    HideSA(false);
+                case 4: // Healer
                     pictureBox_Unit.Image = Resources.healer;
                     break;
-                case UnitType.Warlock: // Warlock
-                    HideSA(false);
+                case 5: // Warlock
                     pictureBox_Unit.Image = Resources.warlock;
                     break;
-                case UnitType.GulyayGorod: // Gulyay Gorod
-                    HideSA(true);
-                    numericUpDown_attack.Enabled = false;
-                    numericUpDown_attack.Value = 0;
+                case 6: // Gulyay Gorod
                     //pictureBox_Unit.Image = Resources.gulyayGorod;
                     break;
             }
         }
 
-        private void HideSA(bool isNotSAUnit) // скрытие ненужных характеристик для юнитов без спешл абилити
+        private void HideSA(bool isNotSAUnit, bool isGG) // скрытие ненужных характеристик для юнитов без спешл абилити
         {
             if (isNotSAUnit)
             {
@@ -94,6 +85,15 @@ namespace StackBattle
                 label_SAS.Show();
                 numericUpDown_sar.Show();
                 numericUpDown_sas.Show();
+            }
+            if (isGG)
+            {
+                numericUpDown_attack.Value = 0;
+                numericUpDown_attack.Enabled = false;
+            }
+            else
+            {
+                numericUpDown_attack.Enabled = true;
             }
         }
 
@@ -110,7 +110,7 @@ namespace StackBattle
 
         private void button_addUnit_Click(object sender, EventArgs e) // добавление юнита в армию
         {
-            UnitType unitType = (UnitType)comboBox_unitTypeSelection.SelectedIndex;
+            int unitType = comboBox_unitTypeSelection.SelectedIndex;
 
             // берём хар-ики из намериков
             int hp = (int)numericUpDown_hp.Value;
@@ -121,7 +121,7 @@ namespace StackBattle
             price += hp + attack + defense;
             string id = $"{armyNum}#{army.NextIndex++}";
 
-            switch (unitType) // добавляем юнита (наверное, можно сделать как-то покрасивее, мб через абстрактную фабрику)
+            switch(unitType) // добавляем юнита (наверное, можно сделать как-то покрасивее, мб через абстрактную фабрику)
             {
                 case UnitType.LightInfantry: // Light Infantry
                     army.AddUnit(new LightInfantry(attack, defense, hp, sas, id));
@@ -145,11 +145,14 @@ namespace StackBattle
                     army.AddUnit(new Warlock(attack, defense, hp, sar, sas, id));
                     price += 2 * (sar + sas);
                     break;
-                case UnitType.GulyayGorod: // Gulyay Gorod
+                case 6: // Gulyay Gorod
                     GulyayGorod gg = new GulyayGorod(hp, defense, 0);
                     army.AddUnit(new GulyayGorodAdapter(gg, id));
                     break;
             }
+            price += hp + attack + defense;
+            if (unitType > 2 && unitType < 6)
+                price += 2 * (sar + sas);
             SetUnitsSelectionList(); // обновляем комбоБокс с выбором юнита из армии
         }
 

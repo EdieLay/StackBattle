@@ -32,6 +32,28 @@ namespace StackBattle
             }
         }
 
+        public void ApplyBuffs(int position, Army firstArmy, Army secondArmy)
+        {
+            if (position < firstArmy.ArmySize)
+            {
+                if (firstArmy[position] is IDressBuff dressBuff)
+                {
+                    ArmiesRange armies = new(firstArmy, secondArmy);
+                    GetAreasInRange(position, 1, armies);
+                    dressBuff.DressBuff(armies);
+                }
+            }
+            if (position < secondArmy.ArmySize)
+            {
+                if (secondArmy[position] is IDressBuff dressBuff)
+                {
+                    ArmiesRange armies = new(secondArmy, firstArmy);
+                    GetAreasInRange(position, 1, armies);
+                    dressBuff.DressBuff(armies);
+                }
+            }
+        }
+
         public void TakeOffBuff(Army army, AbstractBuff buffunit, int pos)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
