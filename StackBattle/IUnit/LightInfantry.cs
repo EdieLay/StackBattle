@@ -16,20 +16,27 @@ namespace StackBattle
             Attack = 0;
             Defense = 0;
             HitPoints = 0;
+            Strength = 0;
+            MaxHP = 0;
+            ID = "";
         }
-        public LightInfantry(int attack, int defense, int hitPoints)
+        public LightInfantry(int attack, int defense, int hitPoints, int strength, string id)
         {
             Attack = attack;
             Defense = defense;
             HitPoints = hitPoints;
             MaxHP = HitPoints;
+            ID = id;
         }
-        LightInfantry(LightInfantry prototype)
+        LightInfantry(LightInfantry prototype, int newIndex)
         {
             this.Attack = prototype.Attack;
             this.Defense = prototype.Defense;
             this.HitPoints = prototype.HitPoints;
             this.MaxHP = prototype.MaxHP;
+            string[] sepid = prototype.ID.Split('#');
+            this.ID = sepid[0] + "#" + newIndex.ToString();
+            
         }
 
         public void Heal(int hp)
@@ -41,9 +48,9 @@ namespace StackBattle
             else HitPoints += hp;
         }
 
-        public ICloneableUnit Clone()
+        public ICloneableUnit Clone(Army army)
         {
-            return new LightInfantry(this);
+            return new LightInfantry(this, army.NextIndex++);
         }
 
         public int DressBuff(ArmiesRange armies)
@@ -86,7 +93,7 @@ namespace StackBattle
 		
         public override string GetUnitStats()
         {
-            return $"Light Infantry [{HitPoints}/{Attack}/{Defense}]";
+            return $"{ID} Light Infantry [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
         }
 
         List<Buffs> GetBuffs(IBuffable buffunit)

@@ -8,6 +8,6 @@ namespace StackBattle
 {
     internal interface ICloneableUnit
     {
-        ICloneableUnit Clone();
+        ICloneableUnit Clone(Army army);
     }
 }

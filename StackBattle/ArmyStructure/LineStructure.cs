@@ -23,10 +23,10 @@ namespace StackBattle
             int minArmyLength = Math.Min(firstArmy.ArmySize, secondArmy.ArmySize);
             for (int i = 0; i < minArmyLength; i++)
             {
-                secondArmy[i].TakeDamage(firstArmy[i].Attack);
+                secondArmy[i].TakeDamage(firstArmy[i]);
                 if (secondArmy[i] is AbstractBuff buffunit2)
                     TakeOffBuff(secondArmy, buffunit2, i);
-                firstArmy[i].TakeDamage(secondArmy[i].Attack);
+                firstArmy[i].TakeDamage(secondArmy[i]);
                 if (firstArmy[i] is AbstractBuff buffunit1)
                     TakeOffBuff(firstArmy, buffunit1, i);
             }

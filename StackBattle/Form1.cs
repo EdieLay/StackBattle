@@ -5,7 +5,6 @@ namespace StackBattle
         ArmyEdit armyEditorForm;
         BattleForm battleForm;
         Battle battle = Battle.GetBattleInstance();
-        UnitFactory factory= new UnitFactory();
         public Form1()
         {
             InitializeComponent();
@@ -32,6 +31,9 @@ namespace StackBattle
         private void numericUpDown_price_ValueChanged(object sender, EventArgs e)
         {
             Battle.Price = (int)numericUpDown_price.Value;
+            if (battle.IsArmyPricesMatch())
+                button_start.Enabled = true;
+            else button_start.Enabled = false;
         }
 
         private void OpenArmyEditor(bool isFirstEditing)
@@ -49,7 +51,7 @@ namespace StackBattle
         private void button_start_Click(object sender, EventArgs e)
         {
             battleForm = new BattleForm();
-            battle.TurnCount = 0;
+            Battle.TurnCount = 0;
             battleForm.FormClosing += delegate
             {
                 UpdateArmyPrice();
@@ -62,14 +64,16 @@ namespace StackBattle
         private void button_createRandArmy1_Click(object sender, EventArgs e)
         {
             battle.IsFirstArmyBeingEdited = true;
-            battle.SetArmy(factory.CreateRandomArmy2(Battle.Price));
+            UnitFactory factory = new UnitFactory(true, battle.GetArmy());
+            factory.CreateRandomArmy(Battle.Price);
             UpdateArmyPrice();
         }
 
         private void button_createRandArmy2_Click(object sender, EventArgs e)
         {
             battle.IsFirstArmyBeingEdited = false;
-            battle.SetArmy(factory.CreateRandomArmy2(Battle.Price));
+            UnitFactory factory = new UnitFactory(false, battle.GetArmy());
+            factory.CreateRandomArmy(Battle.Price);
             UpdateArmyPrice();
         }
 

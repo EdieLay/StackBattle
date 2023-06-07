@@ -21,8 +21,9 @@ namespace StackBattle
             Range = 0;
             Strength = 0;
             MaxHP = 0;
+            ID = "";
         }
-        public Healer(int attack, int defense, int hitPoints, int range, int strength)
+        public Healer(int attack, int defense, int hitPoints, int range, int strength, string id)
         {
             Attack = attack;
             Defense = defense;
@@ -30,6 +31,7 @@ namespace StackBattle
             Range = range;
             Strength = strength;
             MaxHP = hitPoints;
+            ID = id;
         }
 
         public int Action(ArmiesRange armies)
@@ -60,7 +62,7 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            return $"Healer [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
+            return $"{ID} Healer [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
         }
     }
 }

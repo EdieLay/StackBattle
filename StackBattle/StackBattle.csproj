@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\net7.0-windows\LogFile.txt" />
+    <Compile Remove="IUnit\Proxy\LogFiles\**" />
+    <EmbeddedResource Remove="IUnit\Proxy\LogFiles\**" />
+    <None Remove="IUnit\Proxy\LogFiles\**" />
   </ItemGroup>
 
   <ItemGroup>

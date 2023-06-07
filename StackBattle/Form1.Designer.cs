@@ -52,10 +52,9 @@
             this.button_start.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
             this.button_start.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button_start.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button_start.Location = new System.Drawing.Point(263, 52);
-            this.button_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_start.Location = new System.Drawing.Point(301, 69);
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(177, 63);
+            this.button_start.Size = new System.Drawing.Size(202, 84);
             this.button_start.TabIndex = 0;
             this.button_start.Text = "BATTLE!!!";
             this.button_start.UseVisualStyleBackColor = false;
@@ -66,10 +65,9 @@
             this.button_army1edit.BackColor = System.Drawing.Color.LightGray;
             this.button_army1edit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_army1edit.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_army1edit.Location = new System.Drawing.Point(10, 145);
-            this.button_army1edit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_army1edit.Location = new System.Drawing.Point(11, 193);
             this.button_army1edit.Name = "button_army1edit";
-            this.button_army1edit.Size = new System.Drawing.Size(177, 63);
+            this.button_army1edit.Size = new System.Drawing.Size(206, 84);
             this.button_army1edit.TabIndex = 1;
             this.button_army1edit.Text = "Edit Army 1";
             this.button_army1edit.UseVisualStyleBackColor = false;
@@ -81,9 +79,9 @@
             this.label_army1.BackColor = System.Drawing.Color.Transparent;
             this.label_army1.Font = new System.Drawing.Font("Showcard Gothic", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_army1.ForeColor = System.Drawing.Color.White;
-            this.label_army1.Location = new System.Drawing.Point(10, 58);
+            this.label_army1.Location = new System.Drawing.Point(11, 77);
             this.label_army1.Name = "label_army1";
-            this.label_army1.Size = new System.Drawing.Size(151, 47);
+            this.label_army1.Size = new System.Drawing.Size(186, 59);
             this.label_army1.TabIndex = 2;
             this.label_army1.Text = "Army 1";
             // 
@@ -93,9 +91,9 @@
             this.label_army2.BackColor = System.Drawing.Color.Transparent;
             this.label_army2.Font = new System.Drawing.Font("Showcard Gothic", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_army2.ForeColor = System.Drawing.Color.White;
-            this.label_army2.Location = new System.Drawing.Point(513, 58);
+            this.label_army2.Location = new System.Drawing.Point(586, 77);
             this.label_army2.Name = "label_army2";
-            this.label_army2.Size = new System.Drawing.Size(152, 47);
+            this.label_army2.Size = new System.Drawing.Size(188, 59);
             this.label_army2.TabIndex = 3;
             this.label_army2.Text = "Army 2";
             // 
@@ -105,9 +103,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(289, 134);
+            this.label1.Location = new System.Drawing.Point(330, 179);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 47);
+            this.label1.Size = new System.Drawing.Size(176, 59);
             this.label1.TabIndex = 4;
             this.label1.Text = "Price:";
             // 
@@ -115,8 +113,7 @@
             // 
             this.numericUpDown_price.BackColor = System.Drawing.Color.White;
             this.numericUpDown_price.Font = new System.Drawing.Font("Showcard Gothic", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown_price.Location = new System.Drawing.Point(299, 183);
-            this.numericUpDown_price.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.numericUpDown_price.Location = new System.Drawing.Point(342, 244);
             this.numericUpDown_price.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -128,7 +125,7 @@
             0,
             0});
             this.numericUpDown_price.Name = "numericUpDown_price";
-            this.numericUpDown_price.Size = new System.Drawing.Size(118, 54);
+            this.numericUpDown_price.Size = new System.Drawing.Size(135, 66);
             this.numericUpDown_price.TabIndex = 5;
             this.numericUpDown_price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_price.Value = new decimal(new int[] {
@@ -144,9 +141,9 @@
             this.label_price1.BackColor = System.Drawing.Color.Transparent;
             this.label_price1.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_price1.ForeColor = System.Drawing.Color.White;
-            this.label_price1.Location = new System.Drawing.Point(10, 104);
+            this.label_price1.Location = new System.Drawing.Point(11, 139);
             this.label_price1.Name = "label_price1";
-            this.label_price1.Size = new System.Drawing.Size(93, 30);
+            this.label_price1.Size = new System.Drawing.Size(121, 37);
             this.label_price1.TabIndex = 6;
             this.label_price1.Text = "Price: ";
             // 
@@ -156,9 +153,9 @@
             this.label_price2.BackColor = System.Drawing.Color.Transparent;
             this.label_price2.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_price2.ForeColor = System.Drawing.Color.White;
-            this.label_price2.Location = new System.Drawing.Point(513, 104);
+            this.label_price2.Location = new System.Drawing.Point(586, 139);
             this.label_price2.Name = "label_price2";
-            this.label_price2.Size = new System.Drawing.Size(93, 30);
+            this.label_price2.Size = new System.Drawing.Size(121, 37);
             this.label_price2.TabIndex = 7;
             this.label_price2.Text = "Price: ";
             // 
@@ -168,9 +165,9 @@
             this.label_army1price.BackColor = System.Drawing.Color.Transparent;
             this.label_army1price.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_army1price.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label_army1price.Location = new System.Drawing.Point(93, 104);
+            this.label_army1price.Location = new System.Drawing.Point(106, 139);
             this.label_army1price.Name = "label_army1price";
-            this.label_army1price.Size = new System.Drawing.Size(27, 30);
+            this.label_army1price.Size = new System.Drawing.Size(35, 37);
             this.label_army1price.TabIndex = 8;
             this.label_army1price.Text = "0";
             // 
@@ -180,9 +177,9 @@
             this.label_army2price.BackColor = System.Drawing.Color.Transparent;
             this.label_army2price.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_army2price.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label_army2price.Location = new System.Drawing.Point(595, 104);
+            this.label_army2price.Location = new System.Drawing.Point(680, 139);
             this.label_army2price.Name = "label_army2price";
-            this.label_army2price.Size = new System.Drawing.Size(27, 30);
+            this.label_army2price.Size = new System.Drawing.Size(35, 37);
             this.label_army2price.TabIndex = 9;
             this.label_army2price.Text = "0";
             // 
@@ -191,10 +188,9 @@
             this.button_army2edit.BackColor = System.Drawing.Color.LightGray;
             this.button_army2edit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_army2edit.Font = new System.Drawing.Font("Showcard Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_army2edit.Location = new System.Drawing.Point(513, 145);
-            this.button_army2edit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_army2edit.Location = new System.Drawing.Point(581, 193);
             this.button_army2edit.Name = "button_army2edit";
-            this.button_army2edit.Size = new System.Drawing.Size(177, 63);
+            this.button_army2edit.Size = new System.Drawing.Size(207, 84);
             this.button_army2edit.TabIndex = 10;
             this.button_army2edit.Text = "Edit Army 2";
             this.button_army2edit.UseVisualStyleBackColor = false;
@@ -205,10 +201,9 @@
             this.button_createRandArmy1.BackColor = System.Drawing.Color.LightGray;
             this.button_createRandArmy1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_createRandArmy1.Font = new System.Drawing.Font("Showcard Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_createRandArmy1.Location = new System.Drawing.Point(53, 212);
-            this.button_createRandArmy1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_createRandArmy1.Location = new System.Drawing.Point(61, 283);
             this.button_createRandArmy1.Name = "button_createRandArmy1";
-            this.button_createRandArmy1.Size = new System.Drawing.Size(92, 65);
+            this.button_createRandArmy1.Size = new System.Drawing.Size(105, 87);
             this.button_createRandArmy1.TabIndex = 11;
             this.button_createRandArmy1.Text = "Create Random \r\nArmy";
             this.button_createRandArmy1.UseVisualStyleBackColor = false;
@@ -219,10 +214,9 @@
             this.button_createRandArmy2.BackColor = System.Drawing.Color.LightGray;
             this.button_createRandArmy2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_createRandArmy2.Font = new System.Drawing.Font("Showcard Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_createRandArmy2.Location = new System.Drawing.Point(557, 212);
-            this.button_createRandArmy2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_createRandArmy2.Location = new System.Drawing.Point(637, 283);
             this.button_createRandArmy2.Name = "button_createRandArmy2";
-            this.button_createRandArmy2.Size = new System.Drawing.Size(92, 65);
+            this.button_createRandArmy2.Size = new System.Drawing.Size(105, 87);
             this.button_createRandArmy2.TabIndex = 12;
             this.button_createRandArmy2.Text = "Create Random \r\nArmy";
             this.button_createRandArmy2.UseVisualStyleBackColor = false;
@@ -230,12 +224,12 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(700, 338);
+            this.ClientSize = new System.Drawing.Size(800, 451);
             this.Controls.Add(this.button_createRandArmy2);
             this.Controls.Add(this.button_createRandArmy1);
             this.Controls.Add(this.button_army2edit);
@@ -249,7 +243,6 @@
             this.Controls.Add(this.label_army1);
             this.Controls.Add(this.button_army1edit);
             this.Controls.Add(this.button_start);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stack Battle";

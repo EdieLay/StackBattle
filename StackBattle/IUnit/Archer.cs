@@ -22,8 +22,9 @@ namespace StackBattle
             Range = 0;
             Strength = 0;
             MaxHP = 0;
+            ID = "";
         }
-        public Archer(int attack, int defense, int hitPoints, int range, int strength)
+        public Archer(int attack, int defense, int hitPoints, int range, int strength, string id)
         {
             Attack = attack;
             Defense = defense;
@@ -31,6 +32,7 @@ namespace StackBattle
             Range = range;
             Strength = strength;
             MaxHP = hitPoints;
+            ID = id;
         }
 
         public int Action(ArmiesRange armies)
@@ -40,7 +42,7 @@ namespace StackBattle
                 var rand = new Random((int)DateTime.Now.Ticks);
                 if (rand.NextDouble() < 0.5) // шанс попасть
                 {
-                    armies.enemyArmy[armies.eArea[i]].TakeDamage(Strength);
+                    armies.enemyArmy[armies.eArea[i]].TakeDamage(this, true);
                     return armies.eArea[i];
                 }
             }
@@ -58,7 +60,7 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            return $"Archer [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
+            return $"{ID} Archer [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
         }
     }
 }

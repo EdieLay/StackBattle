@@ -12,8 +12,8 @@ namespace StackBattle
         private static object syncRoot = new();
 
         public static int Price { get; set; } = 200; // установленная цена армий
-        public static int DefenseMod { get { return Price / 20; } } // модификатор защиты для подстановки в формулу TakeDamage
-        
+        public static int DefenseMod { get { return Price / 10; } } // модификатор защиты для подстановки в формулу TakeDamage
+        public static int TurnCount { get; set; } = 0;
 
         Army FirstArmy { get; set; }
         Army SecondArmy { get; set; }
@@ -24,7 +24,7 @@ namespace StackBattle
         public bool IsRedoAvailable { get { return Command.IsRedoAvailable; } }
         public bool IsFirstArmyBeingEdited { get; set; }
         public bool IsGameFinished { get { return (FirstArmy.ArmySize == 0 || SecondArmy.ArmySize == 0 || TurnCount == Price * 10); } }
-        public int TurnCount { get; set; } = 0;
+        
 
         private Battle()
         {
@@ -44,8 +44,8 @@ namespace StackBattle
         {
             if (!IsGameFinished)
             {
-                Command.Execute();
                 TurnCount++;
+                Command.Execute();
             }
         }
 
@@ -59,17 +59,17 @@ namespace StackBattle
         {
             if (IsUndoAvailable)
             {
-                Command.Undo();
                 TurnCount--;
+                Command.Undo();
             }
         }
 
         public void RedoTurn()
         {
             if (IsRedoAvailable)
-            { 
-                Command.Redo();
+            {
                 TurnCount++;
+                Command.Redo();
             }
         }
 
@@ -94,13 +94,6 @@ namespace StackBattle
             if (FirstArmy.Price <= Price && SecondArmy.Price <= Price && FirstArmy.ArmySize > 0 && SecondArmy.ArmySize > 0)
                 return true;
             return false;
-        }
-
-        public void SetArmy(Army army)
-        {
-            if (IsFirstArmyBeingEdited)
-                FirstArmy = army;
-            else SecondArmy = army;
         }
     }
 }

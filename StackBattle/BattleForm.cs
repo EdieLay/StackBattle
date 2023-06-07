@@ -78,7 +78,7 @@ namespace StackBattle
         private void UpdateBattleFieldState()
         {
             UpdateUnitInfo();
-            label_turnCounter.Text = "Turn: " + battle.TurnCount.ToString();
+            label_turnCounter.Text = "Turn: " + Battle.TurnCount.ToString();
             if (battle.IsGameFinished)
             {
                 button_doTurn.Enabled = false;

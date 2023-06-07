@@ -14,17 +14,19 @@ namespace StackBattle
             Attack = 0;
             Defense = 0;
             HitPoints = 0;
+            ID = "";
         }
-        public Knight(int attack, int defense, int hitPoints)
+        public Knight(int attack, int defense, int hitPoints, string id)
         {
             Attack = attack;
             Defense = defense;
             HitPoints = hitPoints;
+            ID = id;
         }
 
         public override string GetUnitStats()
         {
-            return $"Knight [{HitPoints}/{Attack}/{Defense}]";
+            return $"{ID} Knight [{HitPoints}/{Attack}/{Defense}]";
         }
     }
 }
