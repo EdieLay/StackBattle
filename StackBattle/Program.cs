@@ -12,10 +12,6 @@ namespace StackBattle
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
-
-            TurnCommand tc = new(new Army(), new Army(), new StackStructure());
-            ProxyCommand pc = new(tc);
-            pc.Log();
         }
     }
 }
