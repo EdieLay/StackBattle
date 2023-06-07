@@ -101,7 +101,7 @@ namespace StackBattle
 
         public void CreateRandomArmy(int price)
         {
-            army.Units.Clear();
+            army.Units.Clear(); // no
 
             int ratio = Math.Max(1, price / 50);
             int priceLeft = price;
