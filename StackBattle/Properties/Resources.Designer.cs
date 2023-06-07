@@ -121,15 +121,6 @@ namespace StackBattle.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .
-        /// </summary>
-        internal static string LogFile {
-            get {
-                return ResourceManager.GetString("LogFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap menu {
