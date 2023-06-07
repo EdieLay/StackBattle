@@ -49,7 +49,7 @@ namespace StackBattle
         private void button_start_Click(object sender, EventArgs e)
         {
             battleForm = new BattleForm();
-            battle.TurnCount = 0;
+            Battle.TurnCount = 0;
             battleForm.FormClosing += delegate
             {
                 UpdateArmyPrice();

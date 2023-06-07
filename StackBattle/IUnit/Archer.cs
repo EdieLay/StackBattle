@@ -40,7 +40,7 @@ namespace StackBattle
                 var rand = new Random((int)DateTime.Now.Ticks);
                 if (rand.NextDouble() < 0.5) // шанс попасть
                 {
-                    armies.enemyArmy[armies.eArea[i]].TakeDamage(Strength);
+                    armies.enemyArmy[armies.eArea[i]].TakeDamage(this, true);
                     return armies.eArea[i];
                 }
             }

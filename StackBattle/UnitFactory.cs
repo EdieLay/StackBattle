@@ -36,7 +36,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new Archer(attack, defense, hp, sar, sas);
+            return new ArcherProxy(new Archer(attack, defense, hp, sar, sas));
         }
         public IUnit CreateHealer(int unitprice)
         {

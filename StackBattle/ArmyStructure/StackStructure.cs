@@ -13,10 +13,10 @@ namespace StackBattle
             if (firstArmy.Units.Count == 0 || secondArmy.Units.Count == 0) 
                 return false;
 
-            secondArmy[0].TakeDamage(firstArmy[0].Attack);
+            secondArmy[0].TakeDamage(firstArmy[0]);
             if (secondArmy[0] is AbstractBuff buffunit2)
                 TakeOffBuff(secondArmy, buffunit2, 0);
-            firstArmy[0].TakeDamage(secondArmy[0].Attack);
+            firstArmy[0].TakeDamage(secondArmy[0]);
             if (firstArmy[0] is AbstractBuff buffunit1)
                 TakeOffBuff(firstArmy, buffunit1, 0);
 

@@ -61,10 +61,15 @@ namespace StackBattle
             HitPoints = hitPoints;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(IUnit attacker, bool isSADamage = false)
         {
             int defMod = Battle.DefenseMod;
-            HitPoints -= (int)Math.Round((double)damage * ((double)defMod/(double)(defMod + Defense)));
+            int attack = attacker.Attack;
+            if (isSADamage && attacker is ISpecialAbility saunit)
+            {
+                attack = saunit.Strength;
+            }
+            HitPoints -= (int)Math.Round((double)attack * ((double)defMod/(double)(defMod + Defense)));
         }
 
         public abstract string GetUnitStats();

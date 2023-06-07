@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IUnit\Proxy\LogFiles\**" />
+    <EmbeddedResource Remove="IUnit\Proxy\LogFiles\**" />
+    <None Remove="IUnit\Proxy\LogFiles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
