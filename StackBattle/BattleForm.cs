@@ -18,6 +18,7 @@ namespace StackBattle
         public BattleForm()
         {
             InitializeComponent();
+            label_turnCounter.Text = "Turn: 0";
             battle.SetCommand();
             battle.IsFirstArmyBeingEdited = true;
             FirstArmy = battle.GetArmy();
@@ -89,13 +90,13 @@ namespace StackBattle
                 button_doTurn.Enabled = true;
                 button_finishBattle.Enabled = true;
             }
-            if (battle.IsUndoAvailable)
-                button_undo.Enabled = true;
-            else button_undo.Enabled = false;
-
-            if (battle.IsRedoAvailable)
-                button_redo.Enabled = true;
-            else button_redo.Enabled = false;
+            button_undo.Enabled = battle.IsUndoAvailable;
+            button_redo.Enabled = battle.IsRedoAvailable;
+            if (battle.Structure is StackStructure) 
+                radioButton_stack.Checked = true;
+            else if (battle.Structure is LineStructure) 
+                radioButton_line.Checked = true;
+            else radioButton_3x3.Checked = true;
         }
 
         private void UpdateUnitInfo()

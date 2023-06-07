@@ -11,8 +11,8 @@ namespace StackBattle
         bool IsUndoAvailable { get; }
         bool IsRedoAvailable { get; }
         void Execute();
-        void Undo();
-        void Redo();
+        ArmyStructure Undo();
+        ArmyStructure Redo();
         void SetStructure(ArmyStructure structure);
     }
 }

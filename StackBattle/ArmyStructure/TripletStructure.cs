@@ -39,7 +39,7 @@ namespace StackBattle
         {
             int armyStartInRangeX = position - range * 3 < 0 ? 0 : position - range * 3;
             int armyEndInRangeX = position + range * 3 >= armies.friendlyArmy.ArmySize - 1 ? armies.friendlyArmy.ArmySize - 1 : position + range * 3;
-
+            armies.fArea.Add(position);
             for (int i = armyStartInRangeX; i <= armyEndInRangeX; i++)
                 GetArmyInRangeY(i, range, armies.friendlyArmy, armies.fArea);
             armies.fArea.Remove(position);

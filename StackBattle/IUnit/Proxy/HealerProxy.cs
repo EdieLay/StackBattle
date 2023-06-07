@@ -52,11 +52,10 @@ namespace StackBattle
 
         public void TakeDamage(IUnit attacker, bool isSADamage = false)
         {
-            if (isSADamage)
-                LogSpecialAbility(attacker, this);
-            else LogTakeDamageAndDeath(this, attacker);
-
+            if (HitPoints == 0) return;
             _healer.TakeDamage(attacker, isSADamage);
+            if (!isSADamage)
+                LogTakeDamage(this, attacker);
             if (this.HitPoints == 0)
                 LogDeath(this, attacker);
         }
@@ -68,7 +67,10 @@ namespace StackBattle
 
         public int Action(ArmiesRange armies)
         {
-            return _healer.Action(armies);
+            int pos = _healer.Action(armies);
+            if (pos >= 0)
+                LogSpecialAbility( armies.friendlyArmy[pos]);
+            return pos;
         }
 
         public void Heal(int hp)
@@ -76,14 +78,13 @@ namespace StackBattle
             _healer.Heal(hp);
         }
 
-        protected override void LogSpecialAbility(IUnit caster, IUnit target)
+        protected override void LogSpecialAbility(IUnit target)
         {
             using (StreamWriter specialAbilityLog = new(_specialAbilityLog, true))
             {
                 string targetInfo = target.GetUnitStats();
-                string casterInfo = caster.GetUnitStats();
-                int healedHitPoints = Math.Min((target as IHealable).MaxHP, target.HitPoints + (caster as ISpecialAbility).Strength) - target.HitPoints;
-                string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} heals {targetInfo} healed {healedHitPoints} hit point(s)";
+                string casterInfo = this.GetUnitStats();
+                string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} healed {targetInfo} on {this.Strength} HP";
                 specialAbilityLog.WriteLine(logLine);
             }
         }

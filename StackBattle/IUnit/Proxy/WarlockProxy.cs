@@ -52,11 +52,10 @@ namespace StackBattle
 
         public void TakeDamage(IUnit attacker, bool isSADamage = false)
         {
-            if (isSADamage)
-                LogSpecialAbility(attacker, this);
-            else LogTakeDamageAndDeath(this, attacker);
-
+            if (HitPoints == 0) return;
             _warlock.TakeDamage(attacker, isSADamage);
+            if (!isSADamage)
+                LogTakeDamage(this, attacker);
             if (this.HitPoints == 0)
                 LogDeath(this, attacker);
         }
@@ -70,7 +69,7 @@ namespace StackBattle
         {
             int pos = _warlock.Action(armies);
             if (pos >= 0)
-                LogSpecialAbility(this, armies.friendlyArmy[pos]);
+                LogSpecialAbility(armies.friendlyArmy[pos]);
             return pos;
         }
 
@@ -79,12 +78,12 @@ namespace StackBattle
             _warlock.Heal(hp);
         }
 
-        protected override void LogSpecialAbility(IUnit caster, IUnit target)
+        protected override void LogSpecialAbility(IUnit target)
         {
             using (StreamWriter specialAbilityLog = new(_specialAbilityLog, true))
             {
                 string targetInfo = target.GetUnitStats();
-                string casterInfo = caster.GetUnitStats();
+                string casterInfo = this.GetUnitStats();
                 string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} cloned {targetInfo}";
                 specialAbilityLog.WriteLine(logLine);
             }

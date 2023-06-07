@@ -41,6 +41,7 @@ namespace StackBattle
         {
             int armyStartInRange = position - range < 0 ? 0 : position - range;
             int armyEndInRange = position + range >= armies.friendlyArmy.ArmySize ? armies.friendlyArmy.ArmySize - 1 : position + range;
+            armies.fArea.Add(position);
             for (int i = armyStartInRange; i < position; i++)
                 armies.fArea.Add(i);
             for (int i = position + 1; i <= armyEndInRange; i++)

@@ -13,7 +13,8 @@ namespace StackBattle
         public List<IUnit> UnitList { get; set; } = new();
         public List<int> UnitsHP { get; set; } = new();
         public List<(Stack<Buffs> Buffs, int Position)> UnitBuffs { get; set; } = new(); // если юнит is AbstractBuff, то записываем его текущие баффы сюда
-        public TurnState(List<IUnit> unitList)
+        public ArmyStructures Structure { get; set; } = new();
+        public TurnState(List<IUnit> unitList, ArmyStructures structure)
         {
             for (int i = 0; i < unitList.Count; i++)
             {
@@ -24,6 +25,7 @@ namespace StackBattle
                     GetBuffs(buffunit, i);
                 }
             }
+            Structure = structure;
         }
 
         void GetBuffs(IBuffable buffunit, int pos)

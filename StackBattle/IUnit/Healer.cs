@@ -36,7 +36,7 @@ namespace StackBattle
 
         public int Action(ArmiesRange armies)
         {
-            for (int i = 0; i < armies.fArea.Count; i++) 
+            for (int i = 1; i < armies.fArea.Count; i++) 
             {
                 if (armies.friendlyArmy[armies.fArea[i]] is IHealable unit && armies.friendlyArmy[armies.fArea[i]].HitPoints > 0)
                 {

@@ -25,8 +25,8 @@ namespace StackBattle
             SecondArmy = secondArmy;
             Structure = structure;
             // сохранение начального состояния
-            TurnState fastate = new(FirstArmy.Units);
-            TurnState sastate = new(SecondArmy.Units);
+            TurnState fastate = new(FirstArmy.Units, GetStructure());
+            TurnState sastate = new(SecondArmy.Units, GetStructure());
             UndoStack.Push((fastate, sastate));
             RedoStack.Clear();
         }
@@ -36,30 +36,30 @@ namespace StackBattle
             DoTurn();
             FirstArmy.ClearArmy();
             SecondArmy.ClearArmy();
-            TurnState fastate = new(FirstArmy.Units);
-            TurnState sastate = new(SecondArmy.Units);
+            TurnState fastate = new(FirstArmy.Units, GetStructure());
+            TurnState sastate = new(SecondArmy.Units, GetStructure());
             UndoStack.Push((fastate, sastate));
             RedoStack.Clear();
-
-            
         }
 
-        public void Undo()
+        public ArmyStructure Undo()
         {
             RedoStack.Push(UndoStack.Pop());
             TurnState FAState = UndoStack.Peek().FAState;
             TurnState SAState = UndoStack.Peek().SAState;
-
+            AbstractProxy.LogUndoRedo(true);
             RestoreStates(FAState, SAState);
+            return GetStructure(FAState);
         }
 
-        public void Redo()
+        public ArmyStructure Redo()
         {
             TurnState FAState = RedoStack.Peek().FAState;
             TurnState SAState = RedoStack.Peek().SAState;
             UndoStack.Push(RedoStack.Pop());
-
+            AbstractProxy.LogUndoRedo(false);
             RestoreStates(FAState, SAState);
+            return GetStructure(FAState);
         }
 
         public void SetStructure(ArmyStructure structure)
@@ -142,6 +142,24 @@ namespace StackBattle
                 SecondArmy.Units.Add(SAState.UnitList[i]);
                 SecondArmy[i].HitPoints = SAState.UnitsHP[i];
             }
+        }
+
+        ArmyStructures GetStructure()
+        {
+            if (Structure is StackStructure)
+                return ArmyStructures.Stack;
+            else if (Structure is LineStructure) 
+                return ArmyStructures.Line;
+            return ArmyStructures.Triplet;
+        }
+
+        ArmyStructure GetStructure(TurnState state)
+        {
+            if (state.Structure == ArmyStructures.Stack)
+                return new StackStructure();
+            else if (state.Structure == ArmyStructures.Line)
+                return new LineStructure();
+            return new TripletStructure();
         }
     }
 }
