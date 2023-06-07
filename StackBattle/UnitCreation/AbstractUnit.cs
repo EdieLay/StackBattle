@@ -12,6 +12,7 @@ namespace StackBattle
         private int _defense;
         private int _hitPoints;
         abstract public UnitType Type { get; }
+        public string ID { get; set; }
         public virtual int Attack { 
             get 
             { 

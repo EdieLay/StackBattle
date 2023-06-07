@@ -8,6 +8,9 @@ namespace StackBattle
 {
     internal class Army
     {
+        private int _price = -1;
+        private object syncRoot = new();
+
         public List<IUnit> Units { get; private set; }
         public int ArmySize
         {
@@ -16,8 +19,7 @@ namespace StackBattle
                 return Units.Count;
             }
         }
-        private int _price = -1;
-        private object syncRoot = new();
+        public int NextIndex = 1;
 
         public Army()
         {

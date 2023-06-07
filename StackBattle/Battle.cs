@@ -44,8 +44,8 @@ namespace StackBattle
         {
             if (!IsGameFinished)
             {
-                Command.Execute();
                 TurnCount++;
+                Command.Execute();
             }
         }
 
@@ -59,17 +59,17 @@ namespace StackBattle
         {
             if (IsUndoAvailable)
             {
-                Command.Undo();
                 TurnCount--;
+                Command.Undo();
             }
         }
 
         public void RedoTurn()
         {
             if (IsRedoAvailable)
-            { 
-                Command.Redo();
+            {
                 TurnCount++;
+                Command.Redo();
             }
         }
 
@@ -94,13 +94,6 @@ namespace StackBattle
             if (FirstArmy.Price <= Price && SecondArmy.Price <= Price && FirstArmy.ArmySize > 0 && SecondArmy.ArmySize > 0)
                 return true;
             return false;
-        }
-
-        public void SetArmy(Army army)
-        {
-            if (IsFirstArmyBeingEdited)
-                FirstArmy = army;
-            else SecondArmy = army;
         }
     }
 }

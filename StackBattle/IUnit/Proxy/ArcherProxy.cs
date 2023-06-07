@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,11 @@ namespace StackBattle
     internal class ArcherProxy : AbstractProxy, IUnit, ISpecialAbility, IHealable
     {
         private Archer _archer;
+        public string ID 
+        { 
+            get => _archer.ID;
+            set => _archer.ID = value;
+        }
         public int Attack
         {
             get => _archer.Attack;

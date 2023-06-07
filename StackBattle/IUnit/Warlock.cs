@@ -21,8 +21,9 @@ namespace StackBattle
             Range = 0;
             Strength = 0;
             MaxHP = 0;
+            ID = "";
         }
-        public Warlock(int attack, int defense, int hitPoints, int range, int strength)
+        public Warlock(int attack, int defense, int hitPoints, int range, int strength, string id)
         {
             Attack = attack;
             Defense = defense;
@@ -30,6 +31,7 @@ namespace StackBattle
             Range = range;
             Strength = strength;
             MaxHP = hitPoints;
+            ID = id;
         }
 
         public int Action(ArmiesRange armies)
@@ -43,7 +45,7 @@ namespace StackBattle
                     {
                         int warlockpos = armies.friendlyArmy.Units.IndexOf(this);
                         int clonepos = armies.fArea[i];
-                        IUnit clone = prototype.Clone() as IUnit;
+                        IUnit clone = prototype.Clone(armies.friendlyArmy) as IUnit;
                         armies.friendlyArmy.InsertClonedUnit(warlockpos, clone);
                         if (clonepos < warlockpos)
                             return clonepos;
@@ -65,7 +67,7 @@ namespace StackBattle
 
         public override string GetUnitStats()
         {
-            return $"Warlock [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
+            return $"{ID} Warlock [{HitPoints}/{Attack}/{Defense}/{Range}/{Strength}]";
         }
     }
 }

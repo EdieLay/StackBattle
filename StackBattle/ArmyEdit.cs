@@ -16,11 +16,13 @@ namespace StackBattle
         Battle battle;
         Army army;
         int price;
+        int armyNum;
         public ArmyEdit()
         {
             battle = Battle.GetBattleInstance();
             army = battle.GetArmy();
             price = army.Price;
+            armyNum = battle.IsFirstArmyBeingEdited ? 1 : 2;
             InitializeComponent();
             SetNumericsMaxValue();
         }
@@ -100,7 +102,7 @@ namespace StackBattle
             comboBox_armyUnitSelection.Items.Clear();
             for (int i = 0; i < army.ArmySize; i++)
             {
-                string test = $"{i+1}. {army[i].GetUnitStats()}";
+                string test = $"{army[i].GetUnitStats()}";
                 comboBox_armyUnitSelection.Items.Add(test);
             }
             label_price.Text = "Price: " + price + "/" + Battle.Price; // обновляем цену армии
@@ -117,34 +119,35 @@ namespace StackBattle
             int sar = (int)numericUpDown_sar.Value;
             int sas = (int)numericUpDown_sas.Value;
             price += hp + attack + defense;
+            string id = $"{armyNum}#{army.NextIndex++}";
 
             switch (unitType) // добавляем юнита (наверное, можно сделать как-то покрасивее, мб через абстрактную фабрику)
             {
                 case UnitType.LightInfantry: // Light Infantry
-                    army.AddUnit(new LightInfantry(attack, defense, hp, sas));
+                    army.AddUnit(new LightInfantry(attack, defense, hp, sas, id));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.HeavyInfantry: // Heavy Infantry
-                    army.AddUnit(new HeavyInfantry(attack, defense, hp));
+                    army.AddUnit(new HeavyInfantry(attack, defense, hp, id));
                     break;
                 case UnitType.Knight: // Knight
-                    army.AddUnit(new Knight(attack, defense, hp));
+                    army.AddUnit(new Knight(attack, defense, hp, id));
                     break;
                 case UnitType.Archer: // Archer
-                    army.AddUnit(new Archer(attack, defense, hp, sar, sas));
+                    army.AddUnit(new Archer(attack, defense, hp, sar, sas, id));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.Healer: // Healer
-                    army.AddUnit(new Healer(attack, defense, hp, sar, sas));
+                    army.AddUnit(new Healer(attack, defense, hp, sar, sas, id));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.Warlock: // Warlock
-                    army.AddUnit(new Warlock(attack, defense, hp, sar, sas));
+                    army.AddUnit(new Warlock(attack, defense, hp, sar, sas, id));
                     price += 2 * (sar + sas);
                     break;
                 case UnitType.GulyayGorod: // Gulyay Gorod
                     GulyayGorod gg = new GulyayGorod(hp, defense, 0);
-                    army.AddUnit(new GulyayGorodAdapter(gg));
+                    army.AddUnit(new GulyayGorodAdapter(gg, id));
                     break;
             }
             SetUnitsSelectionList(); // обновляем комбоБокс с выбором юнита из армии

@@ -11,18 +11,19 @@ namespace StackBattle
         private readonly GulyayGorod _adapteeGG;
         public override int Attack { get => 0; }
 
-        public GulyayGorodAdapter(GulyayGorod adapteeGG)
+        public GulyayGorodAdapter(GulyayGorod adapteeGG, string id)
         {
             _adapteeGG = adapteeGG;
             Defense = adapteeGG.GetDefence();
             HitPoints = adapteeGG.GetHealth();
+            ID = id;
         }
 
         public override UnitType Type { get { return UnitType.GulyayGorod; } }
 
         public override string GetUnitStats()
         {
-            return $"Gulyay Gorod [{HitPoints}/{Attack}/{Defense}]";
+            return $"{ID} Gulyay Gorod [{HitPoints}/{Attack}/{Defense}]";
         }
     }
 }

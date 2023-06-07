@@ -6,6 +6,16 @@ namespace StackBattle
     internal class UnitFactory
     {
         Random random = new((int)DateTime.Now.Ticks);
+        int armyNum;
+        Army army;
+        string id;
+        public UnitFactory(bool isFirstArmyBeingEdited, Army army) 
+        {
+            armyNum = isFirstArmyBeingEdited ? 1 : 2;
+            this.army = army;
+            army.NextIndex = 1;
+            id = String.Empty;
+        }
         public IUnit CreateLight(int unitprice)
         {
             int sar = 1;
@@ -13,21 +23,21 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new LightInfantry(attack, defense, hp, sas);
+            return new LightInfantry(attack, defense, hp, sas, id);
         }
         public IUnit CreateHeavy(int unitprice)
         {
             int hp = random.Next(1, unitprice);
             int attack = random.Next(1, unitprice - hp + 1);
             int defense = unitprice - hp - attack;
-            return new HeavyInfantry(attack, defense, hp);
+            return new HeavyInfantry(attack, defense, hp, id);
         }
         public IUnit CreateKnight(int unitprice)
         {
             int hp = random.Next(1, unitprice);
             int attack = random.Next(1, unitprice - hp + 1);
             int defense = unitprice - hp - attack;
-            return new Knight(attack, defense, hp);
+            return new Knight(attack, defense, hp, id);
         }
         public IUnit CreateArcher(int unitprice)
         {
@@ -36,7 +46,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new ArcherProxy(new Archer(attack, defense, hp, sar, sas));
+            return new ArcherProxy(new Archer(attack, defense, hp, sar, sas, id));
         }
         public IUnit CreateHealer(int unitprice)
         {
@@ -45,7 +55,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new Healer(attack, defense, hp, sar, sas);
+            return new Healer(attack, defense, hp, sar, sas, id);
         }
         public IUnit CreateWarlock(int unitprice)
         {
@@ -54,7 +64,7 @@ namespace StackBattle
             int hp = random.Next(1, unitprice - (sas + sar) * 2);
             int attack = random.Next(1, unitprice - hp - (sas + sar) * 2 + 1);
             int defense = unitprice - hp - attack - (sas + sar) * 2;
-            return new Warlock(attack, defense, hp, sar, sas);
+            return new Warlock(attack, defense, hp, sar, sas, id);
         }
 
         public IUnit CreateGulyayGorod(int unitprice)
@@ -62,12 +72,13 @@ namespace StackBattle
             int hp = random.Next(1, unitprice + 1);
             int def = unitprice - hp;
             GulyayGorod gg = new GulyayGorod(hp, def, 0);
-            return new GulyayGorodAdapter(gg);
+            return new GulyayGorodAdapter(gg, id);
         }
 
         public IUnit CreateRandomUnit(int unitprice)
         {
             UnitType unitType = (UnitType)random.Next(0, 7);
+            id = $"{armyNum}#{army.NextIndex++}";
             switch (unitType)
             {
                 case UnitType.LightInfantry:
@@ -88,9 +99,9 @@ namespace StackBattle
             throw new Exception();
         }
 
-        public Army CreateRandomArmy(int price)
+        public void CreateRandomArmy(int price)
         {
-            Army army = new();
+            army.Units.Clear();
 
             int ratio = Math.Max(1, price / 50);
             int priceLeft = price;
@@ -105,8 +116,6 @@ namespace StackBattle
                 if (ratio > 1)
                     ratio--;
             }
-
-            return army;
         }
     }
 }
