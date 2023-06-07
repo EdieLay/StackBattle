@@ -13,6 +13,12 @@ namespace StackBattle
             if (firstArmy.Units.Count == 0 || secondArmy.Units.Count == 0) 
                 return false;
 
+            int maxArmyLength = Math.Max(firstArmy.ArmySize, secondArmy.ArmySize);
+            for (int i = 0; i < maxArmyLength; i++)
+            {
+                ApplyBuffs(i, firstArmy, secondArmy);
+            }
+
             secondArmy[0].TakeDamage(firstArmy[0].Attack);
             if (secondArmy[0] is AbstractBuff buffunit2)
                 TakeOffBuff(secondArmy, buffunit2, 0);
