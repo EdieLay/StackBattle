@@ -85,7 +85,7 @@ namespace StackBattle
                 string casterInfo = caster.GetUnitStats();
                 int defMod = Battle.DefenseMod;
                 int damage = (int)Math.Round((double)(caster as ISpecialAbility).Strength * ((double)defMod / (double)(defMod + target.Defense)));
-                string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} shots with bow {targetInfo} dealing {damage} damage.";
+                string logLine = $"Turn {Battle.TurnCount:D5} | {casterInfo} shots with bow {targetInfo} dealing {damage} damage";
                 specialAbilityLog.WriteLine(logLine);
             }
         }
