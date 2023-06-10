@@ -8,9 +8,9 @@ namespace StackBattle
 {
     internal abstract class AbstractProxy
     {
-        protected static readonly string _takeDamageLog = System.IO.Path.GetFullPath(@".\LogFiles\TakeDamageLog.txt");
-        protected static readonly string _specialAbilityLog = System.IO.Path.GetFullPath(@".\LogFiles\SpecialAbilityLog.txt");
-        protected static readonly string _deathLog = System.IO.Path.GetFullPath(@".\LogFiles\DeathLog.txt");
+        protected static readonly string _takeDamageLog = System.IO.Path.GetFullPath(@"..\..\..\IUnit\Proxy\LogFiles\TakeDamageLog.txt");
+        protected static readonly string _specialAbilityLog = System.IO.Path.GetFullPath(@"..\..\..\IUnit\Proxy\LogFiles\SpecialAbilityLog.txt");
+        protected static readonly string _deathLog = System.IO.Path.GetFullPath(@"..\..\..\IUnit\Proxy\LogFiles\DeathLog.txt");
         private static bool areLogsCleared = false;
         public AbstractProxy() 
         {
