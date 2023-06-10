@@ -83,6 +83,16 @@ namespace StackBattle.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gulyayGorod {
+            get {
+                object obj = ResourceManager.GetObject("gulyayGorod", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap healer {
             get {
                 object obj = ResourceManager.GetObject("healer", resourceCulture);
