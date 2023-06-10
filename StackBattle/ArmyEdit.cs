@@ -74,7 +74,7 @@ namespace StackBattle
                     HideSA(true);
                     numericUpDown_attack.Enabled = false;
                     numericUpDown_attack.Value = 0;
-                    //pictureBox_Unit.Image = Resources.gulyayGorod;
+                    pictureBox_Unit.Image = Resources.gulyayGorod;
                     break;
             }
         }
